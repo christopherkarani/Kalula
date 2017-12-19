@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		18F817A91FE99FFB009CE89D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F817A81FE99FFB009CE89D /* AppDelegate.swift */; };
 		18F817AB1FE99FFB009CE89D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F817AA1FE99FFB009CE89D /* ViewController.swift */; };
-		18F817AE1FE99FFB009CE89D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18F817AC1FE99FFB009CE89D /* Main.storyboard */; };
 		18F817B01FE99FFB009CE89D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18F817AF1FE99FFB009CE89D /* Assets.xcassets */; };
 		18F817B31FE99FFB009CE89D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18F817B11FE99FFB009CE89D /* LaunchScreen.storyboard */; };
 		18F817BE1FE99FFC009CE89D /* KalulaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F817BD1FE99FFC009CE89D /* KalulaTests.swift */; };
@@ -41,7 +40,6 @@
 		18F817A51FE99FFB009CE89D /* Kalula.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kalula.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F817A81FE99FFB009CE89D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18F817AA1FE99FFB009CE89D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		18F817AD1FE99FFB009CE89D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		18F817AF1FE99FFB009CE89D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18F817B21FE99FFB009CE89D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18F817B41FE99FFB009CE89D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -129,7 +127,6 @@
 			children = (
 				18F817A81FE99FFB009CE89D /* AppDelegate.swift */,
 				18F817AA1FE99FFB009CE89D /* ViewController.swift */,
-				18F817AC1FE99FFB009CE89D /* Main.storyboard */,
 				18F817AF1FE99FFB009CE89D /* Assets.xcassets */,
 				18F817B11FE99FFB009CE89D /* LaunchScreen.storyboard */,
 				18F817B41FE99FFB009CE89D /* Info.plist */,
@@ -283,7 +280,6 @@
 			files = (
 				18F817B31FE99FFB009CE89D /* LaunchScreen.storyboard in Resources */,
 				18F817B01FE99FFB009CE89D /* Assets.xcassets in Resources */,
-				18F817AE1FE99FFB009CE89D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,10 +436,16 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Kalula/Pods-Kalula-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Sukari/Sukari.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sukari.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -495,14 +497,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		18F817AC1FE99FFB009CE89D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				18F817AD1FE99FFB009CE89D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		18F817B11FE99FFB009CE89D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

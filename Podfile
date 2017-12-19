@@ -7,6 +7,9 @@ target 'Kalula' do
 
   # Pods for Kalula
 pod 'Sukari'
+pod 'SnapKit'
+pod 'RxSwift'
+pod 'RxCocoa'
 
   target 'KalulaTests' do
     inherit! :search_paths
