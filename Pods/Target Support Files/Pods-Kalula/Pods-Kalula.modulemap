@@ -1,0 +1,6 @@
+framework module Pods_Kalula {
+  umbrella header "Pods-Kalula-umbrella.h"
+
+  export *
+  module * { export * }
+}

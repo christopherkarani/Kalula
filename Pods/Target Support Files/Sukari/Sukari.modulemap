@@ -1,0 +1,6 @@
+framework module Sukari {
+  umbrella header "Sukari-umbrella.h"
+
+  export *
+  module * { export * }
+}

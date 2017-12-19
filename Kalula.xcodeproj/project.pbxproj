@@ -14,6 +14,9 @@
 		18F817B31FE99FFB009CE89D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18F817B11FE99FFB009CE89D /* LaunchScreen.storyboard */; };
 		18F817BE1FE99FFC009CE89D /* KalulaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F817BD1FE99FFC009CE89D /* KalulaTests.swift */; };
 		18F817C91FE99FFC009CE89D /* KalulaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F817C81FE99FFC009CE89D /* KalulaUITests.swift */; };
+		32B74004A93B0E9A6E6E8F75 /* Pods_KalulaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5971D433310331350675CD09 /* Pods_KalulaUITests.framework */; };
+		7F5B50C9814E3ECB4E1F2147 /* Pods_Kalula.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DB6EFFABA70D7C14330FC45 /* Pods_Kalula.framework */; };
+		EE895F771860335A3D1218AC /* Pods_KalulaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22F0ECAF14AD54EA2D3A52ED /* Pods_KalulaTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		003908035378E3C769036C0D /* Pods-KalulaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KalulaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KalulaUITests/Pods-KalulaUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		18F817A51FE99FFB009CE89D /* Kalula.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kalula.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F817A81FE99FFB009CE89D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18F817AA1FE99FFB009CE89D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +51,14 @@
 		18F817C41FE99FFC009CE89D /* KalulaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KalulaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F817C81FE99FFC009CE89D /* KalulaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KalulaUITests.swift; sourceTree = "<group>"; };
 		18F817CA1FE99FFC009CE89D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1DB6EFFABA70D7C14330FC45 /* Pods_Kalula.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kalula.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		22F0ECAF14AD54EA2D3A52ED /* Pods_KalulaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KalulaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E29295ED7AA9E01C0DC90EF /* Pods-KalulaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KalulaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KalulaUITests/Pods-KalulaUITests.release.xcconfig"; sourceTree = "<group>"; };
+		4849C32A74E2EF5271E3C194 /* Pods-Kalula.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kalula.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kalula/Pods-Kalula.debug.xcconfig"; sourceTree = "<group>"; };
+		5971D433310331350675CD09 /* Pods_KalulaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KalulaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		599B5CC4CD1BB7D5F7F5CC85 /* Pods-KalulaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KalulaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KalulaTests/Pods-KalulaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C223E906FD7C2ADDEDA8FEC9 /* Pods-Kalula.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kalula.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kalula/Pods-Kalula.release.xcconfig"; sourceTree = "<group>"; };
+		F00B5F967A9CCFA7A79DB15F /* Pods-KalulaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KalulaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KalulaTests/Pods-KalulaTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F5B50C9814E3ECB4E1F2147 /* Pods_Kalula.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE895F771860335A3D1218AC /* Pods_KalulaTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,12 +82,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32B74004A93B0E9A6E6E8F75 /* Pods_KalulaUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		159EAC2595D4E131FE3DAC26 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4849C32A74E2EF5271E3C194 /* Pods-Kalula.debug.xcconfig */,
+				C223E906FD7C2ADDEDA8FEC9 /* Pods-Kalula.release.xcconfig */,
+				599B5CC4CD1BB7D5F7F5CC85 /* Pods-KalulaTests.debug.xcconfig */,
+				F00B5F967A9CCFA7A79DB15F /* Pods-KalulaTests.release.xcconfig */,
+				003908035378E3C769036C0D /* Pods-KalulaUITests.debug.xcconfig */,
+				3E29295ED7AA9E01C0DC90EF /* Pods-KalulaUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		18F8179C1FE99FFB009CE89D = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +109,8 @@
 				18F817BC1FE99FFC009CE89D /* KalulaTests */,
 				18F817C71FE99FFC009CE89D /* KalulaUITests */,
 				18F817A61FE99FFB009CE89D /* Products */,
+				159EAC2595D4E131FE3DAC26 /* Pods */,
+				874E83D89D998F8DAFFF3290 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,6 +155,16 @@
 			path = KalulaUITests;
 			sourceTree = "<group>";
 		};
+		874E83D89D998F8DAFFF3290 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DB6EFFABA70D7C14330FC45 /* Pods_Kalula.framework */,
+				22F0ECAF14AD54EA2D3A52ED /* Pods_KalulaTests.framework */,
+				5971D433310331350675CD09 /* Pods_KalulaUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +172,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18F817CD1FE99FFC009CE89D /* Build configuration list for PBXNativeTarget "Kalula" */;
 			buildPhases = (
+				68B452902F86F4C87E9F91A6 /* [CP] Check Pods Manifest.lock */,
 				18F817A11FE99FFB009CE89D /* Sources */,
 				18F817A21FE99FFB009CE89D /* Frameworks */,
 				18F817A31FE99FFB009CE89D /* Resources */,
+				993177E9D080CC8F62B50495 /* [CP] Embed Pods Frameworks */,
+				1298E8C815C2D45407EA340E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -149,9 +192,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18F817D01FE99FFC009CE89D /* Build configuration list for PBXNativeTarget "KalulaTests" */;
 			buildPhases = (
+				2D00E1808942C86CEB6FD141 /* [CP] Check Pods Manifest.lock */,
 				18F817B51FE99FFC009CE89D /* Sources */,
 				18F817B61FE99FFC009CE89D /* Frameworks */,
 				18F817B71FE99FFC009CE89D /* Resources */,
+				1F1D214E6DDEE420D31A331C /* [CP] Embed Pods Frameworks */,
+				619B166E9FDCB6154ECE030E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -167,9 +213,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18F817D31FE99FFC009CE89D /* Build configuration list for PBXNativeTarget "KalulaUITests" */;
 			buildPhases = (
+				82644848B463D53A428CF744 /* [CP] Check Pods Manifest.lock */,
 				18F817C01FE99FFC009CE89D /* Sources */,
 				18F817C11FE99FFC009CE89D /* Frameworks */,
 				18F817C21FE99FFC009CE89D /* Resources */,
+				1C56576068D887515435A9B2 /* [CP] Embed Pods Frameworks */,
+				79D89E2077F54F58BF863CBF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -253,6 +302,156 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1298E8C815C2D45407EA340E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kalula/Pods-Kalula-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1C56576068D887515435A9B2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KalulaUITests/Pods-KalulaUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1F1D214E6DDEE420D31A331C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KalulaTests/Pods-KalulaTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2D00E1808942C86CEB6FD141 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KalulaTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		619B166E9FDCB6154ECE030E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KalulaTests/Pods-KalulaTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		68B452902F86F4C87E9F91A6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Kalula-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		79D89E2077F54F58BF863CBF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KalulaUITests/Pods-KalulaUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		82644848B463D53A428CF744 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KalulaUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		993177E9D080CC8F62B50495 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Kalula/Pods-Kalula-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Sukari/Sukari.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sukari.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kalula/Pods-Kalula-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		18F817A11FE99FFB009CE89D /* Sources */ = {
@@ -424,6 +623,7 @@
 		};
 		18F817CE1FE99FFC009CE89D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4849C32A74E2EF5271E3C194 /* Pods-Kalula.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -439,6 +639,7 @@
 		};
 		18F817CF1FE99FFC009CE89D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C223E906FD7C2ADDEDA8FEC9 /* Pods-Kalula.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -454,6 +655,7 @@
 		};
 		18F817D11FE99FFC009CE89D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 599B5CC4CD1BB7D5F7F5CC85 /* Pods-KalulaTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -471,6 +673,7 @@
 		};
 		18F817D21FE99FFC009CE89D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F00B5F967A9CCFA7A79DB15F /* Pods-KalulaTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -488,6 +691,7 @@
 		};
 		18F817D41FE99FFC009CE89D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 003908035378E3C769036C0D /* Pods-KalulaUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -504,6 +708,7 @@
 		};
 		18F817D51FE99FFC009CE89D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E29295ED7AA9E01C0DC90EF /* Pods-KalulaUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

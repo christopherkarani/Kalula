@@ -1,0 +1,12 @@
+PODS:
+  - Sukari (0.2.1)
+
+DEPENDENCIES:
+  - Sukari
+
+SPEC CHECKSUMS:
+  Sukari: 3c7dcc1aa0f29c076c7b9be4c6bed9c41e1d7c7b
+
+PODFILE CHECKSUM: 4925824a524df412afe5d4aa53a702c899fca1cd
+
+COCOAPODS: 1.4.0.rc.1
