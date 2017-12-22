@@ -9,6 +9,8 @@
 import UIKit
 import Sukari
 import SnapKit
+import Firebase
+
 class ViewController: UIViewController {
     
     var stackView: UIStackView!
@@ -38,14 +40,28 @@ class ViewController: UIViewController {
         $0.backgroundColor = UIColor(white: 0, alpha: 0.03)
     }
     
-    let signInButton = UIButton(type: .system).this {
+    lazy var signInButton = UIButton(type: .system).this {
         $0.setTitle("Sign In", for: .normal)
-        $0.backgroundColor = UIColor(red: 149/255, green: 205/255, blue: 244/255, alpha: 1)
+        $0.backgroundColor = UIColor.rgb(red: 149, green: 205, blue: 244)
         $0.setTitleColor(.white, for: .normal)
+        $0.layer.cornerRadius = 5
+        $0.layer.masksToBounds = true
+        $0.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
     }
     
-
-
+    @objc func handleSignUp() {
+        let email = emailTextField.text.unwrap()
+        let password = passwordTextField.text.unwrap()
+        Auth.auth().createUser(withEmail: email, password: password) { (user: User?, error: Error?) in
+            if let error = error {
+                print("We have hit an Error during the Sign up process: ", error)
+                return
+            }
+            let user = user.unwrap()
+            print("Succesfuly registered user with UID: ", user.uid)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()

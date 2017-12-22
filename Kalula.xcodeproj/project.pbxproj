@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		181957351FEA82FF00C1F508 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181957341FEA82FF00C1F508 /* UIColor+Extension.swift */; };
 		18F817A91FE99FFB009CE89D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F817A81FE99FFB009CE89D /* AppDelegate.swift */; };
 		18F817AB1FE99FFB009CE89D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F817AA1FE99FFB009CE89D /* ViewController.swift */; };
 		18F817B01FE99FFB009CE89D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18F817AF1FE99FFB009CE89D /* Assets.xcassets */; };
 		18F817B31FE99FFB009CE89D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18F817B11FE99FFB009CE89D /* LaunchScreen.storyboard */; };
 		18F817BE1FE99FFC009CE89D /* KalulaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F817BD1FE99FFC009CE89D /* KalulaTests.swift */; };
 		18F817C91FE99FFC009CE89D /* KalulaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F817C81FE99FFC009CE89D /* KalulaUITests.swift */; };
+		18F8E17B1FEC0BBA00266013 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18F8E17A1FEC0BBA00266013 /* GoogleService-Info.plist */; };
 		32B74004A93B0E9A6E6E8F75 /* Pods_KalulaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5971D433310331350675CD09 /* Pods_KalulaUITests.framework */; };
 		7F5B50C9814E3ECB4E1F2147 /* Pods_Kalula.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DB6EFFABA70D7C14330FC45 /* Pods_Kalula.framework */; };
 		EE895F771860335A3D1218AC /* Pods_KalulaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22F0ECAF14AD54EA2D3A52ED /* Pods_KalulaTests.framework */; };
@@ -37,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		003908035378E3C769036C0D /* Pods-KalulaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KalulaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KalulaUITests/Pods-KalulaUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		181957341FEA82FF00C1F508 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		18F817A51FE99FFB009CE89D /* Kalula.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kalula.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F817A81FE99FFB009CE89D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18F817AA1FE99FFB009CE89D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +52,7 @@
 		18F817C41FE99FFC009CE89D /* KalulaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KalulaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F817C81FE99FFC009CE89D /* KalulaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KalulaUITests.swift; sourceTree = "<group>"; };
 		18F817CA1FE99FFC009CE89D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18F8E17A1FEC0BBA00266013 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1DB6EFFABA70D7C14330FC45 /* Pods_Kalula.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kalula.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22F0ECAF14AD54EA2D3A52ED /* Pods_KalulaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KalulaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E29295ED7AA9E01C0DC90EF /* Pods-KalulaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KalulaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KalulaUITests/Pods-KalulaUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -100,6 +104,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		181957331FEA82E300C1F508 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				181957341FEA82FF00C1F508 /* UIColor+Extension.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		18F8179C1FE99FFB009CE89D = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +137,8 @@
 		18F817A71FE99FFB009CE89D /* Kalula */ = {
 			isa = PBXGroup;
 			children = (
+				18F8E17A1FEC0BBA00266013 /* GoogleService-Info.plist */,
+				181957331FEA82E300C1F508 /* Utility */,
 				18F817A81FE99FFB009CE89D /* AppDelegate.swift */,
 				18F817AA1FE99FFB009CE89D /* ViewController.swift */,
 				18F817AF1FE99FFB009CE89D /* Assets.xcassets */,
@@ -279,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18F817B31FE99FFB009CE89D /* LaunchScreen.storyboard in Resources */,
+				18F8E17B1FEC0BBA00266013 /* GoogleService-Info.plist in Resources */,
 				18F817B01FE99FFB009CE89D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -436,17 +451,25 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Kalula/Pods-Kalula-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Sukari/Sukari.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sukari.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -460,6 +483,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				181957351FEA82FF00C1F508 /* UIColor+Extension.swift in Sources */,
 				18F817AB1FE99FFB009CE89D /* ViewController.swift in Sources */,
 				18F817A91FE99FFB009CE89D /* AppDelegate.swift in Sources */,
 			);
@@ -624,7 +648,7 @@
 				DEVELOPMENT_TEAM = BTSZ26LN83;
 				INFOPLIST_FILE = Kalula/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ChrisKarani.Kalula;
+				PRODUCT_BUNDLE_IDENTIFIER = app.kalula.io;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -640,7 +664,7 @@
 				DEVELOPMENT_TEAM = BTSZ26LN83;
 				INFOPLIST_FILE = Kalula/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ChrisKarani.Kalula;
+				PRODUCT_BUNDLE_IDENTIFIER = app.kalula.io;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -10,6 +10,10 @@ pod 'Sukari'
 pod 'SnapKit'
 pod 'RxSwift'
 pod 'RxCocoa'
+pod 'Firebase/Auth'
+pod 'Firebase/Database'
+pod 'Firebase/Storage'
+
 
   target 'KalulaTests' do
     inherit! :search_paths
