@@ -104,6 +104,21 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		180166621FF3E0A4005C39A6 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		180166631FF3E0EC005C39A6 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				180166621FF3E0A4005C39A6 /* Database */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		181957331FEA82E300C1F508 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +152,7 @@
 		18F817A71FE99FFB009CE89D /* Kalula */ = {
 			isa = PBXGroup;
 			children = (
+				180166631FF3E0EC005C39A6 /* Network */,
 				18F8E17A1FEC0BBA00266013 /* GoogleService-Info.plist */,
 				181957331FEA82E300C1F508 /* Utility */,
 				18F817A81FE99FFB009CE89D /* AppDelegate.swift */,

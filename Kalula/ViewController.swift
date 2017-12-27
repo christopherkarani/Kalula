@@ -11,14 +11,13 @@ import Sukari
 import SnapKit
 import Firebase
 
-
-
 class ViewController: UIViewController {
     
     var stackView: UIStackView!
     
     let imagePickerButton = UIButton(type: .system).this {
         $0.setImage(#imageLiteral(resourceName: "plus_photo").withRenderingMode(.alwaysOriginal), for: .normal)
+        $0.addTarget(self, action: #selector(handleImagePicker), for: .touchUpInside)
     }
     
     let emailTextField = UITextField().this {
@@ -26,6 +25,8 @@ class ViewController: UIViewController {
         $0.borderStyle = .roundedRect
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.backgroundColor = UIColor(white: 0, alpha: 0.03)
+        $0.autocapitalizationType = .none
+        $0.autocorrectionType = .no
         $0.addTarget(self, action: #selector(handleTextFieldEditingChanged), for: .editingChanged)
     }
     
@@ -34,6 +35,8 @@ class ViewController: UIViewController {
         $0.borderStyle = .roundedRect
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.backgroundColor = UIColor(white: 0, alpha: 0.03)
+        $0.autocapitalizationType = .none
+        $0.autocorrectionType = .no
         $0.addTarget(self, action: #selector(handleTextFieldEditingChanged), for: .editingChanged)
     }
     
@@ -42,6 +45,9 @@ class ViewController: UIViewController {
         $0.borderStyle = .roundedRect
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.backgroundColor = UIColor(white: 0, alpha: 0.03)
+        $0.autocapitalizationType = .none
+        $0.autocorrectionType = .no
+        $0.isSecureTextEntry = true
         $0.addTarget(self, action: #selector(handleTextFieldEditingChanged), for: .editingChanged)
     }
     
@@ -55,18 +61,65 @@ class ViewController: UIViewController {
         $0.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
     }
     
-    @objc func handleSignUp() {
+    @objc fileprivate func handleSignUp() {
         let email = emailTextField.text.unwrap()
         let password = passwordTextField.text.unwrap()
+        let userName = usernameTextField.text.unwrap()
+        authorizeUser(withEmail: email, password: password, userName: userName)
+    }
+    
+    fileprivate func authorizeUser(withEmail email: String, password: String, userName: String) {
         Auth.auth().createUser(withEmail: email, password: password) { (user: User?, error: Error?) in
             if let error = error {
-                print("We have hit an Error during the Sign up process: ", error)
+                print(error.localizedDescription)
                 return
             }
-            let user = user.unwrap()
-            print("Succesfuly registered user with UID: ", user.uid)
+            
+            guard let selectedImage = self.imagePickerButton.imageView?.image else {
+                preconditionFailure("Selected Image Error")
+            }
+            
+            let data = UIImageJPEGRepresentation(selectedImage, 0.3).unwrap(debug: "Data Error")
+            
+            let fileName = UUID().uuidString
+            let storageRef = Storage.storage().reference().child("profile_Images").child("\(fileName).jpg")
+            storageRef.putData(data, metadata: nil, completion: { (metaData, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                
+                if let profileImageUrl = metaData?.downloadURL() {
+                    print(profileImageUrl.absoluteString)
+                    
+                    let userCredentials = ["username": userName,
+                                           "profileImageUrl": profileImageUrl.absoluteString]
+                    
+                    let user = user.unwrap()
+                    let ref = Database.database().reference().child("users")
+                    
+                    let values = [user.uid: userCredentials]
+                    ref.updateChildValues(values, withCompletionBlock: { (error, ref) in
+                        if let error = error {
+                            print(error.localizedDescription)
+                            return
+                        }
+                        print("Succesfully added user to DB")
+                    })
+                }
+                
+            })
         }
     }
+    
+    
+    @objc fileprivate func handleImagePicker() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+
     
     @objc fileprivate func handleTextFieldEditingChanged() {
         var isFormValid : Bool = false
@@ -129,6 +182,28 @@ extension ViewController {
             $0.right.equalToSuperview().inset(40)
             $0.height.equalTo(220)
         }
+    }
+}
+
+extension ViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print("Cancle")
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            imagePickerButton.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
+        } else if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            imagePickerButton.setImage(editedImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+        
+        imagePickerButton.layer.masksToBounds = true
+        imagePickerButton.layer.cornerRadius = imagePickerButton.frame.width/2
+        imagePickerButton.layer.borderWidth = 4
+        imagePickerButton.layer.borderColor = UIColor.black.cgColor
+    
+        dismiss(animated: true, completion: nil)
     }
 }
 
