@@ -86,18 +86,18 @@ class ViewController: UIViewController {
             storageRef.putData(data, metadata: nil, completion: { (metaData, error) in
                 if let error = error {
                     print(error.localizedDescription)
+                    return
                 }
                 
                 if let profileImageUrl = metaData?.downloadURL() {
-                    print(profileImageUrl.absoluteString)
                     
                     let userCredentials = ["username": userName,
                                            "profileImageUrl": profileImageUrl.absoluteString]
                     
-                    let user = user.unwrap()
+                    let uid = user.unwrap().uid
                     let ref = Database.database().reference().child("users")
                     
-                    let values = [user.uid: userCredentials]
+                    let values = [uid: userCredentials]
                     ref.updateChildValues(values, withCompletionBlock: { (error, ref) in
                         if let error = error {
                             print(error.localizedDescription)
