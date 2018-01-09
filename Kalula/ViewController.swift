@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     let imagePickerButton = UIButton(type: .system).this {
         $0.setImage(#imageLiteral(resourceName: "plus_photo").withRenderingMode(.alwaysOriginal), for: .normal)
         $0.addTarget(self, action: #selector(handleImagePicker), for: .touchUpInside)
+        $0.imageView?.contentMode = .scaleAspectFill
     }
     
     let emailTextField = UITextField().this {
@@ -65,79 +66,19 @@ class ViewController: UIViewController {
         let email = emailTextField.text.unwrap()
         let password = passwordTextField.text.unwrap()
         let userName = usernameTextField.text.unwrap()
-        authorizeUser(withEmail: email, password: password, userName: userName)
+        let profileImage = signInButton.currentImage.unwrap(debug: "No Image Selected")
+        loginService.authorizeUser(withEmail: email, password: password, userName: userName, profileImage: profileImage)
     }
-    
-    fileprivate func authorizeUser(withEmail email: String, password: String, userName: String) {
-        Auth.auth().createUser(withEmail: email, password: password) { (user: User?, error: Error?) in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            
-            guard let selectedImage = self.imagePickerButton.imageView?.image else {
-                preconditionFailure("Selected Image Error")
-            }
-            
-            let data = UIImageJPEGRepresentation(selectedImage, 0.3).unwrap(debug: "Data Error")
-            
-            let fileName = UUID().uuidString
-            let storageRef = Storage.storage().reference().child("profile_Images").child("\(fileName).jpg")
-            storageRef.putData(data, metadata: nil, completion: { (metaData, error) in
-                if let error = error {
-                    print(error.localizedDescription)
-                    return
-                }
-                
-                if let profileImageUrl = metaData?.downloadURL() {
-                    
-                    let userCredentials = ["username": userName,
-                                           "profileImageUrl": profileImageUrl.absoluteString]
-                    
-                    let uid = user.unwrap().uid
-                    let ref = Database.database().reference().child("users")
-                    
-                    let values = [uid: userCredentials]
-                    ref.updateChildValues(values, withCompletionBlock: { (error, ref) in
-                        if let error = error {
-                            print(error.localizedDescription)
-                            return
-                        }
-                        print("Succesfully added user to DB")
-                    })
-                }
-                
-            })
-        }
-    }
-    
-    
-    @objc fileprivate func handleImagePicker() {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.allowsEditing = true
-        present(imagePicker, animated: true, completion: nil)
-    }
-    
 
+    var loginService : LoginNetworkService
     
-    @objc fileprivate func handleTextFieldEditingChanged() {
-        var isFormValid : Bool = false
-        let email = emailTextField.text.unwrap()
-        let username = usernameTextField.text.unwrap()
-        let password = passwordTextField.text.unwrap()
-        
-        if !(email.isEmpty) && password.count >= 6 && !(username.isEmpty) {
-            isFormValid = true
-        }
-        switch isFormValid {
-        case true:
-            signInButton.isUserInteractionEnabled = true
-            signInButton.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
-        case false:
-            signInButton.isUserInteractionEnabled = false
-            signInButton.backgroundColor = UIColor.rgb(red: 149, green: 205, blue: 244)
-        }
+    init(loginService: LoginNetworkService = LoginManager()) {
+        self.loginService = loginService
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
@@ -204,6 +145,35 @@ extension ViewController : UIImagePickerControllerDelegate, UINavigationControll
         imagePickerButton.layer.borderColor = UIColor.black.cgColor
     
         dismiss(animated: true, completion: nil)
+    }
+    
+    @objc fileprivate func handleImagePicker() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+}
+
+extension ViewController {
+    @objc fileprivate func handleTextFieldEditingChanged() {
+        var isFormValid : Bool = false
+        let email = emailTextField.text.unwrap()
+        let username = usernameTextField.text.unwrap()
+        let password = passwordTextField.text.unwrap()
+        
+        if !(email.isEmpty) && password.count >= 6 && !(username.isEmpty) {
+            isFormValid = true
+        }
+        switch isFormValid {
+        case true:
+            signInButton.isUserInteractionEnabled = true
+            signInButton.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
+        case false:
+            signInButton.isUserInteractionEnabled = false
+            signInButton.backgroundColor = UIColor.rgb(red: 149, green: 205, blue: 244)
+        }
     }
 }
 
