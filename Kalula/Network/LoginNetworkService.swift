@@ -8,16 +8,17 @@
 
 import Foundation
 import Firebase
+import Toaster
 
 protocol LoginNetworkService {
-    func authorizeUser(withEmail email: String, password: String, userName: String, profileImage: UIImage)
+    func authorizeUser(withEmail email: String, password: String, userName: String, profileImage: UIImage, completion: @escaping(() -> Void))
 }
 
 extension LoginNetworkService {
-    public func authorizeUser(withEmail email: String, password: String, userName: String, profileImage: UIImage) {
+    internal func authorizeUser(withEmail email: String, password: String, userName: String, profileImage: UIImage, completion: @escaping(() -> Void) ) {
         Auth.auth().createUser(withEmail: email, password: password) { (user: User?, error: Error?) in
             if let error = error {
-                print(error.localizedDescription)
+                Toast(text: error.localizedDescription).show()
                 return
             }
             
@@ -27,7 +28,7 @@ extension LoginNetworkService {
             let storageRef = Storage.storage().reference().child("profile_Images").child("\(fileName).jpg")
             storageRef.putData(data, metadata: nil, completion: { (metaData, error) in
                 if let error = error {
-                    print(error.localizedDescription)
+                    Toast(text: error.localizedDescription).show()
                     return
                 }
                 
@@ -42,10 +43,10 @@ extension LoginNetworkService {
                     let values = [uid: userCredentials]
                     ref.updateChildValues(values, withCompletionBlock: { (error, ref) in
                         if let error = error {
-                            print(error.localizedDescription)
+                            Toast(text: error.localizedDescription).show()
                             return
                         }
-                        print("Succesfully added user to DB")
+                        completion()
                     })
                 }
                 

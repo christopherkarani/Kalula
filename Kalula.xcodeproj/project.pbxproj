@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		181957351FEA82FF00C1F508 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181957341FEA82FF00C1F508 /* UIColor+Extension.swift */; };
+		18B461B6200542FF002D2268 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B461B5200542FF002D2268 /* MainTabBarController.swift */; };
+		18B461BB20054482002D2268 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B461BA20054482002D2268 /* UserProfileViewController.swift */; };
 		18D9A7552004E6920066C249 /* LoginNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D9A7542004E6920066C249 /* LoginNetworkService.swift */; };
 		18F817A91FE99FFB009CE89D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F817A81FE99FFB009CE89D /* AppDelegate.swift */; };
 		18F817AB1FE99FFB009CE89D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F817AA1FE99FFB009CE89D /* ViewController.swift */; };
@@ -41,6 +43,8 @@
 /* Begin PBXFileReference section */
 		003908035378E3C769036C0D /* Pods-KalulaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KalulaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KalulaUITests/Pods-KalulaUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		181957341FEA82FF00C1F508 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		18B461B5200542FF002D2268 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		18B461BA20054482002D2268 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		18D9A7542004E6920066C249 /* LoginNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNetworkService.swift; sourceTree = "<group>"; };
 		18F817A51FE99FFB009CE89D /* Kalula.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kalula.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F817A81FE99FFB009CE89D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -116,7 +120,6 @@
 		180166631FF3E0EC005C39A6 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				180166621FF3E0A4005C39A6 /* Database */,
 				18D9A7542004E6920066C249 /* LoginNetworkService.swift */,
 			);
 			path = Network;
@@ -128,6 +131,30 @@
 				181957341FEA82FF00C1F508 /* UIColor+Extension.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		18B461B720054378002D2268 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		18B461B82005437E002D2268 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18B461B920054385002D2268 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				18F817AA1FE99FFB009CE89D /* ViewController.swift */,
+				18B461B5200542FF002D2268 /* MainTabBarController.swift */,
+				18B461BA20054482002D2268 /* UserProfileViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		18F8179C1FE99FFB009CE89D = {
@@ -155,11 +182,14 @@
 		18F817A71FE99FFB009CE89D /* Kalula */ = {
 			isa = PBXGroup;
 			children = (
+				18B461B920054385002D2268 /* Controller */,
+				18B461B82005437E002D2268 /* Model */,
+				18B461B720054378002D2268 /* Views */,
+				180166621FF3E0A4005C39A6 /* Database */,
 				180166631FF3E0EC005C39A6 /* Network */,
 				18F8E17A1FEC0BBA00266013 /* GoogleService-Info.plist */,
 				181957331FEA82E300C1F508 /* Utility */,
 				18F817A81FE99FFB009CE89D /* AppDelegate.swift */,
-				18F817AA1FE99FFB009CE89D /* ViewController.swift */,
 				18F817AF1FE99FFB009CE89D /* Assets.xcassets */,
 				18F817B11FE99FFB009CE89D /* LaunchScreen.storyboard */,
 				18F817B41FE99FFB009CE89D /* Info.plist */,
@@ -476,6 +506,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Sukari/Sukari.framework",
+				"${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -487,6 +518,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sukari.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toaster.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -503,7 +535,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				18D9A7552004E6920066C249 /* LoginNetworkService.swift in Sources */,
+				18B461BB20054482002D2268 /* UserProfileViewController.swift in Sources */,
 				181957351FEA82FF00C1F508 /* UIColor+Extension.swift in Sources */,
+				18B461B6200542FF002D2268 /* MainTabBarController.swift in Sources */,
 				18F817AB1FE99FFB009CE89D /* ViewController.swift in Sources */,
 				18F817A91FE99FFB009CE89D /* AppDelegate.swift in Sources */,
 			);

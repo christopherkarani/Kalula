@@ -66,13 +66,15 @@ class ViewController: UIViewController {
         let email = emailTextField.text.unwrap()
         let password = passwordTextField.text.unwrap()
         let userName = usernameTextField.text.unwrap()
-        let profileImage = signInButton.currentImage.unwrap(debug: "No Image Selected")
-        loginService.authorizeUser(withEmail: email, password: password, userName: userName, profileImage: profileImage)
+        let profileImage = imagePickerButton.currentImage.unwrap()
+        loginService.authorizeUser(withEmail: email, password: password, userName: userName, profileImage: profileImage) { [weak self] in
+            self?.dismiss(animated: true, completion: nil)
+        }
     }
 
     var loginService : LoginNetworkService
     
-    init(loginService: LoginNetworkService = LoginManager()) {
+    init(loginService: LoginNetworkService) {
         self.loginService = loginService
         super.init(nibName: nil, bundle: nil)
     }
