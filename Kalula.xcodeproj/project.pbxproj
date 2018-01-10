@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		181957351FEA82FF00C1F508 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181957341FEA82FF00C1F508 /* UIColor+Extension.swift */; };
+		188B4969200642EA00AB2A1A /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B4968200642EA00AB2A1A /* UserProfileHeader.swift */; };
 		18B461B6200542FF002D2268 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B461B5200542FF002D2268 /* MainTabBarController.swift */; };
 		18B461BB20054482002D2268 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B461BA20054482002D2268 /* UserProfileViewController.swift */; };
 		18D9A7552004E6920066C249 /* LoginNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D9A7542004E6920066C249 /* LoginNetworkService.swift */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		003908035378E3C769036C0D /* Pods-KalulaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KalulaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KalulaUITests/Pods-KalulaUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		181957341FEA82FF00C1F508 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		188B4968200642EA00AB2A1A /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
 		18B461B5200542FF002D2268 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		18B461BA20054482002D2268 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		18D9A7542004E6920066C249 /* LoginNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNetworkService.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 		18B461B720054378002D2268 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				188B4968200642EA00AB2A1A /* UserProfileHeader.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -535,6 +538,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18D9A7552004E6920066C249 /* LoginNetworkService.swift in Sources */,
+				188B4969200642EA00AB2A1A /* UserProfileHeader.swift in Sources */,
 				18B461BB20054482002D2268 /* UserProfileViewController.swift in Sources */,
 				181957351FEA82FF00C1F508 /* UIColor+Extension.swift in Sources */,
 				18B461B6200542FF002D2268 /* MainTabBarController.swift in Sources */,

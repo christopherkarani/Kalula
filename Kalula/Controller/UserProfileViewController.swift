@@ -11,11 +11,18 @@ import Firebase
 import Toaster
 
 class UserProfileViewController: UICollectionViewController {
+    
+    let headerID : String = "HeaderID"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView?.backgroundColor = .white
-        navigationItem.title = "User6666"
         fetchUser()
+        registerCells()
+    }
+    
+    fileprivate func registerCells() {
+        collectionView?.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerID)
     }
     
     fileprivate func fetchUser() {
@@ -32,5 +39,20 @@ class UserProfileViewController: UICollectionViewController {
         }) { (error) in
             Toast(text: error.localizedDescription).show()
         }
+    }
+}
+
+extension UserProfileViewController : UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.width, height: 200)
+    }
+}
+
+extension UserProfileViewController {
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerID, for: indexPath)
+        
+        return header
     }
 }
