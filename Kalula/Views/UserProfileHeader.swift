@@ -9,6 +9,8 @@
 import UIKit
 import Sukari
 import SnapKit
+import Firebase
+import Toaster
 class UserProfileHeader: UICollectionViewCell {
     
     let imageView = UIImageView().this {
@@ -26,14 +28,38 @@ class UserProfileHeader: UICollectionViewCell {
             $0.height.equalTo(80)
         }
     }
-
     
+    fileprivate func fetchProfilePhotoImage() {
+        let uid = Auth.auth().currentUser.unwrap(debug: "No Current User").uid
+        let ref = Database.database().reference().child("users").child(uid)
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let dictionary = snapshot.value as? [String: Any] else {
+                return
+            }
+            guard let profileImageUrl = dictionary["profileImageUrl"] as? String else {
+                Toast(text: "An Error Occurred when Accessing Firebase Database: profileUrl").show()
+                return
+            }
+            let task = URLSession.shared.dataTask(with: profileImageUrl) { (data, response, error) in
+                if let error = error {
+                    Toast(text: error.localizedDescription)
+                }
+            }.resume()
+            
+            
+        }) { (error) in
+            Toast(text: error.localizedDescription).show()
+        }
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
-        
-        
+        fetchProfilePhotoImage()
+
     }
+    
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
