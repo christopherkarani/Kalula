@@ -88,11 +88,11 @@ class UserProfileHeader: UICollectionViewCell {
     }
 
     fileprivate func setupToolBar() {
-        toolBarStackView = UIStackView(arrangedSubviews: [gridButton, listButton, bookmarkButton])
+        
         toolBarStackView.distribution = .fillEqually
         toolBarStackView.axis = .horizontal
         addSubview(toolBarStackView)
-        addSubview(userNameLabel)
+
         
         toolBarStackView.snp.makeConstraints { (make) in
             make.bottom.equalTo(snp.bottom)
@@ -101,12 +101,7 @@ class UserProfileHeader: UICollectionViewCell {
             make.height.equalTo(50)
         }
         
-        userNameLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(imageView.snp.bottom).offset(4)
-            make.bottom.equalTo(gridButton.snp.top)
-            make.left.equalTo(snp.left).inset(12)
-            make.right.equalTo(snp.right).inset(12)
-        }
+
         
     }
     
@@ -116,7 +111,22 @@ class UserProfileHeader: UICollectionViewCell {
     }
     
     fileprivate func setupViews() {
+        setupToolBar()
+        
+        let topDividerLineView = UIView()
+        topDividerLineView.backgroundColor = .lightGray
+        
+        let bottomDividerLineView = UIView()
+        bottomDividerLineView.backgroundColor = .lightGray
+        
+        
+        addSubview(topDividerLineView)
+        addSubview(bottomDividerLineView)
         addSubview(imageView)
+        addSubview(statsLabelStackView)
+        addSubview(editProfileButton)
+        addSubview(userNameLabel)
+        
         imageView.snp.makeConstraints {
             $0.left.equalTo(snp.left).offset(20)
             $0.top.equalTo(snp.top).offset(20)
@@ -124,8 +134,13 @@ class UserProfileHeader: UICollectionViewCell {
             $0.height.equalTo(80)
         }
         
-        statsLabelStackView = UIStackView(arrangedSubviews: [postLabal, followersLabal, followingLabel])
-        addSubview(statsLabelStackView)
+        userNameLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(imageView.snp.bottom).offset(4)
+            make.bottom.equalTo(gridButton.snp.top)
+            make.left.equalTo(snp.left).inset(12)
+            make.right.equalTo(snp.right).inset(12)
+        }
+
         statsLabelStackView.snp.makeConstraints { (make) in
             make.top.equalTo(snp.top).offset(12)
             make.left.equalTo(imageView.snp.right).offset(12)
@@ -133,13 +148,28 @@ class UserProfileHeader: UICollectionViewCell {
             make.height.equalTo(50)
         }
         
-        addSubview(editProfileButton)
         editProfileButton.snp.makeConstraints { (make) in
             make.top.equalTo(statsLabelStackView.snp.bottom).offset(8)
             make.left.equalTo(statsLabelStackView.snp.left)
             make.right.equalTo(statsLabelStackView.snp.right)
             make.height.equalTo(34)
         }
+        
+        topDividerLineView.snp.makeConstraints { (make) in
+            make.top.equalTo(toolBarStackView.snp.top)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.height.equalTo(1)
+        }
+        
+        bottomDividerLineView.snp.makeConstraints { (make) in
+            make.top.equalTo(toolBarStackView.snp.bottom)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.height.equalTo(1)
+        }
+        
+        
     }
     
     fileprivate func fetchImage(withUrlString urlString: String, completion: @escaping((UIImage) -> Void)) {
@@ -156,12 +186,16 @@ class UserProfileHeader: UICollectionViewCell {
             
             }.resume()
     }
+    
+    fileprivate func prepareStackViewsForUse() {
+        statsLabelStackView = UIStackView(arrangedSubviews: [postLabal, followersLabal, followingLabel])
+        toolBarStackView = UIStackView(arrangedSubviews: [gridButton, listButton, bookmarkButton])
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        prepareStackViewsForUse()
         setupViews()
-        setupToolBar()
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
