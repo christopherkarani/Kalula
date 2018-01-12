@@ -34,7 +34,9 @@ class UserProfileViewController: UICollectionViewController {
             }
             
             let name = dictionary["username"] as? String
+            let profileImageUrl = dictionary["profileImageUrl"] as? String
             self.navigationItem.title = name.unwrap()
+            self.collectionView?.reloadData()
             
         }) { (error) in
             Toast(text: error.localizedDescription).show()
