@@ -14,6 +14,8 @@ class UserProfileViewController: UICollectionViewController {
     
     let headerID : String = "HeaderID"
     
+    var user : LocalUser?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView?.backgroundColor = .white
@@ -28,15 +30,14 @@ class UserProfileViewController: UICollectionViewController {
     fileprivate func fetchUser() {
         let uid = Auth.auth().currentUser.unwrap(debug: "No Current User").uid
         let ref = Database.database().reference().child("users").child(uid)
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+        ref.observeSingleEvent(of: .value, with: { [weak self] (snapshot) in
+            let strongSelf = self.unwrap()
             guard let dictionary = snapshot.value as? [String: Any] else {
                 return
             }
-            
-            let name = dictionary["username"] as? String
-            let profileImageUrl = dictionary["profileImageUrl"] as? String
-            self.navigationItem.title = name.unwrap()
-            self.collectionView?.reloadData()
+            strongSelf.user = FDUser(dictionary: dictionary)
+            strongSelf.navigationItem.title = (strongSelf.user?.userName).unwrap()
+            strongSelf.collectionView?.reloadData()
             
         }) { (error) in
             Toast(text: error.localizedDescription).show()
@@ -53,7 +54,8 @@ extension UserProfileViewController : UICollectionViewDelegateFlowLayout {
 
 extension UserProfileViewController {
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerID, for: indexPath)
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerID, for: indexPath) as! UserProfileHeader
+        header.user = user
         
         return header
     }

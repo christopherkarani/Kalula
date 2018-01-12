@@ -8,18 +8,18 @@
 
 import Foundation
 
-protocol User {
+protocol LocalUser {
     var profileImageUrl : String { get set }
     var userName        : String { get set }
     init(dictionary: [String: Any])
 }
 
-struct FDUser: User {
+struct FDUser: LocalUser {
     var profileImageUrl: String
-    
     var userName: String
     
     init(dictionary: [String : Any]) {
-        profileImageUrl = dictionary["profileImageUrl"] as? String ?? "Error"
+        profileImageUrl = (dictionary["profileImageUrl"] as? String).unwrap()
+        userName = (dictionary["username"] as? String).unwrap()
     }
 }

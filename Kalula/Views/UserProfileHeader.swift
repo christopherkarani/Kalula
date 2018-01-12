@@ -13,6 +13,18 @@ import Firebase
 import Toaster
 class UserProfileHeader: UICollectionViewCell {
     
+    var user : LocalUser? {
+        didSet {
+            if let user = user {
+                fetchImage(withUrlString: user.profileImageUrl, completion: { (image) in
+                    DispatchQueue.main.async { [weak self] in
+                        self?.imageView.image = image
+                    }
+                })
+            }
+        }
+    }
+    
     let imageView = UIImageView().this {
         $0.backgroundColor = .magenta
         $0.clipsToBounds = true
@@ -26,31 +38,6 @@ class UserProfileHeader: UICollectionViewCell {
             $0.top.equalTo(snp.top).offset(20)
             $0.width.equalTo(80)
             $0.height.equalTo(80)
-        }
-    }
-    
-    fileprivate func fetchProfilePhotoImage() {
-        let uid = Auth.auth().currentUser.unwrap(debug: "No Current User").uid
-        let ref = Database.database().reference().child("users").child(uid)
-        ref.observeSingleEvent(of: .value, with: { [weak self] (snapshot) in
-            
-            let strongSelf = self.unwrap()
-            guard let dictionary = snapshot.value as? [String: Any] else {
-                return
-            }
-            guard let profileImageUrl = dictionary["profileImageUrl"] as? String else {
-                Toast(text: "An Error Occurred when Accessing Firebase Database: profileUrl").show()
-                return
-            }
-            
-            strongSelf.fetchImage(withUrlString: profileImageUrl, completion: { (image) in
-                DispatchQueue.main.async {
-                    strongSelf.imageView.image = image
-                }
-            })
-            
-        }) { (error) in
-            Toast(text: error.localizedDescription).show()
         }
     }
     
@@ -72,8 +59,7 @@ class UserProfileHeader: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
-        fetchProfilePhotoImage()
-
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
