@@ -32,7 +32,9 @@ class UserProfileHeader: UICollectionViewCell {
     fileprivate func fetchProfilePhotoImage() {
         let uid = Auth.auth().currentUser.unwrap(debug: "No Current User").uid
         let ref = Database.database().reference().child("users").child(uid)
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+        ref.observeSingleEvent(of: .value, with: { [weak self] (snapshot) in
+            
+            let strongSelf = self.unwrap()
             guard let dictionary = snapshot.value as? [String: Any] else {
                 return
             }
@@ -40,16 +42,31 @@ class UserProfileHeader: UICollectionViewCell {
                 Toast(text: "An Error Occurred when Accessing Firebase Database: profileUrl").show()
                 return
             }
-            let task = URLSession.shared.dataTask(with: profileImageUrl) { (data, response, error) in
-                if let error = error {
-                    Toast(text: error.localizedDescription)
-                }
-            }.resume()
             
+            strongSelf.fetchImage(withUrlString: profileImageUrl, completion: { (image) in
+                DispatchQueue.main.async {
+                    strongSelf.imageView.image = image
+                }
+            })
             
         }) { (error) in
             Toast(text: error.localizedDescription).show()
         }
+    }
+    
+    fileprivate func fetchImage(withUrlString urlString: String, completion: @escaping((UIImage) -> Void)) {
+        let url = URL(string: urlString).unwrap(debug: "profile Image Url Error")
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let error = error {
+                Toast(text: error.localizedDescription).show()
+            }
+            if let data = data {
+                if let image = UIImage(data: data) {
+                    completion(image)
+                }
+            }
+            
+            }.resume()
     }
 
     override init(frame: CGRect) {
@@ -58,8 +75,6 @@ class UserProfileHeader: UICollectionViewCell {
         fetchProfilePhotoImage()
 
     }
-    
-    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
