@@ -16,6 +16,8 @@ class UserProfileViewController: UICollectionViewController {
     
     var user : LocalUser?
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView?.backgroundColor = .white
