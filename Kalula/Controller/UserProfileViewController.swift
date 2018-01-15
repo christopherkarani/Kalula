@@ -37,6 +37,8 @@ class UserProfileViewController: UICollectionViewController {
             guard let dictionary = snapshot.value as? [String: Any] else {
                 return
             }
+            
+            
             strongSelf.user = FDUser(dictionary: dictionary)
             strongSelf.navigationItem.title = (strongSelf.user?.userName).unwrap()
             strongSelf.collectionView?.reloadData()
@@ -58,7 +60,6 @@ extension UserProfileViewController {
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerID, for: indexPath) as! UserProfileHeader
         header.user = user
-        
         return header
     }
 }

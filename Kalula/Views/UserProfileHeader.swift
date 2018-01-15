@@ -60,7 +60,7 @@ class UserProfileHeader: UICollectionViewCell {
     }
     
     let followersLabal = UILabel().this {
-        let attributedText = NSMutableAttributedString(string: "11\n", attributes: [.font : UIFont.boldSystemFont(ofSize: 14)])
+        let attributedText = NSMutableAttributedString(string: "0\n", attributes: [.font : UIFont.boldSystemFont(ofSize: 14)])
         
         attributedText.append(NSAttributedString(string: "followers", attributes: [.font: UIFont.systemFont(ofSize: 14), .foregroundColor: UIColor.lightGray]))
         
@@ -70,7 +70,7 @@ class UserProfileHeader: UICollectionViewCell {
     }
     
     let followingLabel = UILabel().this {
-        let attributedText = NSMutableAttributedString(string: "11\n", attributes: [.font : UIFont.boldSystemFont(ofSize: 14)])
+        let attributedText = NSMutableAttributedString(string: "0\n", attributes: [.font : UIFont.boldSystemFont(ofSize: 14)])
         attributedText.append(NSAttributedString(string: "following", attributes: [.font: UIFont.systemFont(ofSize: 14), .foregroundColor: UIColor.lightGray]))
         
         $0.attributedText = attributedText
@@ -100,9 +100,6 @@ class UserProfileHeader: UICollectionViewCell {
             make.right.equalToSuperview()
             make.height.equalTo(50)
         }
-        
-
-        
     }
     
     let imageView = UIImageView().this {
@@ -149,7 +146,7 @@ class UserProfileHeader: UICollectionViewCell {
         }
         
         editProfileButton.snp.makeConstraints { (make) in
-            make.top.equalTo(statsLabelStackView.snp.bottom).offset(8)
+            make.top.equalTo(statsLabelStackView.snp.bottom).offset(2)
             make.left.equalTo(statsLabelStackView.snp.left)
             make.right.equalTo(statsLabelStackView.snp.right)
             make.height.equalTo(34)
