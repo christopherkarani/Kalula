@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'E31196F16EDD8E1C050767E24A080477'
+               BlueprintIdentifier = '3788CC229BFEF11CFCB37C1936D0861E'
                BlueprintName = 'Sukari'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Sukari.framework'>

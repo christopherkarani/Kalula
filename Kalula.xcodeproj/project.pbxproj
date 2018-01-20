@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1800F3392013B11200F6E61C /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1800F3382013B11200F6E61C /* libc++abi.tbd */; };
 		181957351FEA82FF00C1F508 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181957341FEA82FF00C1F508 /* UIColor+Extension.swift */; };
 		188B4969200642EA00AB2A1A /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B4968200642EA00AB2A1A /* UserProfileHeader.swift */; };
 		1892BAFA2008CB6700521362 /* FDUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1892BAF92008CB6700521362 /* FDUser.swift */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		003908035378E3C769036C0D /* Pods-KalulaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KalulaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KalulaUITests/Pods-KalulaUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		1800F3382013B11200F6E61C /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
 		181957341FEA82FF00C1F508 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		188B4968200642EA00AB2A1A /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		1892BAF92008CB6700521362 /* FDUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDUser.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1800F3392013B11200F6E61C /* libc++abi.tbd in Frameworks */,
 				7F5B50C9814E3ECB4E1F2147 /* Pods_Kalula.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -224,6 +227,7 @@
 		874E83D89D998F8DAFFF3290 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1800F3382013B11200F6E61C /* libc++abi.tbd */,
 				1DB6EFFABA70D7C14330FC45 /* Pods_Kalula.framework */,
 				22F0ECAF14AD54EA2D3A52ED /* Pods_KalulaTests.framework */,
 				5971D433310331350675CD09 /* Pods_KalulaUITests.framework */,
@@ -508,9 +512,11 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Kalula/Pods-Kalula-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Spring/Spring.framework",
 				"${BUILT_PRODUCTS_DIR}/Sukari/Sukari.framework",
 				"${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -520,9 +526,11 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Spring.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sukari.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toaster.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
@@ -707,7 +715,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BTSZ26LN83;
+				DEVELOPMENT_TEAM = GCZWD433AN;
 				INFOPLIST_FILE = Kalula/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = app.kalula.io;
@@ -723,7 +731,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BTSZ26LN83;
+				DEVELOPMENT_TEAM = GCZWD433AN;
 				INFOPLIST_FILE = Kalula/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = app.kalula.io;

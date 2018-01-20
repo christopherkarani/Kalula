@@ -14,6 +14,9 @@ pod 'Firebase/Auth'
 pod 'Firebase/Database'
 pod 'Firebase/Storage'
 pod 'Toaster'
+pod 'SwiftLint'
+pod 'Hero'
+pod 'Spring', :git => 'https://github.com/MengTo/Spring.git'
 
 
   target 'KalulaTests' do

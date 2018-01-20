@@ -43,6 +43,7 @@ PODS:
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.3)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.3)
   - GTMSessionFetcher/Core (1.1.12)
+  - Hero (1.0.1)
   - leveldb-library (1.20)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
@@ -53,18 +54,32 @@ PODS:
     - RxSwift (~> 4.0)
   - RxSwift (4.0.0)
   - SnapKit (4.0.0)
+  - Spring (1.0.5)
   - Sukari (0.2.1)
+  - SwiftLint (0.24.0)
   - Toaster (2.1.1)
 
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Database
   - Firebase/Storage
+  - Hero
   - RxCocoa
   - RxSwift
   - SnapKit
+  - Spring (from `https://github.com/MengTo/Spring.git`)
   - Sukari
+  - SwiftLint
   - Toaster
+
+EXTERNAL SOURCES:
+  Spring:
+    :git: https://github.com/MengTo/Spring.git
+
+CHECKOUT OPTIONS:
+  Spring:
+    :commit: 19b04d730d3edabbb02a39e58121d1d3220690ee
+    :git: https://github.com/MengTo/Spring.git
 
 SPEC CHECKSUMS:
   Firebase: 710decbbc6d9d48530e9a5dba3209740c3532e05
@@ -76,14 +91,17 @@ SPEC CHECKSUMS:
   FirebaseStorage: ab08d1c93a2feffa038fdd6693088b310ab1e6c6
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   GTMSessionFetcher: ebaa1f79a5366922c1735f1566901f50beba23b7
+  Hero: cee286821578e170d8c0c9c9cda7897357401112
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   RxCocoa: d62846ca96495d862fa4c59ea7d87e5031d7340e
   RxSwift: fd680d75283beb5e2559486f3c0ff852f0d35334
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  Spring: 48aad470f3ead043b2da98b64e0bf0630b7ebc42
   Sukari: 3c7dcc1aa0f29c076c7b9be4c6bed9c41e1d7c7b
+  SwiftLint: a014c92b4664e8b13f380f8640a51bb1733778ba
   Toaster: a6c9532de1ded8105e77376f7dffeb2e12b46dbb
 
-PODFILE CHECKSUM: 14cf9a5948fd3f3b671f84906435bd5727a0cb96
+PODFILE CHECKSUM: db348e6733d695df2d0ae296592fd1d326038075
 
 COCOAPODS: 1.4.0.rc.1
