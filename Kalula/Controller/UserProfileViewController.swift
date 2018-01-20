@@ -29,6 +29,25 @@ class UserProfileViewController: UICollectionViewController {
         collectionView?.backgroundColor = .white
         fetchUser()
         registerCells()
+        setupNavigationBar()
+    }
+    
+    private func setupNavigationBar() {
+        let logoutBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "gear").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleLogoutButton))
+        navigationItem.rightBarButtonItem = logoutBarButtonItem
+    }
+    
+    @objc private func handleLogoutButton() {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let logoutAction = UIAlertAction(title: "Log Out", style: .destructive) { [weak self] (_) in
+            let loginController = LoginController()
+            self?.present(loginController, animated: true, completion: nil)
+        }
+        let cancleAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(logoutAction)
+        alertController.addAction(cancleAction)
+        
+        present(alertController, animated: true, completion: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
