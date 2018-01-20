@@ -63,7 +63,7 @@ class UserProfileViewController: UICollectionViewController {
     fileprivate func fetchUser() {
         guard let uid = Auth.auth().currentUser?.uid else {
             print("No User online")
-            present(ViewController.init(loginService: LoginManager()), animated: true, completion: nil)
+            present(SignUpController.init(loginService: LoginManager()), animated: true, completion: nil)
             isUserAvailable = false
             return
         }
@@ -78,7 +78,6 @@ class UserProfileViewController: UICollectionViewController {
             DispatchQueue.main.async {
                 strongSelf.collectionView?.reloadData()
             }
-            
             
         }) { (error) in
             Toast(text: error.localizedDescription).show()

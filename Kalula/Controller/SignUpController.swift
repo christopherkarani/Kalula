@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SignUpController.swift
 //  Kalula
 //
 //  Created by Christopher Brandon Karani on 19/12/2017.
@@ -11,7 +11,7 @@ import Sukari
 import SnapKit
 import Firebase
 
-class ViewController: UIViewController {
+class SignUpController : UIViewController {
     
     var stackView: UIStackView!
     
@@ -91,7 +91,7 @@ class ViewController: UIViewController {
 }
 
 //MARK: - UI Functionality
-extension ViewController {
+extension SignUpController {
     fileprivate func setupUIComponents() {
         setupInputComponents()
         setupImagePickerButton()
@@ -128,7 +128,7 @@ extension ViewController {
     }
 }
 
-extension ViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension SignUpController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         print("Cancle")
         dismiss(animated: true, completion: nil)
@@ -158,7 +158,7 @@ extension ViewController : UIImagePickerControllerDelegate, UINavigationControll
     
 }
 
-extension ViewController {
+extension SignUpController {
     @objc fileprivate func handleTextFieldEditingChanged() {
         var isFormValid : Bool = false
         let email = emailTextField.text.unwrap()
