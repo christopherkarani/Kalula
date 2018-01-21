@@ -13,11 +13,12 @@ import Sukari
 class LoginController: UIViewController {
     
     private var stackView: UIStackView!
+    private var colorTheme: UIColor = UIColor.greenTheme
     
     lazy var bannerView: UIView = { [weak self] in
         guard let strongSelf = self else { return UIView() }
         let view = UIView()
-        view.backgroundColor = UIColor.theme
+        view.backgroundColor = colorTheme
         setupBanner(inside: view)
         return view
     }()
@@ -27,25 +28,30 @@ class LoginController: UIViewController {
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
             make.width.equalToSuperview()
-            make.height.equalTo(50)
+            make.height.equalTo(100)
         }
     }
     
-    let bannerLabel = UILabel().this {
+    private let bannerLabel = UILabel().this {
         $0.text = "Kalula"
-        $0.font = UIFont(name: "Rainbow Bridge Personal Use", size: 30)
-        $0.textColor = .white
+        $0.font = UIFont(name: "Candy Shop Personal Use", size: 50)
+        $0.textColor = .black
+        $0.textAlignment = .center
     }
     
     
-   lazy  var signUpDirectButton : UIButton = { [weak self] in
+    lazy  var signUpDirectButton : UIButton = { [weak self] in
         guard let strongSelf = self else { return UIButton() }
+        let attributes : [NSAttributedStringKey: Any] = [.font: UIFont.boldSystemFont(ofSize: 15)]
+        var attributedString = NSMutableAttributedString(string: "Dont have an account?  ", attributes: [.font: UIFont.systemFont(ofSize: 14), .foregroundColor: UIColor.lightGray])
+        attributedString.append(NSAttributedString(string: "Sign up", attributes: [.font: UIFont.boldSystemFont(ofSize: 15)]))
+        
         let button = UIButton(type: .system)
-        button.setTitle("Dont have an account? Sign up", for: .normal)
+        button.setAttributedTitle(attributedString, for: .normal)
         button.addTarget(strongSelf, action: #selector(handleShowSignUpVC), for: .touchUpInside)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         return button
-    }()
+        }()
     
     let emailTextField = UITextField().this {
         $0.placeholder = "Email"
@@ -71,7 +77,7 @@ class LoginController: UIViewController {
     lazy var signInButton = UIButton(type: .system).this {
         $0.setTitle("Login", for: .normal)
         
-        $0.backgroundColor = UIColor.rgb(red: 255, green: 215, blue: 0)
+        $0.backgroundColor = UIColor.greenTheme
         $0.setTitleColor(.white, for: .normal)
         $0.layer.cornerRadius = 5
         $0.layer.masksToBounds = true
@@ -86,17 +92,22 @@ class LoginController: UIViewController {
     
     func setupInputViews() {
         stackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, signInButton])
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.spacing = 10
         view.addSubview(stackView)
         stackView.snp.makeConstraints { (make) in
-            
+            make.top.equalTo(bannerView.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(150)
+            make.left.equalToSuperview().offset(40)
+            make.right.equalToSuperview().inset(40)
         }
     }
     
     private func setupViews() {
         view.addSubview(bannerView)
         view.addSubview(signUpDirectButton)
-        
-
         
         bannerView.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
@@ -115,6 +126,7 @@ class LoginController: UIViewController {
     
     private func setup() {
         setupViews()
+        setupInputViews() // always called after setupViews()
     }
 
     override func viewDidLoad() {

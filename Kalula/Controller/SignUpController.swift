@@ -13,6 +13,8 @@ import Firebase
 
 class SignUpController : UIViewController {
     
+    var theme: UIColor = UIColor.greenTheme
+    
     var stackView: UIStackView!
     
     let imagePickerButton = UIButton(type: .system).this {
@@ -54,12 +56,29 @@ class SignUpController : UIViewController {
     
     lazy var signInButton = UIButton(type: .system).this {
         $0.setTitle("Sign In", for: .normal)
-        $0.backgroundColor = UIColor.rgb(red: 255, green: 215, blue: 0)
+        $0.backgroundColor = theme
         $0.setTitleColor(.white, for: .normal)
         $0.layer.cornerRadius = 5
         $0.layer.masksToBounds = true
         $0.isUserInteractionEnabled = false
         $0.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
+    }
+    
+    lazy  var loginDirectButton : UIButton = { [weak self] in
+        guard let strongSelf = self else { return UIButton() }
+        let attributes : [NSAttributedStringKey: Any] = [.font: UIFont.boldSystemFont(ofSize: 15)]
+        var attributedString = NSMutableAttributedString(string: "Already have an account?  ", attributes: [.font: UIFont.systemFont(ofSize: 14), .foregroundColor: UIColor.lightGray])
+        attributedString.append(NSAttributedString(string: "Login", attributes: [.font: UIFont.boldSystemFont(ofSize: 15)]))
+        
+        let button = UIButton(type: .system)
+        button.setAttributedTitle(attributedString, for: .normal)
+        button.addTarget(strongSelf, action: #selector(handleShowSignUpVC), for: .touchUpInside)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        return button
+        }()
+    
+    @objc private func handleShowLoginVC() {
+        _ = navigationController?.popViewController(animated: true)
     }
     
     @objc fileprivate func handleSignUp() {
@@ -95,6 +114,18 @@ extension SignUpController {
     fileprivate func setupUIComponents() {
         setupInputComponents()
         setupImagePickerButton()
+        handleLoginDirectButtonSetup()
+    }
+    
+    private func handleLoginDirectButtonSetup() {
+        view.addSubview(loginDirectButton)
+        
+        loginDirectButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(40)
+            $0.width.equalToSuperview()
+            $0.height.equalTo(50)
+        }
     }
     
     fileprivate func setupInputComponents() {

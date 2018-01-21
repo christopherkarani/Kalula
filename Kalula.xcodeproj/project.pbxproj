@@ -11,6 +11,7 @@
 		1800F33B2013DE8400F6E61C /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1800F33A2013DE8400F6E61C /* LoginController.swift */; };
 		181957351FEA82FF00C1F508 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181957341FEA82FF00C1F508 /* UIColor+Extension.swift */; };
 		182C70032014AA0400D734B5 /* Rainbow Bridge Personal Use.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 182C70022014A9C200D734B5 /* Rainbow Bridge Personal Use.ttf */; };
+		182C70052014AC9D00D734B5 /* Candy Shop Personal Use.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 182C70042014AC9C00D734B5 /* Candy Shop Personal Use.ttf */; };
 		188B4969200642EA00AB2A1A /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B4968200642EA00AB2A1A /* UserProfileHeader.swift */; };
 		1892BAFA2008CB6700521362 /* FDUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1892BAF92008CB6700521362 /* FDUser.swift */; };
 		18B461B6200542FF002D2268 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B461B5200542FF002D2268 /* MainTabBarController.swift */; };
@@ -51,6 +52,7 @@
 		1800F33A2013DE8400F6E61C /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		181957341FEA82FF00C1F508 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		182C70022014A9C200D734B5 /* Rainbow Bridge Personal Use.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rainbow Bridge Personal Use.ttf"; sourceTree = "<group>"; };
+		182C70042014AC9C00D734B5 /* Candy Shop Personal Use.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Candy Shop Personal Use.ttf"; sourceTree = "<group>"; };
 		188B4968200642EA00AB2A1A /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		1892BAF92008CB6700521362 /* FDUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDUser.swift; sourceTree = "<group>"; };
 		18B461B5200542FF002D2268 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = "Kalula/Controller/New Group/MainTabBarController.swift"; sourceTree = SOURCE_ROOT; };
@@ -166,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				182C70022014A9C200D734B5 /* Rainbow Bridge Personal Use.ttf */,
+				182C70042014AC9C00D734B5 /* Candy Shop Personal Use.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18F817B31FE99FFB009CE89D /* LaunchScreen.storyboard in Resources */,
+				182C70052014AC9D00D734B5 /* Candy Shop Personal Use.ttf in Resources */,
 				18F8E17B1FEC0BBA00266013 /* GoogleService-Info.plist in Resources */,
 				18F817B01FE99FFB009CE89D /* Assets.xcassets in Resources */,
 				182C70032014AA0400D734B5 /* Rainbow Bridge Personal Use.ttf in Resources */,
