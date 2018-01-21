@@ -72,7 +72,7 @@ class SignUpController : UIViewController {
         
         let button = UIButton(type: .system)
         button.setAttributedTitle(attributedString, for: .normal)
-        button.addTarget(strongSelf, action: #selector(handleShowSignUpVC), for: .touchUpInside)
+        button.addTarget(strongSelf, action: #selector(handleShowLoginVC), for: .touchUpInside)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         return button
         }()
