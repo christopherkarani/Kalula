@@ -59,6 +59,7 @@ class SignUpController : UIViewController {
     lazy var signInButton = UIButton(type: .system).this {
         $0.setTitle("Sign In", for: .normal)
         $0.backgroundColor = theme
+        $0.alpha = 0.5
         $0.setTitleColor(.white, for: .normal)
         $0.layer.cornerRadius = 5
         $0.layer.masksToBounds = true
@@ -205,10 +206,10 @@ extension SignUpController {
         switch isFormValid {
         case true:
             signInButton.isUserInteractionEnabled = true
-            signInButton.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
+            signInButton.alpha = 1.0
         case false:
             signInButton.isUserInteractionEnabled = false
-            signInButton.backgroundColor = UIColor.rgb(red: 149, green: 205, blue: 244)
+            signInButton.alpha = 0.5
         }
     }
 }

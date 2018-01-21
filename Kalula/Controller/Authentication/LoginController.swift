@@ -81,7 +81,8 @@ class LoginController: UIViewController {
     lazy var signInButton = UIButton(type: .system).this {
         $0.setTitle("Login", for: .normal)
         
-        $0.backgroundColor = UIColor.greenTheme
+        $0.backgroundColor = theme
+        $0.alpha = 0.5
         $0.setTitleColor(.white, for: .normal)
         $0.layer.cornerRadius = 5
         $0.layer.masksToBounds = true
