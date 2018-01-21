@@ -14,11 +14,29 @@ class LoginController: UIViewController {
     
     private var stackView: UIStackView!
     
-    var bannerView: UIView = {
+    lazy var bannerView: UIView = { [weak self] in
+        guard let strongSelf = self else { return UIView() }
         let view = UIView()
         view.backgroundColor = UIColor.theme
+        setupBanner(inside: view)
         return view
     }()
+    private func setupBanner(inside view: UIView) {
+        view.addSubview(bannerLabel)
+        bannerLabel.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+            make.width.equalToSuperview()
+            make.height.equalTo(50)
+        }
+    }
+    
+    let bannerLabel = UILabel().this {
+        $0.text = "Kalula"
+        $0.font = UIFont(name: "Rainbow Bridge Personal Use", size: 30)
+        $0.textColor = .white
+    }
+    
     
    lazy  var signUpDirectButton : UIButton = { [weak self] in
         guard let strongSelf = self else { return UIButton() }
@@ -77,6 +95,8 @@ class LoginController: UIViewController {
     private func setupViews() {
         view.addSubview(bannerView)
         view.addSubview(signUpDirectButton)
+        
+
         
         bannerView.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
