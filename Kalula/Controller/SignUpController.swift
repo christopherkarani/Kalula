@@ -10,6 +10,7 @@ import UIKit
 import Sukari
 import SnapKit
 import Firebase
+import Hero
 
 class SignUpController : UIViewController {
     
@@ -17,10 +18,11 @@ class SignUpController : UIViewController {
     
     var stackView: UIStackView!
     
-    let imagePickerButton = UIButton(type: .system).this {
-        $0.setImage(#imageLiteral(resourceName: "plus_photo").withRenderingMode(.alwaysOriginal), for: .normal)
+    lazy var imagePickerButton = UIButton(type: .system).this {
+        $0.setImage(#imageLiteral(resourceName: "plus_photo"), for: .normal)
         $0.addTarget(self, action: #selector(handleImagePicker), for: .touchUpInside)
         $0.imageView?.contentMode = .scaleAspectFill
+        $0.tintColor = theme
     }
     
     let emailTextField = UITextField().this {
@@ -68,7 +70,8 @@ class SignUpController : UIViewController {
         guard let strongSelf = self else { return UIButton() }
         let attributes : [NSAttributedStringKey: Any] = [.font: UIFont.boldSystemFont(ofSize: 15)]
         var attributedString = NSMutableAttributedString(string: "Already have an account?  ", attributes: [.font: UIFont.systemFont(ofSize: 14), .foregroundColor: UIColor.lightGray])
-        attributedString.append(NSAttributedString(string: "Login", attributes: [.font: UIFont.boldSystemFont(ofSize: 15)]))
+        attributedString.append(NSAttributedString(string: "Login", attributes: [.font: UIFont.boldSystemFont(ofSize: 15),
+                                                                                 .foregroundColor: theme]))
         
         let button = UIButton(type: .system)
         button.setAttributedTitle(attributedString, for: .normal)
@@ -78,7 +81,7 @@ class SignUpController : UIViewController {
         }()
     
     @objc private func handleShowLoginVC() {
-        _ = navigationController?.popViewController(animated: true)
+        hero_dismissViewController()
     }
     
     @objc fileprivate func handleSignUp() {
@@ -122,7 +125,7 @@ extension SignUpController {
         
         loginDirectButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(40)
+            $0.bottom.equalToSuperview().inset(20)
             $0.width.equalToSuperview()
             $0.height.equalTo(50)
         }

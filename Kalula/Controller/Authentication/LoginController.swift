@@ -9,16 +9,17 @@
 import UIKit
 import SnapKit
 import Sukari
+import Hero
 
 class LoginController: UIViewController {
     
     private var stackView: UIStackView!
-    private var colorTheme: UIColor = UIColor.greenTheme
+    private var theme: UIColor = UIColor.greenTheme
     
     lazy var bannerView: UIView = { [weak self] in
         guard let strongSelf = self else { return UIView() }
         let view = UIView()
-        view.backgroundColor = colorTheme
+        view.backgroundColor = theme
         setupBanner(inside: view)
         return view
     }()
@@ -35,17 +36,20 @@ class LoginController: UIViewController {
     private let bannerLabel = UILabel().this {
         $0.text = "Kalula"
         $0.font = UIFont(name: "Candy Shop Personal Use", size: 50)
-        $0.textColor = .black
+        $0.textColor = .white
         $0.textAlignment = .center
     }
     
+    func setupHero() {
+        
+    }
     
     lazy  var signUpDirectButton : UIButton = { [weak self] in
         guard let strongSelf = self else { return UIButton() }
         let attributes : [NSAttributedStringKey: Any] = [.font: UIFont.boldSystemFont(ofSize: 15)]
         var attributedString = NSMutableAttributedString(string: "Dont have an account?  ", attributes: [.font: UIFont.systemFont(ofSize: 14), .foregroundColor: UIColor.lightGray])
-        attributedString.append(NSAttributedString(string: "Sign up", attributes: [.font: UIFont.boldSystemFont(ofSize: 15)]))
-        
+        attributedString.append(NSAttributedString(string: "Sign up", attributes: [.font: UIFont.boldSystemFont(ofSize: 15),
+                                                                                   .foregroundColor: UIColor.greenTheme]))
         let button = UIButton(type: .system)
         button.setAttributedTitle(attributedString, for: .normal)
         button.addTarget(strongSelf, action: #selector(handleShowSignUpVC), for: .touchUpInside)
@@ -86,7 +90,10 @@ class LoginController: UIViewController {
     }
     
     @objc private func handleShowSignUpVC() {
+        navigationController?.isHeroEnabled = true
+        //isHeroEnabled = true
         let signUpVC = SignUpController(loginService: LoginManager())
+        navigationController?.heroNavigationAnimationType = .selectBy(presenting: .zoomSlide(direction: .left), dismissing: .zoomSlide(direction: .right))
         navigationController?.pushViewController(signUpVC, animated: true)
     }
     
@@ -118,7 +125,7 @@ class LoginController: UIViewController {
         
         signUpDirectButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(40)
+            $0.bottom.equalToSuperview().inset(20)
             $0.width.equalToSuperview()
             $0.height.equalTo(50)
         }

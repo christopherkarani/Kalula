@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import Toaster
+import Hero
 
 class UserProfileViewController: UICollectionViewController {
     
@@ -30,6 +31,7 @@ class UserProfileViewController: UICollectionViewController {
         fetchUser()
         registerCells()
         setupNavigationBar()
+        //isHeroEnabled = true
     }
     
     private func setupNavigationBar() {
@@ -41,7 +43,9 @@ class UserProfileViewController: UICollectionViewController {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let logoutAction = UIAlertAction(title: "Log Out", style: .destructive) { [weak self] (_) in
             let loginController = LoginController()
+            self?.heroModalAnimationType = .zoomOut
             let navcontroller = UINavigationController(rootViewController: loginController)
+            navcontroller.isHeroEnabled = true
             self?.present(navcontroller, animated: true, completion: nil)
         }
         let cancleAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
