@@ -10,6 +10,9 @@ import UIKit
 import SnapKit
 import Sukari
 import Hero
+import Toaster
+import Firebase
+
 
 class LoginController: UIViewController {
     
@@ -40,9 +43,6 @@ class LoginController: UIViewController {
         $0.textAlignment = .center
     }
     
-    func setupHero() {
-        
-    }
     
     lazy  var signUpDirectButton : UIButton = { [weak self] in
         guard let strongSelf = self else { return UIButton() }
@@ -64,7 +64,7 @@ class LoginController: UIViewController {
         $0.backgroundColor = UIColor(white: 0, alpha: 0.03)
         $0.autocapitalizationType = .none
         $0.autocorrectionType = .no
-        //$0.addTarget(self, action: #selector(handleTextFieldEditingChanged), for: .editingChanged)
+        $0.addTarget(self, action: #selector(handleTextFieldEditingChanged), for: .editingChanged)
     }
     
     let passwordTextField = UITextField().this {
@@ -75,7 +75,7 @@ class LoginController: UIViewController {
         $0.autocapitalizationType = .none
         $0.autocorrectionType = .no
         $0.isSecureTextEntry = true
-        //$0.addTarget(self, action: #selector(handleTextFieldEditingChanged), for: .editingChanged)
+        $0.addTarget(self, action: #selector(handleTextFieldEditingChanged), for: .editingChanged)
     }
     
     lazy var signInButton = UIButton(type: .system).this {
@@ -87,18 +87,63 @@ class LoginController: UIViewController {
         $0.layer.cornerRadius = 5
         $0.layer.masksToBounds = true
         $0.isUserInteractionEnabled = false
-        //$0.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
     }
     
+    @objc private func handleLogin() {
+        view.endEditing(true)
+        guard let email = emailTextField.text, let password = passwordTextField.text else { return }
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] (user, error) in
+            if let error = error {
+                let toast = Toast(text: error.localizedDescription, delay: 1, duration: 3.5)
+                toast.show()
+                print(error.localizedDescription)
+                return
+            }
+            print("Succesfully loggef user in")
+            
+            self?.dismiss(animated: true, completion: nil)
+            
+        }
+    }
+    
+    var isValidTextForm: Bool = false  {
+        didSet(value) {
+            switch value {
+            case true:
+                signInButton.alpha = 1
+                signInButton.isUserInteractionEnabled = true
+            case false:
+                signInButton.alpha = 0.5
+                signInButton.isUserInteractionEnabled = false
+            }
+        }
+        
+    }
+    @objc private func handleTextFieldEditingChanged() {
+        guard let emailCount = emailTextField.text?.count, let passwordCount = passwordTextField.text?.count else {
+            print("TextField is invalid")
+            isValidTextForm = false
+            return
+        }
+        switch isValidTextForm {
+        case (emailCount > 5) && (passwordCount > 5):
+            isValidTextForm = true
+            return
+        default:
+            signInButton.alpha = 0.5
+            signInButton.isUserInteractionEnabled = false
+            return
+        }
+    }
+    
+    
     @objc private func handleShowSignUpVC() {
-        navigationController?.isHeroEnabled = true
-        //isHeroEnabled = true
         let signUpVC = SignUpController(loginService: LoginManager())
-        navigationController?.heroNavigationAnimationType = .selectBy(presenting: .zoomSlide(direction: .left), dismissing: .zoomSlide(direction: .right))
         navigationController?.pushViewController(signUpVC, animated: true)
     }
     
-    func setupInputViews() {
+    private func setupInputViews() {
         stackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, signInButton])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
@@ -114,6 +159,9 @@ class LoginController: UIViewController {
     }
     
     private func setupViews() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleScreenTapGesture))
+        view.addGestureRecognizer(tap)
+        
         view.addSubview(bannerView)
         view.addSubview(signUpDirectButton)
         
@@ -132,7 +180,17 @@ class LoginController: UIViewController {
         }
     }
     
+    @objc private func handleScreenTapGesture() {
+        view.endEditing(true)
+    }
+    
+    private func setupHeroToNavigationBar() {
+        navigationController?.isHeroEnabled = true
+        navigationController?.heroNavigationAnimationType = .selectBy(presenting: .zoomSlide(direction: .left), dismissing: .zoomSlide(direction: .right))
+    }
+    
     private func setup() {
+        setupHeroToNavigationBar()
         setupViews()
         setupInputViews() // always called after setupViews()
     }

@@ -86,6 +86,7 @@ class SignUpController : UIViewController {
     }
     
     @objc fileprivate func handleSignUp() {
+        view.endEditing(true)
         let email = emailTextField.text.unwrap()
         let password = passwordTextField.text.unwrap()
         let userName = usernameTextField.text.unwrap()
@@ -110,6 +111,16 @@ class SignUpController : UIViewController {
         super.viewDidLoad()
         setupViewController()
         setupUIComponents()
+        setup()
+    }
+    
+    private func setup() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleScreenTapGesture))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc private func handleScreenTapGesture() {
+        view.endEditing(true)
     }
 }
 
