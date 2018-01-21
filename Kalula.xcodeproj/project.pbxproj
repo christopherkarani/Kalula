@@ -51,12 +51,12 @@
 		181957341FEA82FF00C1F508 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		188B4968200642EA00AB2A1A /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		1892BAF92008CB6700521362 /* FDUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDUser.swift; sourceTree = "<group>"; };
-		18B461B5200542FF002D2268 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		18B461B5200542FF002D2268 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = "Kalula/Controller/New Group/MainTabBarController.swift"; sourceTree = SOURCE_ROOT; };
 		18B461BA20054482002D2268 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		18D9A7542004E6920066C249 /* LoginNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNetworkService.swift; sourceTree = "<group>"; };
 		18F817A51FE99FFB009CE89D /* Kalula.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kalula.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F817A81FE99FFB009CE89D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		18F817AA1FE99FFB009CE89D /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
+		18F817AA1FE99FFB009CE89D /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignUpController.swift; path = ../SignUpController.swift; sourceTree = "<group>"; };
 		18F817AF1FE99FFB009CE89D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18F817B21FE99FFB009CE89D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18F817B41FE99FFB009CE89D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -119,6 +119,24 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		1800F33C2014A20C00F6E61C /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				1800F33A2013DE8400F6E61C /* LoginController.swift */,
+				18F817AA1FE99FFB009CE89D /* SignUpController.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		1800F33D2014A24400F6E61C /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				18B461B5200542FF002D2268 /* MainTabBarController.swift */,
+			);
+			name = Navigation;
+			path = N;
+			sourceTree = "<group>";
+		};
 		180166621FF3E0A4005C39A6 /* Database */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,10 +179,9 @@
 		18B461B920054385002D2268 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				18F817AA1FE99FFB009CE89D /* SignUpController.swift */,
-				18B461B5200542FF002D2268 /* MainTabBarController.swift */,
+				1800F33D2014A24400F6E61C /* Navigation */,
+				1800F33C2014A20C00F6E61C /* Authentication */,
 				18B461BA20054482002D2268 /* UserProfileViewController.swift */,
-				1800F33A2013DE8400F6E61C /* LoginController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
