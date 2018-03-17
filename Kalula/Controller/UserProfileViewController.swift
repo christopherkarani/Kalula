@@ -57,6 +57,11 @@ class UserProfileViewController: UICollectionViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        //
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         fetchUser()
     }
     
@@ -68,11 +73,12 @@ class UserProfileViewController: UICollectionViewController {
     fileprivate func fetchUser() {
         guard let uid = Auth.auth().currentUser?.uid else {
             print("No User online")
-            present(SignUpController.init(loginService: LoginManager()), animated: true, completion: nil)
+            present(SignUpController(loginService: LoginManager()), animated: true, completion: nil)
             isUserAvailable = false
             return
         }
-        isUserAvailable = false
+        
+        isUserAvailable = true
         let ref = Database.database().reference().child("users").child(uid)
         ref.observeSingleEvent(of: .value, with: { [weak self] (snapshot) in
             let strongSelf = self.unwrap()
