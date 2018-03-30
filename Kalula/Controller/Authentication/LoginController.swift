@@ -100,8 +100,6 @@ class LoginController: UIViewController {
                 print(error.localizedDescription)
                 return
             }
-            
-            
             print("Succesfully logged user in")
             
             self?.dismiss(animated: true, completion: nil)

@@ -17,6 +17,7 @@ pod 'Toaster'
 pod 'SwiftLint'
 pod 'Hero'
 pod 'Spring', :git => 'https://github.com/MengTo/Spring.git'
+pod 'Kingfisher', '~> 4.0'
 
 
   target 'KalulaTests' do

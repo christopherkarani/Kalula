@@ -44,6 +44,7 @@ PODS:
   - GoogleToolboxForMac/NSString+URLArguments (2.1.3)
   - GTMSessionFetcher/Core (1.1.12)
   - Hero (1.0.1)
+  - Kingfisher (4.6.3)
   - leveldb-library (1.20)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
@@ -64,6 +65,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - Hero
+  - Kingfisher (~> 4.0)
   - RxCocoa
   - RxSwift
   - SnapKit
@@ -92,6 +94,7 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   GTMSessionFetcher: ebaa1f79a5366922c1735f1566901f50beba23b7
   Hero: cee286821578e170d8c0c9c9cda7897357401112
+  Kingfisher: 98e6d5b5e807645743e8ed5ececd25d688d38452
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   RxCocoa: d62846ca96495d862fa4c59ea7d87e5031d7340e
@@ -102,6 +105,6 @@ SPEC CHECKSUMS:
   SwiftLint: a014c92b4664e8b13f380f8640a51bb1733778ba
   Toaster: a6c9532de1ded8105e77376f7dffeb2e12b46dbb
 
-PODFILE CHECKSUM: db348e6733d695df2d0ae296592fd1d326038075
+PODFILE CHECKSUM: 618e80ffca047c384406baa17f6291b48974f6ee
 
-COCOAPODS: 1.4.0.rc.1
+COCOAPODS: 1.4.0
