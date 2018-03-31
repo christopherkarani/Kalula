@@ -17,11 +17,13 @@ class UserProfileHeader: UICollectionViewCell {
     var user : LocalUser? {
         didSet {
             if let user = user {
-                fetchImage(withUrlString: user.profileImageUrl, completion: { (image) in
-                    DispatchQueue.main.async { [weak self] in
-                        self?.imageView.image = image
-                    }
-                })
+                let url = URL(string: user.profileImageUrl)
+                imageView.kf.setImage(with: url)
+//                fetchImage(withUrlString: user.profileImageUrl, completion: { (image) in
+//                    DispatchQueue.main.async { [weak self] in
+//                        self?.imageView.image = image
+//                    }
+//                })
                 
                 userNameLabel.text = user.userName
             }

@@ -10,12 +10,14 @@ import UIKit
 import Firebase
 import Toaster
 import Hero
+import Kingfisher
 
 class UserProfileViewController: UICollectionViewController {
     
     let headerID =  "HeaderID"
     let cellID   =  "CellID"
     var isUserAvailable: Bool?
+    var posts = [Post]()
     
     var user : LocalUser? {
         didSet {
@@ -32,6 +34,33 @@ class UserProfileViewController: UICollectionViewController {
         registerCells()
         setupNavigationBar()
         //isHeroEnabled = true
+        //fetchPhotos()
+        fetchOrderedPosts()
+    }
+    
+    private func fetchOrderedPosts() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let ref = Database.database().reference().child("posts").child(uid)
+        ref.queryOrdered(byChild: "creationDate").observe(.childAdded) { (snapshot) in
+            guard let dictionary = snapshot.value as? [String: Any] else { return }
+            let post = Post(dictionary: dictionary)
+            self.posts.append(post)
+            self.collectionView?.reloadData()
+        }
+    }
+    
+    private func fetchPhotos() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let ref = Database.database().reference().child("posts").child(uid)
+        ref.observeSingleEvent(of: .value) { [unowned self] (snapshot) in
+            guard let dictionaries = snapshot.value as? [String: Any] else { return }
+            dictionaries.forEach({ (key, dictionary) in
+                guard let dict = dictionary as?  [String: Any] else { return }
+                let post = Post(dictionary: dict)
+                self.posts.append(post)
+            })
+
+        }
     }
     
     private func setupNavigationBar() {
@@ -67,7 +96,7 @@ class UserProfileViewController: UICollectionViewController {
     
     fileprivate func registerCells() {
         collectionView?.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerID)
-        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellID)
+        collectionView?.register(UserPostsCell.self, forCellWithReuseIdentifier: cellID)
     }
     
     fileprivate func fetchUser() {
@@ -126,12 +155,12 @@ extension UserProfileViewController {
 
 extension UserProfileViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return posts.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath)
-        cell.backgroundColor = .magenta
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! UserPostsCell
+        cell.post = posts[indexPath.item]
         return cell
     }
 }

@@ -27,6 +27,8 @@
 		32B74004A93B0E9A6E6E8F75 /* Pods_KalulaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5971D433310331350675CD09 /* Pods_KalulaUITests.framework */; };
 		3C349B8A206E5D8600334747 /* SelectPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C349B89206E5D8600334747 /* SelectPhotoViewController.swift */; };
 		3C349B8C206E6B8900334747 /* UIFont_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C349B8B206E6B8900334747 /* UIFont_Ext.swift */; };
+		3C349B8F206EB92B00334747 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C349B8E206EB92B00334747 /* Post.swift */; };
+		3C349B91206EBA1200334747 /* UserPostsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C349B90206EBA1200334747 /* UserPostsCell.swift */; };
 		3CBC92F9205D9E5700F312CB /* PhotoSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC92F8205D9E5700F312CB /* PhotoSelectorViewController.swift */; };
 		3CFEB64B2067E4B7006804FF /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFEB64A2067E4B7006804FF /* PhotoSelectorCell.swift */; };
 		3CFEB64D2068A0CE006804FF /* PhotoSelectorHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFEB64C2068A0CE006804FF /* PhotoSelectorHeaderCell.swift */; };
@@ -60,7 +62,7 @@
 		182C70042014AC9C00D734B5 /* Candy Shop Personal Use.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Candy Shop Personal Use.ttf"; sourceTree = "<group>"; };
 		188B4968200642EA00AB2A1A /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		1892BAF92008CB6700521362 /* FDUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDUser.swift; sourceTree = "<group>"; };
-		18B461B5200542FF002D2268 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = "Kalula/Controller/New Group/MainTabBarController.swift"; sourceTree = SOURCE_ROOT; };
+		18B461B5200542FF002D2268 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = Kalula/Controller/Navigation/MainTabBarController.swift; sourceTree = SOURCE_ROOT; };
 		18B461BA20054482002D2268 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		18D9A7542004E6920066C249 /* LoginNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNetworkService.swift; sourceTree = "<group>"; };
 		18F817A51FE99FFB009CE89D /* Kalula.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kalula.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +82,8 @@
 		22F0ECAF14AD54EA2D3A52ED /* Pods_KalulaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KalulaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C349B89206E5D8600334747 /* SelectPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoViewController.swift; sourceTree = "<group>"; };
 		3C349B8B206E6B8900334747 /* UIFont_Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont_Ext.swift; sourceTree = "<group>"; };
+		3C349B8E206EB92B00334747 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		3C349B90206EBA1200334747 /* UserPostsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostsCell.swift; sourceTree = "<group>"; };
 		3CBC92F8205D9E5700F312CB /* PhotoSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorViewController.swift; sourceTree = "<group>"; };
 		3CFEB64A2067E4B7006804FF /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 		3CFEB64C2068A0CE006804FF /* PhotoSelectorHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHeaderCell.swift; sourceTree = "<group>"; };
@@ -142,22 +146,6 @@
 			path = Authentication;
 			sourceTree = "<group>";
 		};
-		1800F33D2014A24400F6E61C /* Navigation */ = {
-			isa = PBXGroup;
-			children = (
-				18B461B5200542FF002D2268 /* MainTabBarController.swift */,
-			);
-			name = Navigation;
-			path = N;
-			sourceTree = "<group>";
-		};
-		180166621FF3E0A4005C39A6 /* Database */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Database;
-			sourceTree = "<group>";
-		};
 		180166631FF3E0EC005C39A6 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,7 +175,10 @@
 		18B461B720054378002D2268 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3CFEB64C2068A0CE006804FF /* PhotoSelectorHeaderCell.swift */,
+				3CFEB64A2067E4B7006804FF /* PhotoSelectorCell.swift */,
 				188B4968200642EA00AB2A1A /* UserProfileHeader.swift */,
+				3C349B90206EBA1200334747 /* UserPostsCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				1892BAF92008CB6700521362 /* FDUser.swift */,
+				3C349B8E206EB92B00334747 /* Post.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -203,11 +195,10 @@
 		18B461B920054385002D2268 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				3C349B8D206EB7D900334747 /* New Group1 */,
-				3CBC92F7205D9E3C00F312CB /* AddPhoto */,
-				1800F33D2014A24400F6E61C /* Navigation */,
-				1800F33C2014A20C00F6E61C /* Authentication */,
 				18B461BA20054482002D2268 /* UserProfileViewController.swift */,
+				3C349B8D206EB7D900334747 /* Navigation */,
+				3CBC92F7205D9E3C00F312CB /* AddPhoto */,
+				1800F33C2014A20C00F6E61C /* Authentication */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -241,7 +232,6 @@
 				18B461B920054385002D2268 /* Controller */,
 				18B461B82005437E002D2268 /* Model */,
 				18B461B720054378002D2268 /* Views */,
-				180166621FF3E0A4005C39A6 /* Database */,
 				180166631FF3E0EC005C39A6 /* Network */,
 				18F8E17A1FEC0BBA00266013 /* GoogleService-Info.plist */,
 				181957331FEA82E300C1F508 /* Utility */,
@@ -271,19 +261,18 @@
 			path = KalulaUITests;
 			sourceTree = "<group>";
 		};
-		3C349B8D206EB7D900334747 /* New Group1 */ = {
+		3C349B8D206EB7D900334747 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				18B461B5200542FF002D2268 /* MainTabBarController.swift */,
 			);
-			path = "New Group1";
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 		3CBC92F7205D9E3C00F312CB /* AddPhoto */ = {
 			isa = PBXGroup;
 			children = (
 				3CBC92F8205D9E5700F312CB /* PhotoSelectorViewController.swift */,
-				3CFEB64A2067E4B7006804FF /* PhotoSelectorCell.swift */,
-				3CFEB64C2068A0CE006804FF /* PhotoSelectorHeaderCell.swift */,
 				3C349B89206E5D8600334747 /* SelectPhotoViewController.swift */,
 			);
 			path = AddPhoto;
@@ -623,9 +612,11 @@
 				18D9A7552004E6920066C249 /* LoginNetworkService.swift in Sources */,
 				188B4969200642EA00AB2A1A /* UserProfileHeader.swift in Sources */,
 				18B461BB20054482002D2268 /* UserProfileViewController.swift in Sources */,
+				3C349B91206EBA1200334747 /* UserPostsCell.swift in Sources */,
 				1800F33B2013DE8400F6E61C /* LoginController.swift in Sources */,
 				181957351FEA82FF00C1F508 /* UIColor+Extension.swift in Sources */,
 				3CBC92F9205D9E5700F312CB /* PhotoSelectorViewController.swift in Sources */,
+				3C349B8F206EB92B00334747 /* Post.swift in Sources */,
 				3C349B8A206E5D8600334747 /* SelectPhotoViewController.swift in Sources */,
 				3CFEB64D2068A0CE006804FF /* PhotoSelectorHeaderCell.swift in Sources */,
 				18B461B6200542FF002D2268 /* MainTabBarController.swift in Sources */,

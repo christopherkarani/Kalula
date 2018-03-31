@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+struct Post {
+    var imageUrl: String
+    
+    init(dictionary: [String: Any]) {
+        imageUrl = dictionary["imageUrl"] as? String ?? ""
+    }
+}
