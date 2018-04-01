@@ -33,7 +33,7 @@ class MainTabBarController : UITabBarController {
     private func setupViewControllers() {
         
         //home
-        let homeController = viewControllerFactory(with: #imageLiteral(resourceName: "home_selected"), unselectedImage: #imageLiteral(resourceName: "home_unselected"))
+        let homeController = viewControllerFactory(with: #imageLiteral(resourceName: "home_selected"), unselectedImage: #imageLiteral(resourceName: "home_unselected"), rootViewController: HomeController(collectionViewLayout: UICollectionViewFlowLayout()))
         
         //search
         let searchController = viewControllerFactory(with: #imageLiteral(resourceName: "search_selected"), unselectedImage: #imageLiteral(resourceName: "search_unselected"))

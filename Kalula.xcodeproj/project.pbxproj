@@ -29,6 +29,8 @@
 		3C349B8C206E6B8900334747 /* UIFont_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C349B8B206E6B8900334747 /* UIFont_Ext.swift */; };
 		3C349B8F206EB92B00334747 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C349B8E206EB92B00334747 /* Post.swift */; };
 		3C349B91206EBA1200334747 /* UserPostsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C349B90206EBA1200334747 /* UserPostsCell.swift */; };
+		3C349B94206FFC9200334747 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C349B93206FFC9200334747 /* HomeController.swift */; };
+		3C349B96206FFEDC00334747 /* HomeFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C349B95206FFEDC00334747 /* HomeFeedCell.swift */; };
 		3CBC92F9205D9E5700F312CB /* PhotoSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC92F8205D9E5700F312CB /* PhotoSelectorViewController.swift */; };
 		3CFEB64B2067E4B7006804FF /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFEB64A2067E4B7006804FF /* PhotoSelectorCell.swift */; };
 		3CFEB64D2068A0CE006804FF /* PhotoSelectorHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFEB64C2068A0CE006804FF /* PhotoSelectorHeaderCell.swift */; };
@@ -84,6 +86,8 @@
 		3C349B8B206E6B8900334747 /* UIFont_Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont_Ext.swift; sourceTree = "<group>"; };
 		3C349B8E206EB92B00334747 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		3C349B90206EBA1200334747 /* UserPostsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostsCell.swift; sourceTree = "<group>"; };
+		3C349B93206FFC9200334747 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		3C349B95206FFEDC00334747 /* HomeFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedCell.swift; sourceTree = "<group>"; };
 		3CBC92F8205D9E5700F312CB /* PhotoSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorViewController.swift; sourceTree = "<group>"; };
 		3CFEB64A2067E4B7006804FF /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 		3CFEB64C2068A0CE006804FF /* PhotoSelectorHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHeaderCell.swift; sourceTree = "<group>"; };
@@ -196,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				18B461BA20054482002D2268 /* UserProfileViewController.swift */,
+				3C349B92206FFC7E00334747 /* Home */,
 				3C349B8D206EB7D900334747 /* Navigation */,
 				3CBC92F7205D9E3C00F312CB /* AddPhoto */,
 				1800F33C2014A20C00F6E61C /* Authentication */,
@@ -267,6 +272,15 @@
 				18B461B5200542FF002D2268 /* MainTabBarController.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		3C349B92206FFC7E00334747 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				3C349B93206FFC9200334747 /* HomeController.swift */,
+				3C349B95206FFEDC00334747 /* HomeFeedCell.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		3CBC92F7205D9E3C00F312CB /* AddPhoto */ = {
@@ -614,7 +628,9 @@
 				18B461BB20054482002D2268 /* UserProfileViewController.swift in Sources */,
 				3C349B91206EBA1200334747 /* UserPostsCell.swift in Sources */,
 				1800F33B2013DE8400F6E61C /* LoginController.swift in Sources */,
+				3C349B94206FFC9200334747 /* HomeController.swift in Sources */,
 				181957351FEA82FF00C1F508 /* UIColor+Extension.swift in Sources */,
+				3C349B96206FFEDC00334747 /* HomeFeedCell.swift in Sources */,
 				3CBC92F9205D9E5700F312CB /* PhotoSelectorViewController.swift in Sources */,
 				3C349B8F206EB92B00334747 /* Post.swift in Sources */,
 				3C349B8A206E5D8600334747 /* SelectPhotoViewController.swift in Sources */,

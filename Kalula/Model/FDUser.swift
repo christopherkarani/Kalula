@@ -11,6 +11,7 @@ import Foundation
 protocol LocalUser {
     var profileImageUrl : String { get set }
     var userName        : String { get set }
+    
     init(dictionary: [String: Any])
 }
 

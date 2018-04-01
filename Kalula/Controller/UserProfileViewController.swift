@@ -59,7 +59,6 @@ class UserProfileViewController: UICollectionViewController {
                 let post = Post(dictionary: dict)
                 self.posts.append(post)
             })
-
         }
     }
     

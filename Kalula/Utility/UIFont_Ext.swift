@@ -9,11 +9,18 @@
 import UIKit
 
 extension UIFont {
-    static func helveticaFont() -> UIFont {
-        guard let font =  UIFont(name: "HelveticaNeue", size: 15) else {
-            return UIFont.systemFont(ofSize: 15)
+    static func helveticaFont(withSize size : CGFloat = 15) -> UIFont {
+        guard let font =  UIFont(name: "HelveticaNeue", size: size) else {
+            return UIFont.systemFont(ofSize: size)
         }
         return font
     }
+    
+    static func helveticaBoldFont(withSize size : CGFloat = 15) -> UIFont {
+        guard let font =  UIFont(name: "HelveticaNeue-Bold", size: size) else {
+            return UIFont.boldSystemFont(ofSize: size)
+        }
+        return font
+    }  
 }
 
