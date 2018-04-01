@@ -21,6 +21,13 @@ extension UIFont {
             return UIFont.boldSystemFont(ofSize: size)
         }
         return font
-    }  
+    }
+    
+    static func helveticaMediumFont(withSize size : CGFloat = 15) -> UIFont {
+        guard let font =  UIFont(name: "HelveticaNeue-Medium", size: size) else {
+            return UIFont.systemFont(ofSize: size)
+        }
+        return font
+    }
 }
 

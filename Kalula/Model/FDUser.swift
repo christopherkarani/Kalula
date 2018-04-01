@@ -15,12 +15,13 @@ protocol LocalUser {
     init(dictionary: [String: Any])
 }
 
+//Firebase Database User
 struct FDUser: LocalUser {
     var profileImageUrl: String
     var userName: String
     
     init(dictionary: [String : Any]) {
-        profileImageUrl = (dictionary["profileImageUrl"] as? String).unwrap()
-        userName = (dictionary["username"] as? String).unwrap()
+        profileImageUrl = (dictionary["profileImageUrl"] as? String) ?? ""
+        userName = (dictionary["username"] as? String) ?? ""
     }
 }

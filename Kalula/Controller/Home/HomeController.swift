@@ -22,17 +22,26 @@ class HomeController: UICollectionViewController {
         collectionView?.backgroundColor = .white
         registerCollectionViewCells()
         setupNavigationItems()
-        fetchPhotos()
+        fetchPosts()
     }
     
-    private func fetchPhotos() {
+    func fetchPosts() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
+        let userRef = Database.database().reference().child("users").child(uid)
+        userRef.observeSingleEvent(of: .value) { (snapshot) in
+            guard let userDictionary = snapshot.value as? [String: Any] else { return }
+            let user = FDUser(dictionary: userDictionary)
+            self.fetchPhotos(user, uid)
+        }
+    }
+    
+    private func fetchPhotos(_ user: LocalUser, _ uid: String) {
         let ref = Database.database().reference().child("posts").child(uid)
-        ref.observeSingleEvent(of: .value) { [unowned self] (snapshot) in
+        ref.queryOrdered(byChild:"creationDate").observeSingleEvent(of: .value) { [unowned self] (snapshot) in
             guard let dictionaries = snapshot.value as? [String: Any] else { return }
             dictionaries.forEach({ (key, dictionary) in
                 guard let dict = dictionary as?  [String: Any] else { return }
-                let post = Post(dictionary: dict)
+                let post = Post(withUser: user, andDictionary: dict)
                 self.posts.append(post)
                 DispatchQueue.main.async {
                     self.collectionView?.reloadData()
@@ -68,6 +77,7 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
         var height: CGFloat = 40 + 8 + 8 // profileImageView and UsernameLabel constraints and padding
         height += view.frame.width
         height += 50
+        height += 60
         return CGSize(width: collectionView.frame.width, height: height)
     }
     

@@ -34,7 +34,6 @@ class UserProfileViewController: UICollectionViewController {
         registerCells()
         setupNavigationBar()
         //isHeroEnabled = true
-        //fetchPhotos()
         fetchOrderedPosts()
     }
     
@@ -43,24 +42,13 @@ class UserProfileViewController: UICollectionViewController {
         let ref = Database.database().reference().child("posts").child(uid)
         ref.queryOrdered(byChild: "creationDate").observe(.childAdded) { (snapshot) in
             guard let dictionary = snapshot.value as? [String: Any] else { return }
-            let post = Post(dictionary: dictionary)
-            self.posts.append(post)
+            guard let user = self.user else { return }
+            let post = Post(withUser: user, andDictionary: dictionary)
+            self.posts.insert(post, at: 0)
             self.collectionView?.reloadData()
         }
     }
     
-    private func fetchPhotos() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        let ref = Database.database().reference().child("posts").child(uid)
-        ref.observeSingleEvent(of: .value) { [unowned self] (snapshot) in
-            guard let dictionaries = snapshot.value as? [String: Any] else { return }
-            dictionaries.forEach({ (key, dictionary) in
-                guard let dict = dictionary as?  [String: Any] else { return }
-                let post = Post(dictionary: dict)
-                self.posts.append(post)
-            })
-        }
-    }
     
     private func setupNavigationBar() {
         let logoutBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "gear").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleLogoutButton))
