@@ -12,6 +12,10 @@ class UserSearchController: UICollectionViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     
+    var searchBar : UISearchBar {
+        return searchController.searchBar
+    }
+    
     
     
     fileprivate func cellIdentifier() -> String {
