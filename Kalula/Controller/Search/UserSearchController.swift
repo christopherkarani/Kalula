@@ -7,15 +7,22 @@
 //
 
 import UIKit
+import Firebase
 
 class UserSearchController: UICollectionViewController {
     
-    let searchController = UISearchController(searchResultsController: nil)
+    var users = [LocalUser]()
+    var filteredUsers = [LocalUser]()
+    
+    lazy var searchController : UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.delegate = self
+        return searchController
+    }()
     
     var searchBar : UISearchBar {
         return searchController.searchBar
     }
-    
     
     
     fileprivate func cellIdentifier() -> String {
@@ -24,10 +31,30 @@ class UserSearchController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupUI()
         handleRegistrationOfCells()
+        fetchUsers()
+        setupSearchBarDelegate()
     }
+    
+    fileprivate func fetchUsers() {
+        let ref = Database.database().reference().child("users")
+        ref.observeSingleEvent(of: .value) { (snapshot) in
+            guard let dictionaries = snapshot.value as? [String: Any] else { return }
+            dictionaries.forEach({ (key,value) in
+                guard let userDictionary = value as? [String: Any] else { return }
+                let user = FDUser(dictionary: userDictionary)
+                self.users.append(user)
+                self.collectionView?.reloadData()
+                
+                UIView.animate(withDuration: 0.5) {
+                    self.collectionView?.layoutIfNeeded()
+                }
+            })
+        }
+    }
+    
+    
     fileprivate func setupUI() {
         collectionView?.backgroundColor = .white
         collectionView?.alwaysBounceVertical = true
@@ -40,6 +67,10 @@ class UserSearchController: UICollectionViewController {
         searchController.searchBar.barStyle = .blackTranslucent
     }
     
+    fileprivate func setupSearchBarDelegate() {
+        searchBar.delegate = self
+    }
+    
     fileprivate func handleRegistrationOfCells() {
         collectionView?.register(UserSearchCell.self, forCellWithReuseIdentifier: cellIdentifier())
     }
@@ -47,12 +78,23 @@ class UserSearchController: UICollectionViewController {
 
 extension UserSearchController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        
+        if searchController.isActive {
+            return filteredUsers.count
+        } else {
+            return users.count
+        }
+        
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier(), for: indexPath) as! UserSearchCell
         
+        if searchController.isActive {
+            cell.user = filteredUsers[indexPath.item]
+        } else {
+            cell.user = users[indexPath.item]
+        }
         return cell
     }
 }
@@ -60,5 +102,28 @@ extension UserSearchController {
 extension UserSearchController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 66)
+    }
+}
+
+extension UserSearchController: UISearchControllerDelegate {
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        collectionView?.reloadData()
+    }
+}
+
+extension UserSearchController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredUsers = users.filter({ (user) -> Bool in
+            return user.userName.localizedLowercase.contains(searchText.localizedLowercase)
+        })
+        if searchText.isEmpty {
+            filteredUsers = users
+        }
+        
+        self.collectionView?.reloadData()
+        UIView.animate(withDuration: 0.5) {
+            self.collectionView?.layoutIfNeeded()
+        }
+        
     }
 }

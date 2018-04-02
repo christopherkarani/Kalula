@@ -45,6 +45,10 @@ class HomeController: UICollectionViewController {
                 self.posts.append(post)
                 DispatchQueue.main.async {
                     self.collectionView?.reloadData()
+                    
+                    UIView.animate(withDuration: 0.3, animations: {
+                        self.collectionView?.layoutIfNeeded()
+                    })
                 }
             })
         }

@@ -11,6 +11,16 @@ import SnapKit
 
 class UserSearchCell: UICollectionViewCell {
     
+    var user: LocalUser? {
+        didSet {
+            if let user = user {
+                guard let profileImageUrl = URL(string: user.profileImageUrl) else { return }
+                nameLabel.text = user.userName
+                imageView.kf.setImage(with: profileImageUrl)
+            }
+        }
+    }
+    
     public var imageView: UIImageView = {
         let imView = UIImageView()
         imView.clipsToBounds = true
