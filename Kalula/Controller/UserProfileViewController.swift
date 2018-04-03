@@ -19,18 +19,23 @@ class UserProfileViewController: UICollectionViewController {
     var isUserAvailable: Bool?
     var posts = [Post]()
     
-    var user : LocalUser?
+    var user : LocalUser?  {
+        didSet {
+        
+        }
+    }
     
     var userId : String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView?.backgroundColor = .white
-        fetchUser()
+        
         registerCells()
         setupNavigationBar()
+        fetchUser()
         //isHeroEnabled = true
-        fetchOrderedPosts()
+        //fetchOrderedPosts()
     }
     
     private func fetchOrderedPosts() {
@@ -44,6 +49,7 @@ class UserProfileViewController: UICollectionViewController {
             self.collectionView?.reloadData()
         }
     }
+
     
     
     private func setupNavigationBar() {
@@ -72,12 +78,18 @@ class UserProfileViewController: UICollectionViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        //
+        setupNavigationTitile()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        fetchUser()
+
+    
+    func setupNavigationTitile() {
+        if let user = user {
+            self.navigationItem.title = user.userName
+            UIView.animate(withDuration: 0.5, animations: {
+                self.navigationController?.navigationBar.layoutIfNeeded()
+            })
+        }
     }
     
     fileprivate func registerCells() {
@@ -86,23 +98,10 @@ class UserProfileViewController: UICollectionViewController {
     }
     
     fileprivate func fetchUser() {
-//        guard let uid = Auth.auth().currentUser?.uid else {
-//            print("No User online")
-//            present(SignUpController(loginService: LoginManager()), animated: true, completion: nil)
-//            isUserAvailable = false
-//            return
-//        }
-        
         let uid = userId ?? (Auth.auth().currentUser?.uid ?? "")
-        
-        //guard let uid = Auth.auth().currentUser?.uid else { return }
-        
         Database.fetchUserWithUID(uid: uid) { (user) in
             self.user = user
-            self.navigationItem.title = self.user?.userName
-            
             self.collectionView?.reloadData()
-            
             self.fetchOrderedPosts()
         }
     }

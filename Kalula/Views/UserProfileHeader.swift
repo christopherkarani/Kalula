@@ -106,6 +106,7 @@ class UserProfileHeader: UICollectionViewCell {
     
     let imageView = UIImageView().this {
         $0.clipsToBounds = true
+        $0.contentMode = .scaleAspectFill
         $0.layer.cornerRadius = 40 // half of the width
     }
     
