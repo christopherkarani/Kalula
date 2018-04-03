@@ -34,7 +34,7 @@ class UserSearchController: UICollectionViewController {
         setupUI()
         handleRegistrationOfCells()
         fetchUsers()
-        setupSearchBarDelegate()
+        setupSearchBar()
     }
     
     fileprivate func fetchUsers() {
@@ -43,14 +43,17 @@ class UserSearchController: UICollectionViewController {
             guard let dictionaries = snapshot.value as? [String: Any] else { return }
             dictionaries.forEach({ (key,value) in
                 guard let userDictionary = value as? [String: Any] else { return }
-                let user = FDUser(dictionary: userDictionary)
+                let user = FDUser(withUiD: key, dictionary: userDictionary)
                 self.users.append(user)
-                self.collectionView?.reloadData()
-                
-                UIView.animate(withDuration: 0.5) {
-                    self.collectionView?.layoutIfNeeded()
-                }
             })
+            self.users.sort(by: { (userOne, userTwo) -> Bool in
+                return userOne.userName.compare(userTwo.userName) == .orderedAscending
+            })
+            
+            self.collectionView?.reloadData()
+            UIView.animate(withDuration: 0.5) {
+                self.collectionView?.layoutIfNeeded()
+            }
         }
     }
     
@@ -58,16 +61,17 @@ class UserSearchController: UICollectionViewController {
     fileprivate func setupUI() {
         collectionView?.backgroundColor = .white
         collectionView?.alwaysBounceVertical = true
+        collectionView?.keyboardDismissMode = .onDrag
        
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Search Users"
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.barStyle = .blackTranslucent
     }
     
-    fileprivate func setupSearchBarDelegate() {
+    fileprivate func setupSearchBar() {
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).textColor = UIColor.darkText
         searchBar.delegate = self
     }
     

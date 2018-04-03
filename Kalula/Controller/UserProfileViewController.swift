@@ -101,7 +101,8 @@ class UserProfileViewController: UICollectionViewController {
             guard let dictionary = snapshot.value as? [String: Any] else {
                 return
             }
-            strongSelf.user = FDUser(dictionary: dictionary)
+            guard let theUser = self?.user else { return }
+            strongSelf.user = FDUser(withUiD: theUser.uid, dictionary: dictionary)
             DispatchQueue.main.async {
                 strongSelf.collectionView?.reloadData()
             }

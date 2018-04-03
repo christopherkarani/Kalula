@@ -30,7 +30,7 @@ class HomeController: UICollectionViewController {
         let userRef = Database.database().reference().child("users").child(uid)
         userRef.observeSingleEvent(of: .value) { (snapshot) in
             guard let userDictionary = snapshot.value as? [String: Any] else { return }
-            let user = FDUser(dictionary: userDictionary)
+            let user = FDUser(withUiD: uid, dictionary: userDictionary)
             self.fetchPhotos(user, uid)
         }
     }
@@ -45,7 +45,6 @@ class HomeController: UICollectionViewController {
                 self.posts.append(post)
                 DispatchQueue.main.async {
                     self.collectionView?.reloadData()
-                    
                     UIView.animate(withDuration: 0.3, animations: {
                         self.collectionView?.layoutIfNeeded()
                     })
