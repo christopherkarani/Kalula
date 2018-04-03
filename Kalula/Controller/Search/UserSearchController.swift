@@ -42,6 +42,12 @@ class UserSearchController: UICollectionViewController {
         ref.observeSingleEvent(of: .value) { (snapshot) in
             guard let dictionaries = snapshot.value as? [String: Any] else { return }
             dictionaries.forEach({ (key,value) in
+                
+                //omit current user from array
+                if key == Auth.auth().currentUser?.uid {
+                    return
+                }
+                
                 guard let userDictionary = value as? [String: Any] else { return }
                 let user = FDUser(withUiD: key, dictionary: userDictionary)
                 self.users.append(user)
@@ -88,7 +94,27 @@ extension UserSearchController {
         } else {
             return users.count
         }
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        var user: LocalUser
         
+        if searchController.isActive {
+            user = filteredUsers[indexPath.item]
+        } else {
+            user = users[indexPath.item]
+        }
+        
+        presentUserProfileController(withUser: user)
+    }
+    
+    fileprivate func presentUserProfileController(withUser user: LocalUser) {
+        let userProfileController = UserProfileViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        
+        userProfileController.userId = user.uid
+        
+        //let navigationController = UINavigationController(rootViewController: userProfileController)
+        navigationController?.pushViewController(userProfileController, animated: true)
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -128,6 +154,5 @@ extension UserSearchController: UISearchBarDelegate {
         UIView.animate(withDuration: 0.5) {
             self.collectionView?.layoutIfNeeded()
         }
-        
     }
 }

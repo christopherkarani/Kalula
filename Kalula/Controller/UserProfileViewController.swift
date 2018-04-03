@@ -19,13 +19,9 @@ class UserProfileViewController: UICollectionViewController {
     var isUserAvailable: Bool?
     var posts = [Post]()
     
-    var user : LocalUser? {
-        didSet {
-            if let user = user {
-                navigationItem.title = user.userName
-            } 
-        }
-    }
+    var user : LocalUser?
+    
+    var userId : String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +49,9 @@ class UserProfileViewController: UICollectionViewController {
     private func setupNavigationBar() {
         let logoutBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "gear").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleLogoutButton))
         navigationItem.rightBarButtonItem = logoutBarButtonItem
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
     }
     
     @objc private func handleLogoutButton() {
@@ -87,28 +86,24 @@ class UserProfileViewController: UICollectionViewController {
     }
     
     fileprivate func fetchUser() {
-        guard let uid = Auth.auth().currentUser?.uid else {
-            print("No User online")
-            present(SignUpController(loginService: LoginManager()), animated: true, completion: nil)
-            isUserAvailable = false
-            return
-        }
+//        guard let uid = Auth.auth().currentUser?.uid else {
+//            print("No User online")
+//            present(SignUpController(loginService: LoginManager()), animated: true, completion: nil)
+//            isUserAvailable = false
+//            return
+//        }
         
-        isUserAvailable = true
-        let ref = Database.database().reference().child("users").child(uid)
-        ref.observeSingleEvent(of: .value, with: { [weak self] (snapshot) in
-            let strongSelf = self.unwrap()
-            guard let dictionary = snapshot.value as? [String: Any] else {
-                return
-            }
-            guard let theUser = self?.user else { return }
-            strongSelf.user = FDUser(withUiD: theUser.uid, dictionary: dictionary)
-            DispatchQueue.main.async {
-                strongSelf.collectionView?.reloadData()
-            }
+        let uid = userId ?? (Auth.auth().currentUser?.uid ?? "")
+        
+        //guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        Database.fetchUserWithUID(uid: uid) { (user) in
+            self.user = user
+            self.navigationItem.title = self.user?.userName
             
-        }) { (error) in
-            Toast(text: error.localizedDescription).show()
+            self.collectionView?.reloadData()
+            
+            self.fetchOrderedPosts()
         }
     }
 }
