@@ -21,9 +21,11 @@ class UserProfileViewController: UICollectionViewController {
     
     var user : LocalUser?  {
         didSet {
-        
+            
         }
     }
+    
+
     
     var userId : String?
 
@@ -39,10 +41,11 @@ class UserProfileViewController: UICollectionViewController {
     }
     
     private func fetchOrderedPosts() {
-        guard let uid = user?.uid else { return }
+        let uid = user?.uid ?? (Auth.auth().currentUser?.uid ?? "")
         let ref = Database.database().reference().child("posts").child(uid)
         ref.queryOrdered(byChild: "creationDate").observe(.childAdded) { (snapshot) in
             guard let dictionary = snapshot.value as? [String: Any] else { return }
+            print("Dictionary Count: ", dictionary.count)
             guard let user = self.user else { return }
             let post = Post(withUser: user, andDictionary: dictionary)
             self.posts.insert(post, at: 0)
@@ -55,9 +58,8 @@ class UserProfileViewController: UICollectionViewController {
     private func setupNavigationBar() {
         let logoutBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "gear").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleLogoutButton))
         navigationItem.rightBarButtonItem = logoutBarButtonItem
-        
+        navigationController?.navigationBar.tintColor = .black
         navigationController?.navigationBar.prefersLargeTitles = true
-        
     }
     
     @objc private func handleLogoutButton() {
@@ -76,9 +78,9 @@ class UserProfileViewController: UICollectionViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        setupNavigationTitile()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //fetchUser()
     }
     
 
@@ -101,6 +103,7 @@ class UserProfileViewController: UICollectionViewController {
         let uid = userId ?? (Auth.auth().currentUser?.uid ?? "")
         Database.fetchUserWithUID(uid: uid) { (user) in
             self.user = user
+            self.setupNavigationTitile()
             self.collectionView?.reloadData()
             self.fetchOrderedPosts()
         }
@@ -131,6 +134,13 @@ extension UserProfileViewController {
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerID, for: indexPath) as! UserProfileHeader
         header.user = user
+        guard let currentUserUID = Auth.auth().currentUser?.uid else { return header }
+        guard let userID = user?.uid else { return header }
+        
+        if currentUserUID == userID {
+            header.editProfileButton.setTitle("Edit Profile", for: .normal)
+        }
+        
         return header
     }
 }

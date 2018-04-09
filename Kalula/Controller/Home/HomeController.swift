@@ -26,13 +26,19 @@ class HomeController: UICollectionViewController {
     }
     
     func fetchPosts() {
+        
+
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        let userRef = Database.database().reference().child("users").child(uid)
-        userRef.observeSingleEvent(of: .value) { (snapshot) in
-            guard let userDictionary = snapshot.value as? [String: Any] else { return }
-            let user = FDUser(withUiD: uid, dictionary: userDictionary)
-            self.fetchPhotos(user, uid)
+        
+        Database.fetchUserWithUID(uid: uid) { (user) in
+            self.fetchPhotos(user, user.uid)
         }
+//        let userRef = Database.database().reference().child("users").child(uid)
+//        userRef.observeSingleEvent(of: .value) { (snapshot) in
+//            guard let userDictionary = snapshot.value as? [String: Any] else { return }
+//            let user = FDUser(withUiD: uid, dictionary: userDictionary)
+//            self.fetchPhotos(user, uid)
+//        }
     }
     
     private func fetchPhotos(_ user: LocalUser, _ uid: String) {
