@@ -104,7 +104,6 @@ class PhotoSelectorViewController: UICollectionViewController {
     
     @objc func handleNextAction() {
         let selectPhotoViewController = SelectPhotoViewController()
-    
         selectPhotoViewController.image = header?.imageView.image
         navigationController?.pushViewController(selectPhotoViewController, animated: true)
         

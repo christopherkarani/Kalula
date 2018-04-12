@@ -11,7 +11,6 @@ import Firebase
 
 class HomeController: UICollectionViewController {
     
-    var userPostsRecieved: Bool
     
     var posts = [Post]()
     
@@ -27,6 +26,7 @@ class HomeController: UICollectionViewController {
         registerCollectionViewCells()
         setupNavigationItems()
         fetchAllPosts()
+        setupNotificationObservers()
     }
     
     @objc fileprivate func handleRefresh() {
@@ -43,9 +43,9 @@ class HomeController: UICollectionViewController {
         DispatchQueue.main.async {
             self.collectionView?.refreshControl?.endRefreshing()
             self.collectionView?.reloadData()
-            UIView.animate(withDuration: 0.3, animations: {
-                self.collectionView?.layoutIfNeeded()
-            })
+//            UIView.animate(withDuration: 0.3, animations: {
+//                self.collectionView?.layoutIfNeeded()
+//            })
         }
 
     }
@@ -71,6 +71,7 @@ class HomeController: UICollectionViewController {
     }
     
     private func fetchPhotos(_ user: LocalUser, _ uid: String) {
+        
         let ref = Database.database().reference().child("posts").child(uid)
         ref.queryOrdered(byChild:"creationDate").observeSingleEvent(of: .value) { [unowned self] (snapshot) in
             
@@ -87,6 +88,8 @@ class HomeController: UICollectionViewController {
             self.refreshCollectionView()
         }
     }
+    
+
     
     fileprivate func setupCollectionView() {
         collectionView?.backgroundColor = .white
@@ -106,6 +109,14 @@ class HomeController: UICollectionViewController {
     fileprivate func setupNavigationItems() {
         navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "logo2"))
     }
+    
+    fileprivate func setupNotificationObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handlePostImageNotification), name: .postImage, object: nil)
+    }
+    
+    @objc fileprivate func handlePostImageNotification() {
+        handleRefresh()
+    }
 }
 
 extension HomeController {
@@ -115,7 +126,10 @@ extension HomeController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier(), for: indexPath) as! HomeFeedCell
-        cell.post = posts[indexPath.item]
+        if indexPath.item < posts.count {
+            cell.post = posts[indexPath.item]
+        }
+        
         return cell
     }
 }

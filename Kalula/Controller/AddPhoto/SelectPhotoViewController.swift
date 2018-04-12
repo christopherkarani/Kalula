@@ -97,10 +97,16 @@ class SelectPhotoViewController: UIViewController {
                 return
             }
             
+            self.handleNotificationPost()
+            
             self.dismiss(animated: true, completion: nil)
         }
     }
     
+    
+    fileprivate func handleNotificationPost() {
+        NotificationCenter.default.post(name: .postImage, object: nil)
+    }
     
     
     private func setupNavigationBar() {
