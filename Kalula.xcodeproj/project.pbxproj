@@ -34,6 +34,7 @@
 		3C523FDB20742597007BC164 /* Database_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C523FDA20742597007BC164 /* Database_Ext.swift */; };
 		3C6200142072764100AA7ED8 /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6200132072764100AA7ED8 /* UserSearchCell.swift */; };
 		3CBC92F9205D9E5700F312CB /* PhotoSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC92F8205D9E5700F312CB /* PhotoSelectorViewController.swift */; };
+		3CD1BA08207E9EDA0044689F /* Date_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD1BA07207E9EDA0044689F /* Date_Ext.swift */; };
 		3CF18D3B2072740900FB7995 /* UserSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF18D3A2072740900FB7995 /* UserSearchController.swift */; };
 		3CFEB64B2067E4B7006804FF /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFEB64A2067E4B7006804FF /* PhotoSelectorCell.swift */; };
 		3CFEB64D2068A0CE006804FF /* PhotoSelectorHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFEB64C2068A0CE006804FF /* PhotoSelectorHeaderCell.swift */; };
@@ -94,6 +95,7 @@
 		3C523FDA20742597007BC164 /* Database_Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database_Ext.swift; sourceTree = "<group>"; };
 		3C6200132072764100AA7ED8 /* UserSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
 		3CBC92F8205D9E5700F312CB /* PhotoSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorViewController.swift; sourceTree = "<group>"; };
+		3CD1BA07207E9EDA0044689F /* Date_Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date_Ext.swift; sourceTree = "<group>"; };
 		3CF18D3A2072740900FB7995 /* UserSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchController.swift; sourceTree = "<group>"; };
 		3CFEB64A2067E4B7006804FF /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 		3CFEB64C2068A0CE006804FF /* PhotoSelectorHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHeaderCell.swift; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				3C523FDA20742597007BC164 /* Database_Ext.swift */,
+				3CD1BA07207E9EDA0044689F /* Date_Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -664,6 +667,7 @@
 				3C349B8A206E5D8600334747 /* SelectPhotoViewController.swift in Sources */,
 				3CFEB64D2068A0CE006804FF /* PhotoSelectorHeaderCell.swift in Sources */,
 				18B461B6200542FF002D2268 /* MainTabBarController.swift in Sources */,
+				3CD1BA08207E9EDA0044689F /* Date_Ext.swift in Sources */,
 				18F817AB1FE99FFB009CE89D /* SignUpController.swift in Sources */,
 				18F817A91FE99FFB009CE89D /* AppDelegate.swift in Sources */,
 			);

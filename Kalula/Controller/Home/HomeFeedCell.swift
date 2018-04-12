@@ -32,7 +32,7 @@ class HomeFeedCell: UICollectionViewCell {
         let attributedText = NSMutableAttributedString(string: post.user.userName, attributes: [.font : UIFont.helveticaMediumFont()])
         attributedText.append(NSAttributedString(string: " \(post.caption).", attributes: [.font : UIFont.helveticaFont()]))
         attributedText.append(NSAttributedString(string: "\n\n", attributes: [.font : UIFont.helveticaFont(withSize: 4)]))
-        attributedText.append(NSAttributedString(string: "1 hour ago", attributes: [NSAttributedStringKey.font : UIFont.helveticaMediumFont(withSize: 14), .foregroundColor: UIColor.gray]))
+        attributedText.append(NSAttributedString(string: "\(Date().timeAgoSinceDate(date: post.creationDate as NSDate, numericDates: false))", attributes: [NSAttributedStringKey.font : UIFont.helveticaMediumFont(withSize: 14), .foregroundColor: UIColor.gray]))
         
         captionLabel.attributedText = attributedText
     }

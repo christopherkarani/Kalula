@@ -11,52 +11,92 @@ import Firebase
 
 class HomeController: UICollectionViewController {
     
+    var userPostsRecieved: Bool
+    
     var posts = [Post]()
     
     private func cellIdentifier() -> String {
         return "HomeCell"
     }
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView?.backgroundColor = .white
+        setupCollectionView()
         registerCollectionViewCells()
         setupNavigationItems()
+        fetchAllPosts()
+    }
+    
+    @objc fileprivate func handleRefresh() {
+        posts.removeAll()
+        fetchAllPosts()
+    }
+    
+    fileprivate func fetchAllPosts() {
         fetchPosts()
+        fetchFollowingPosts()
+    }
+    
+    fileprivate func refreshCollectionView() {
+        DispatchQueue.main.async {
+            self.collectionView?.refreshControl?.endRefreshing()
+            self.collectionView?.reloadData()
+            UIView.animate(withDuration: 0.3, animations: {
+                self.collectionView?.layoutIfNeeded()
+            })
+        }
+
+    }
+    
+    fileprivate func fetchFollowingPosts() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let ref = Database.database().reference().child("following").child(uid)
+        ref.observeSingleEvent(of: .value) { (snapshot) in
+            guard let dictionary = snapshot.value as? [String: Any] else { return }
+            dictionary.forEach({ (uid, value) in
+                Database.fetchUserWithUID(uid: uid, completion: { (user) in
+                    self.fetchPhotos(user, uid)
+                })
+            })
+        }
     }
     
     func fetchPosts() {
-        
-
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        
         Database.fetchUserWithUID(uid: uid) { (user) in
             self.fetchPhotos(user, user.uid)
         }
-//        let userRef = Database.database().reference().child("users").child(uid)
-//        userRef.observeSingleEvent(of: .value) { (snapshot) in
-//            guard let userDictionary = snapshot.value as? [String: Any] else { return }
-//            let user = FDUser(withUiD: uid, dictionary: userDictionary)
-//            self.fetchPhotos(user, uid)
-//        }
     }
     
     private func fetchPhotos(_ user: LocalUser, _ uid: String) {
         let ref = Database.database().reference().child("posts").child(uid)
         ref.queryOrdered(byChild:"creationDate").observeSingleEvent(of: .value) { [unowned self] (snapshot) in
+            
             guard let dictionaries = snapshot.value as? [String: Any] else { return }
             dictionaries.forEach({ (key, dictionary) in
                 guard let dict = dictionary as?  [String: Any] else { return }
                 let post = Post(withUser: user, andDictionary: dict)
                 self.posts.append(post)
-                DispatchQueue.main.async {
-                    self.collectionView?.reloadData()
-                    UIView.animate(withDuration: 0.3, animations: {
-                        self.collectionView?.layoutIfNeeded()
-                    })
-                }
+                self.posts.sort(by: { (p1, p2) -> Bool in
+                    return p1.creationDate.compare(p2.creationDate) == .orderedDescending
+                })
             })
+            
+            self.refreshCollectionView()
         }
+    }
+    
+    fileprivate func setupCollectionView() {
+        collectionView?.backgroundColor = .white
+        setupRefreshControl()
+    }
+    
+    fileprivate func setupRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        collectionView?.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
     }
     
     fileprivate func registerCollectionViewCells() {
