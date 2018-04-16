@@ -25,6 +25,7 @@
 		18F817C91FE99FFC009CE89D /* KalulaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F817C81FE99FFC009CE89D /* KalulaUITests.swift */; };
 		18F8E17B1FEC0BBA00266013 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18F8E17A1FEC0BBA00266013 /* GoogleService-Info.plist */; };
 		32B74004A93B0E9A6E6E8F75 /* Pods_KalulaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5971D433310331350675CD09 /* Pods_KalulaUITests.framework */; };
+		3C00CB05208521E50075B414 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C00CB04208521E50075B414 /* CommentsViewController.swift */; };
 		3C349B8A206E5D8600334747 /* SelectPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C349B89206E5D8600334747 /* SelectPhotoViewController.swift */; };
 		3C349B8C206E6B8900334747 /* UIFont_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C349B8B206E6B8900334747 /* UIFont_Ext.swift */; };
 		3C349B8F206EB92B00334747 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C349B8E206EB92B00334747 /* Post.swift */; };
@@ -87,6 +88,7 @@
 		18F8E17A1FEC0BBA00266013 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1DB6EFFABA70D7C14330FC45 /* Pods_Kalula.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kalula.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22F0ECAF14AD54EA2D3A52ED /* Pods_KalulaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KalulaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C00CB04208521E50075B414 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		3C349B89206E5D8600334747 /* SelectPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoViewController.swift; sourceTree = "<group>"; };
 		3C349B8B206E6B8900334747 /* UIFont_Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont_Ext.swift; sourceTree = "<group>"; };
 		3C349B8E206EB92B00334747 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -191,8 +193,6 @@
 			children = (
 				3CFEB64C2068A0CE006804FF /* PhotoSelectorHeaderCell.swift */,
 				3CFEB64A2067E4B7006804FF /* PhotoSelectorCell.swift */,
-				188B4968200642EA00AB2A1A /* UserProfileHeader.swift */,
-				3C349B90206EBA1200334747 /* UserPostsCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -209,8 +209,9 @@
 		18B461B920054385002D2268 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				3C00CB03208521D00075B414 /* Comments */,
+				3C00CB02208521990075B414 /* UserProfile */,
 				3CF18D39207273F600FB7995 /* Search */,
-				18B461BA20054482002D2268 /* UserProfileViewController.swift */,
 				3C349B92206FFC7E00334747 /* Home */,
 				3C349B8D206EB7D900334747 /* Navigation */,
 				3CBC92F7205D9E3C00F312CB /* AddPhoto */,
@@ -276,6 +277,24 @@
 				18F817CA1FE99FFC009CE89D /* Info.plist */,
 			);
 			path = KalulaUITests;
+			sourceTree = "<group>";
+		};
+		3C00CB02208521990075B414 /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				18B461BA20054482002D2268 /* UserProfileViewController.swift */,
+				188B4968200642EA00AB2A1A /* UserProfileHeader.swift */,
+				3C349B90206EBA1200334747 /* UserPostsCell.swift */,
+			);
+			path = UserProfile;
+			sourceTree = "<group>";
+		};
+		3C00CB03208521D00075B414 /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				3C00CB04208521E50075B414 /* CommentsViewController.swift */,
+			);
+			path = Comments;
 			sourceTree = "<group>";
 		};
 		3C349B8D206EB7D900334747 /* Navigation */ = {
@@ -671,6 +690,7 @@
 				3CD1BA0A207F5B110044689F /* Notification_Ext.swift in Sources */,
 				3CFEB64D2068A0CE006804FF /* PhotoSelectorHeaderCell.swift in Sources */,
 				18B461B6200542FF002D2268 /* MainTabBarController.swift in Sources */,
+				3C00CB05208521E50075B414 /* CommentsViewController.swift in Sources */,
 				3CD1BA08207E9EDA0044689F /* Date_Ext.swift in Sources */,
 				18F817AB1FE99FFB009CE89D /* SignUpController.swift in Sources */,
 				18F817A91FE99FFB009CE89D /* AppDelegate.swift in Sources */,

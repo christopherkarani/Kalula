@@ -10,7 +10,13 @@ import UIKit
 import SnapKit
 import Kingfisher
 
+protocol HomeFeedCellDelegate: class {
+    func didTapCommentButton(onPost post: Post)
+}
+
 class HomeFeedCell: UICollectionViewCell {
+    
+    weak var delegate: HomeFeedCellDelegate?
     
     public var post : Post? {
         didSet {
@@ -76,11 +82,17 @@ class HomeFeedCell: UICollectionViewCell {
         return button
     }()
     
-    private let commentButton: UIButton = {
+    private lazy var commentButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "comment").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleCommentsButton), for: .touchUpInside)
         return button
     }()
+    
+    @objc fileprivate func handleCommentsButton() {
+        guard let post = post else { return }
+        delegate?.didTapCommentButton(onPost: post)
+    }
     
     private let messageButton: UIButton = {
         let button = UIButton(type: .system)

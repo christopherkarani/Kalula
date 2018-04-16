@@ -38,6 +38,29 @@ class SelectPhotoViewController: UIViewController {
         return tv
     }()
     
+    private let activityIndicator: UIActivityIndicatorView = {
+       let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        activityIndicator.color = UIColor.darkGray
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.startAnimating()
+        return activityIndicator
+    }()
+    
+    fileprivate func startActivityIndicator() {
+        view.addSubview(activityIndicator)
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 20),
+            activityIndicator.widthAnchor.constraint(equalToConstant: 50),
+            activityIndicator.heightAnchor.constraint(equalToConstant: 50)
+            ])
+       
+    }
+    fileprivate func stopActivityIndicator() {
+        activityIndicator.stopAnimating()
+        activityIndicator.removeFromSuperview()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
@@ -81,7 +104,6 @@ class SelectPhotoViewController: UIViewController {
     
     
     func handleImageUpload(withImageUrlString urlString: String, andCaption caption: String) {
-
         guard let postImage = image else { return }
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
@@ -98,10 +120,12 @@ class SelectPhotoViewController: UIViewController {
             }
             
             self.handleNotificationPost()
-            
+            self.stopActivityIndicator()
             self.dismiss(animated: true, completion: nil)
         }
     }
+    
+    
     
     
     fileprivate func handleNotificationPost() {
@@ -115,6 +139,7 @@ class SelectPhotoViewController: UIViewController {
     
     
     @objc private func handleShareImage() {
+        startActivityIndicator()
         guard let caption = textInputView.text, caption.count > 0 else {
             Toast(text: "Please write a caption").show()
             return

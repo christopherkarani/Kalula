@@ -9,7 +9,17 @@
 import UIKit
 import Firebase
 
+protocol ControllerRefreshDelegate: class {
+    func refreshView()
+}
+
+
 class MainTabBarController : UITabBarController {
+    
+    public let homeController = HomeController(collectionViewLayout: UICollectionViewFlowLayout())
+    
+    weak var refreshableDelegate: ControllerRefreshDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,6 +30,7 @@ class MainTabBarController : UITabBarController {
             
             DispatchQueue.main.async {
                 let loginController = LoginController()
+                
                 let navController = UINavigationController(rootViewController: loginController)
                 self.present(navController, animated: true, completion: nil)
             }
@@ -33,7 +44,10 @@ class MainTabBarController : UITabBarController {
     private func setupViewControllers() {
         
         //home
-        let homeController = viewControllerFactory(with: #imageLiteral(resourceName: "home_selected"), unselectedImage: #imageLiteral(resourceName: "home_unselected"), rootViewController: HomeController(collectionViewLayout: UICollectionViewFlowLayout()))
+        
+  
+        let homeNavigationController = viewControllerFactory(with: #imageLiteral(resourceName: "home_selected"), unselectedImage: #imageLiteral(resourceName: "home_unselected"), rootViewController: homeController)
+        
         
         //search
         let searchController = viewControllerFactory(with: #imageLiteral(resourceName: "search_selected"), unselectedImage: #imageLiteral(resourceName: "search_unselected"), rootViewController: UserSearchController(collectionViewLayout: UICollectionViewFlowLayout()))
@@ -47,13 +61,15 @@ class MainTabBarController : UITabBarController {
         let likesController = viewControllerFactory(with: #imageLiteral(resourceName: "like_selected"), unselectedImage: #imageLiteral(resourceName: "like_unselected"))
         
         
-        let userProfileController = viewControllerFactory(with: #imageLiteral(resourceName: "profile_selected"), unselectedImage: #imageLiteral(resourceName: "profile_unselected"), rootViewController: UserProfileViewController(collectionViewLayout: UICollectionViewFlowLayout()))
+        let userProfileController = UserProfileViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        let userProfileNavigationController = viewControllerFactory(with: #imageLiteral(resourceName: "profile_selected"), unselectedImage: #imageLiteral(resourceName: "profile_unselected"), rootViewController: userProfileController)
         
+        refreshableDelegate = userProfileController
         
         tabBar.tintColor = .black
   
         
-        viewControllers = [homeController, searchController, imagePicker, likesController, userProfileController]
+        viewControllers = [homeNavigationController, searchController, imagePicker, likesController, userProfileNavigationController]
         
         guard let items = tabBar.items else { return }
         

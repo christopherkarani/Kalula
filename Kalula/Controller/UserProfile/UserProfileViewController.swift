@@ -12,6 +12,8 @@ import Toaster
 import Hero
 import Kingfisher
 
+
+
 class UserProfileViewController: UICollectionViewController {
     
     let headerID =  "HeaderID"
@@ -36,8 +38,12 @@ class UserProfileViewController: UICollectionViewController {
         registerCells()
         setupNavigationBar()
         fetchUser()
-        //isHeroEnabled = true
-        //fetchOrderedPosts()
+        setupTabBarDelegate()
+    }
+    
+    private func setupTabBarDelegate() {
+        let tabbarController = UIApplication.shared.keyWindow?.rootViewController as! MainTabBarController
+        tabbarController.refreshableDelegate = self
     }
     
     private func fetchOrderedPosts() {
@@ -100,6 +106,7 @@ class UserProfileViewController: UICollectionViewController {
     }
     
     fileprivate func fetchUser() {
+        if posts.count > 0 { posts.removeAll() }
         let uid = userId ?? (Auth.auth().currentUser?.uid ?? "")
         Database.fetchUserWithUID(uid: uid) { (user) in
             self.user = user
@@ -154,6 +161,12 @@ extension UserProfileViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! UserPostsCell
         cell.post = posts[indexPath.item]
         return cell
+    }
+}
+
+extension UserProfileViewController: ControllerRefreshDelegate {
+    func refreshView() {
+        fetchUser()
     }
 }
 

@@ -130,6 +130,8 @@ extension HomeController {
             cell.post = posts[indexPath.item]
         }
         
+        cell.delegate = self
+        
         return cell
     }
 }
@@ -149,6 +151,17 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+extension HomeController: ControllerRefreshDelegate {
+    func refreshView() {
+        handleRefresh()
+    }
+}
+extension HomeController: HomeFeedCellDelegate {
+    func didTapCommentButton(onPost post: Post) {
+        let commentsViewController = CommentsViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        navigationController?.pushViewController(commentsViewController, animated: true)
+    }
+}
 
 
 

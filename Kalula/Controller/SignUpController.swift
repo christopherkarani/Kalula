@@ -16,6 +16,8 @@ class SignUpController : UIViewController {
     
     var theme: UIColor = UIColor.greenTheme
     
+    //let mainTabBarController = MainTabBarController()
+    
     var stackView: UIStackView!
     
     lazy var imagePickerButton = UIButton(type: .system).this {
@@ -91,6 +93,12 @@ class SignUpController : UIViewController {
         let password = passwordTextField.text.unwrap()
         let userName = usernameTextField.text.unwrap()
         let profileImage = imagePickerButton.currentImage.unwrap()
+        
+        
+        let tabbarController = UIApplication.shared.keyWindow?.rootViewController as! MainTabBarController
+        tabbarController.refreshableDelegate?.refreshView()
+
+        
         loginService.authorizeUser(withEmail: email, password: password, userName: userName, profileImage: profileImage) { [weak self] in
             self?.dismiss(animated: true, completion: nil)
         }
