@@ -26,6 +26,7 @@
 		18F8E17B1FEC0BBA00266013 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18F8E17A1FEC0BBA00266013 /* GoogleService-Info.plist */; };
 		32B74004A93B0E9A6E6E8F75 /* Pods_KalulaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5971D433310331350675CD09 /* Pods_KalulaUITests.framework */; };
 		3C00CB05208521E50075B414 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C00CB04208521E50075B414 /* CommentsViewController.swift */; };
+		3C00CB07208533910075B414 /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C00CB06208533910075B414 /* ContainerView.swift */; };
 		3C349B8A206E5D8600334747 /* SelectPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C349B89206E5D8600334747 /* SelectPhotoViewController.swift */; };
 		3C349B8C206E6B8900334747 /* UIFont_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C349B8B206E6B8900334747 /* UIFont_Ext.swift */; };
 		3C349B8F206EB92B00334747 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C349B8E206EB92B00334747 /* Post.swift */; };
@@ -89,6 +90,7 @@
 		1DB6EFFABA70D7C14330FC45 /* Pods_Kalula.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kalula.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22F0ECAF14AD54EA2D3A52ED /* Pods_KalulaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KalulaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C00CB04208521E50075B414 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		3C00CB06208533910075B414 /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
 		3C349B89206E5D8600334747 /* SelectPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoViewController.swift; sourceTree = "<group>"; };
 		3C349B8B206E6B8900334747 /* UIFont_Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont_Ext.swift; sourceTree = "<group>"; };
 		3C349B8E206EB92B00334747 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				3C00CB04208521E50075B414 /* CommentsViewController.swift */,
+				3C00CB06208533910075B414 /* ContainerView.swift */,
 			);
 			path = Comments;
 			sourceTree = "<group>";
@@ -690,6 +693,7 @@
 				3CD1BA0A207F5B110044689F /* Notification_Ext.swift in Sources */,
 				3CFEB64D2068A0CE006804FF /* PhotoSelectorHeaderCell.swift in Sources */,
 				18B461B6200542FF002D2268 /* MainTabBarController.swift in Sources */,
+				3C00CB07208533910075B414 /* ContainerView.swift in Sources */,
 				3C00CB05208521E50075B414 /* CommentsViewController.swift in Sources */,
 				3CD1BA08207E9EDA0044689F /* Date_Ext.swift in Sources */,
 				18F817AB1FE99FFB009CE89D /* SignUpController.swift in Sources */,
