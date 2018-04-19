@@ -20,7 +20,6 @@ class UserProfileHeader: UICollectionViewCell {
                 let url = URL(string: user.profileImageUrl)
                 imageView.kf.setImage(with: url)
                 userNameLabel.text = user.userName
-                
                 handleSetupLoginFollowButton()
             }
         }

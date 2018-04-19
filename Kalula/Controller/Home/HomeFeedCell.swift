@@ -181,8 +181,6 @@ class HomeFeedCell: UICollectionViewCell {
             make.right.equalToSuperview().inset(8)
             make.bottom.equalToSuperview()
         }
-        
-        
     }
     
 

@@ -27,6 +27,15 @@ class HomeController: UICollectionViewController {
         setupNavigationItems()
         fetchAllPosts()
         setupNotificationObservers()
+        setupRefreshDelegateConform()
+    }
+    
+    
+    
+    
+    func setupRefreshDelegateConform() {
+        let tabBarController = UIApplication.shared.keyWindow?.rootViewController as! MainTabBarController
+        tabBarController.refreshableDelegate = self
     }
     
     @objc fileprivate func handleRefresh() {
@@ -78,7 +87,8 @@ class HomeController: UICollectionViewController {
             guard let dictionaries = snapshot.value as? [String: Any] else { return }
             dictionaries.forEach({ (key, dictionary) in
                 guard let dict = dictionary as?  [String: Any] else { return }
-                let post = Post(withUser: user, andDictionary: dict)
+                var post = Post(withUser: user, andDictionary: dict)
+                post.id = key
                 self.posts.append(post)
                 self.posts.sort(by: { (p1, p2) -> Bool in
                     return p1.creationDate.compare(p2.creationDate) == .orderedDescending
@@ -159,6 +169,7 @@ extension HomeController: ControllerRefreshDelegate {
 extension HomeController: HomeFeedCellDelegate {
     func didTapCommentButton(onPost post: Post) {
         let commentsViewController = CommentsViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        commentsViewController.post = post
         navigationController?.pushViewController(commentsViewController, animated: true)
     }
 }

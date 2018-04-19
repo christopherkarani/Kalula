@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContainerView: UIView {
+final class ContainerView: UIView {
     
     let seperatorView: UIView = {
         let view = UIView()
