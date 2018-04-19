@@ -15,6 +15,8 @@ class CommentsViewController: UICollectionViewController {
     
     var post: Post?
     
+    var comments = [Comment]()
+    
     lazy var containerView : ContainerView = {
         let containerview = ContainerView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 50))
         return containerview
@@ -32,22 +34,18 @@ class CommentsViewController: UICollectionViewController {
         sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
     }
     
-    struct Comment: CustomStringConvertible {
-        var text: String
-        var dateCreated: Double
-        var uid: String
-        
-        var description: String {
-            return "Text: \(text), \n createdOn:\(dateCreated), \n sentBy: \(uid)"
-        }
+    fileprivate func cellIdentifier() -> String {
+        return "CommentsCellID"
     }
+    
+
     
     @objc private func handleSend() {
         guard let text = inputTextField.text else { return }
         guard let postID = post?.id else { return }
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        let comment = Comment(text: text, dateCreated: Date().timeIntervalSince1970, uid: uid)
+        let comment = SendComment(text: text, dateCreated: Date().timeIntervalSince1970, uid: uid)
         let ref = Database.database().reference().child("comments").child(postID).childByAutoId()
         let values: [String: Any] = ["text" : comment.text,
                                      "dateCreated": comment.dateCreated,
@@ -62,11 +60,27 @@ class CommentsViewController: UICollectionViewController {
         }
         
     }
+    
+    fileprivate func fetchPosts() {
+        guard let postID = post?.id else { return }
+        let ref = Database.database().reference().child("comments").child(postID)
+        ref.observe(.childAdded) { (snapshot) in
+            guard let dictionary = snapshot.value as? [String: Any] else { return }
+            let comment = Comment(dictionary: dictionary)
+            self.comments.append(comment)
+            DispatchQueue.main.async {
+                self.collectionView?.reloadData()
+            }
+            
+
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
         setupNavigationBar()
         setupInputComponents()
+        fetchPosts()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -80,7 +94,16 @@ class CommentsViewController: UICollectionViewController {
     }
     
     fileprivate func setupCollectionView() {
+        setupCollectionViewUIPresets()
+        setupCollectionViewCell()
+    }
+    
+    fileprivate func setupCollectionViewUIPresets() {
         collectionView?.backgroundColor = .white
+    }
+    
+    fileprivate func setupCollectionViewCell() {
+        collectionView?.register(CommentsCell.self, forCellWithReuseIdentifier: cellIdentifier())
     }
     
     fileprivate func setupNavigationBar() {
@@ -97,5 +120,25 @@ class CommentsViewController: UICollectionViewController {
     
     override var canBecomeFirstResponder: Bool {
         return true
+    }
+}
+
+extension CommentsViewController {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier(), for: indexPath) as! CommentsCell
+        
+        cell.comment = comments[indexPath.item]
+        
+        return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return comments.count
+    }
+}
+
+extension CommentsViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width, height: 50)
     }
 }

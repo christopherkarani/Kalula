@@ -35,6 +35,9 @@
 		3C349B96206FFEDC00334747 /* HomeFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C349B95206FFEDC00334747 /* HomeFeedCell.swift */; };
 		3C523FDB20742597007BC164 /* Database_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C523FDA20742597007BC164 /* Database_Ext.swift */; };
 		3C6200142072764100AA7ED8 /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6200132072764100AA7ED8 /* UserSearchCell.swift */; };
+		3CACFF12208933130092CE2B /* SendComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CACFF11208933130092CE2B /* SendComment.swift */; };
+		3CACFF142089331C0092CE2B /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CACFF132089331C0092CE2B /* Comment.swift */; };
+		3CACFF16208934C60092CE2B /* CommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CACFF15208934C60092CE2B /* CommentsCell.swift */; };
 		3CBC92F9205D9E5700F312CB /* PhotoSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC92F8205D9E5700F312CB /* PhotoSelectorViewController.swift */; };
 		3CD1BA08207E9EDA0044689F /* Date_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD1BA07207E9EDA0044689F /* Date_Ext.swift */; };
 		3CD1BA0A207F5B110044689F /* Notification_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD1BA09207F5B110044689F /* Notification_Ext.swift */; };
@@ -99,6 +102,9 @@
 		3C349B95206FFEDC00334747 /* HomeFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedCell.swift; sourceTree = "<group>"; };
 		3C523FDA20742597007BC164 /* Database_Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database_Ext.swift; sourceTree = "<group>"; };
 		3C6200132072764100AA7ED8 /* UserSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
+		3CACFF11208933130092CE2B /* SendComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendComment.swift; sourceTree = "<group>"; };
+		3CACFF132089331C0092CE2B /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		3CACFF15208934C60092CE2B /* CommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsCell.swift; sourceTree = "<group>"; };
 		3CBC92F8205D9E5700F312CB /* PhotoSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorViewController.swift; sourceTree = "<group>"; };
 		3CD1BA07207E9EDA0044689F /* Date_Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date_Ext.swift; sourceTree = "<group>"; };
 		3CD1BA09207F5B110044689F /* Notification_Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification_Ext.swift; sourceTree = "<group>"; };
@@ -296,6 +302,9 @@
 			children = (
 				3C00CB04208521E50075B414 /* CommentsViewController.swift */,
 				3C00CB06208533910075B414 /* ContainerView.swift */,
+				3CACFF11208933130092CE2B /* SendComment.swift */,
+				3CACFF132089331C0092CE2B /* Comment.swift */,
+				3CACFF15208934C60092CE2B /* CommentsCell.swift */,
 			);
 			path = Comments;
 			sourceTree = "<group>";
@@ -686,8 +695,10 @@
 				1800F33B2013DE8400F6E61C /* LoginController.swift in Sources */,
 				3C349B94206FFC9200334747 /* HomeController.swift in Sources */,
 				181957351FEA82FF00C1F508 /* UIColor+Extension.swift in Sources */,
+				3CACFF12208933130092CE2B /* SendComment.swift in Sources */,
 				3C349B96206FFEDC00334747 /* HomeFeedCell.swift in Sources */,
 				3CBC92F9205D9E5700F312CB /* PhotoSelectorViewController.swift in Sources */,
+				3CACFF142089331C0092CE2B /* Comment.swift in Sources */,
 				3C349B8F206EB92B00334747 /* Post.swift in Sources */,
 				3C349B8A206E5D8600334747 /* SelectPhotoViewController.swift in Sources */,
 				3CD1BA0A207F5B110044689F /* Notification_Ext.swift in Sources */,
@@ -698,6 +709,7 @@
 				3CD1BA08207E9EDA0044689F /* Date_Ext.swift in Sources */,
 				18F817AB1FE99FFB009CE89D /* SignUpController.swift in Sources */,
 				18F817A91FE99FFB009CE89D /* AppDelegate.swift in Sources */,
+				3CACFF16208934C60092CE2B /* CommentsCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

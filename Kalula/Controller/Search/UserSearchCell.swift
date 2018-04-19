@@ -26,13 +26,11 @@ class UserSearchCell: UICollectionViewCell {
         imView.clipsToBounds = true
         imView.contentMode = .scaleAspectFill
         imView.layer.cornerRadius = 50 / 2 //width / 2
-        imView.backgroundColor = .blue
         return imView
     }()
     
     public var nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Username Label"
         return label
     }()
     
