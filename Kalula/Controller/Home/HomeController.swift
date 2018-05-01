@@ -48,13 +48,13 @@ class HomeController: UICollectionViewController {
         fetchFollowingPosts()
     }
     
-    fileprivate func refreshCollectionView() {
+    fileprivate func refreshCollectionView(withFreshPosts posts: [Post]) {
+//        posts.forEach { (post) in
+//            <#code#>
+//        }
         DispatchQueue.main.async {
             self.collectionView?.refreshControl?.endRefreshing()
             self.collectionView?.reloadData()
-//            UIView.animate(withDuration: 0.3, animations: {
-//                self.collectionView?.layoutIfNeeded()
-//            })
         }
 
     }
@@ -81,6 +81,7 @@ class HomeController: UICollectionViewController {
     
     private func fetchPhotos(_ user: LocalUser, _ uid: String) {
         
+        var  freshPosts = [Post]()
         let ref = Database.database().reference().child("posts").child(uid)
         ref.queryOrdered(byChild:"creationDate").observeSingleEvent(of: .value) { [unowned self] (snapshot) in
             
@@ -89,13 +90,13 @@ class HomeController: UICollectionViewController {
                 guard let dict = dictionary as?  [String: Any] else { return }
                 var post = Post(withUser: user, andDictionary: dict)
                 post.id = key
-                self.posts.append(post)
-                self.posts.sort(by: { (p1, p2) -> Bool in
+                freshPosts.append(post)
+                freshPosts.sort(by: { (p1, p2) -> Bool in
                     return p1.creationDate.compare(p2.creationDate) == .orderedDescending
                 })
             })
             
-            self.refreshCollectionView()
+            self.refreshCollectionView(withFreshPosts: freshPosts)
         }
     }
     

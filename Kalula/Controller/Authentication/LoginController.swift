@@ -8,7 +8,6 @@
 
 import UIKit
 import SnapKit
-import Sukari
 import Hero
 import Toaster
 import Firebase

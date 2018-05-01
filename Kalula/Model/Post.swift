@@ -23,3 +23,9 @@ struct Post {
         creationDate = Date(timeIntervalSince1970: timeSince1970)
     }
 }
+
+extension Post: Equatable {
+    static func ==(_ lhs: Post, _ rhs: Post) -> Bool {
+        return lhs.imageUrl == rhs.imageUrl
+    }
+}

@@ -110,7 +110,6 @@ class SelectPhotoViewController: UIViewController {
         
         let values = ["caption": caption, "imageUrl": urlString, "imageHeight": postImage.size.height, "imageWidth": postImage.size.width, "creationDate": Date().timeIntervalSince1970] as [String: Any]
         
-        
         let ref = Database.database().reference().child("posts").child(uid)
         ref.childByAutoId().updateChildValues(values) { [unowned self] (error, ref) in
             if let error = error {
@@ -118,7 +117,6 @@ class SelectPhotoViewController: UIViewController {
                  self.navigationItem.rightBarButtonItem?.isEnabled = true
                 return
             }
-            
             self.handleNotificationPost()
             self.stopActivityIndicator()
             self.dismiss(animated: true, completion: nil)
