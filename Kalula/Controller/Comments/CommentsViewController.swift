@@ -64,15 +64,17 @@ class CommentsViewController: UICollectionViewController {
     fileprivate func fetchPosts() {
         guard let postID = post?.id else { return }
         let ref = Database.database().reference().child("comments").child(postID)
-        ref.observe(.childAdded) { (snapshot) in
+        ref.observe(.childAdded) { [weak self] (snapshot) in
             guard let dictionary = snapshot.value as? [String: Any] else { return }
-            let comment = Comment(dictionary: dictionary)
-            self.comments.append(comment)
-            DispatchQueue.main.async {
-                self.collectionView?.reloadData()
-            }
-            
-
+            guard let strongSelf = self else { return }
+            guard let uid = dictionary["uid"] as? String else { return }
+            Database.fetchUserWithUID(uid: uid, completion: { (user) in
+                let comment = Comment(user , andDict: dictionary)
+                strongSelf.comments.append(comment)
+                DispatchQueue.main.async {
+                    strongSelf.collectionView?.reloadData()
+                }
+            })
         }
     }
     override func viewDidLoad() {
@@ -100,6 +102,7 @@ class CommentsViewController: UICollectionViewController {
     
     fileprivate func setupCollectionViewUIPresets() {
         collectionView?.backgroundColor = .white
+        collectionView?.alwaysBounceVertical = true
     }
     
     fileprivate func setupCollectionViewCell() {
@@ -139,6 +142,13 @@ extension CommentsViewController {
 
 extension CommentsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 50)
+        let dummyFrame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
+        let dummyCell = CommentsCell(frame: dummyFrame)
+        dummyCell.comment = comments[indexPath.item]
+        dummyCell.layoutIfNeeded()
+        let targetSize = CGSize(width: view.frame.width, height: 1000)
+        let estimatedSize = dummyCell.systemLayoutSizeFitting(targetSize)
+        let height = estimatedSize.height + 8 + 8
+        return CGSize(width: view.frame.width, height: height)
     }
 }

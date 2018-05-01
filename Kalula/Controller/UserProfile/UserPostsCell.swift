@@ -19,7 +19,6 @@ class UserPostsCell: UICollectionViewCell {
                     self.imageView.kf.indicatorType = .activity
                     self.imageView.kf.setImage(with: imageUrl, options: [.transition(.fade(0.2))])
                 }
-                
             }
         }
     }
@@ -37,7 +36,6 @@ class UserPostsCell: UICollectionViewCell {
         imageView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

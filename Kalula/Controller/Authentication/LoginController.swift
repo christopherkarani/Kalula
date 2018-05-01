@@ -104,8 +104,6 @@ class LoginController: UIViewController {
             let tabbarController = UIApplication.shared.keyWindow?.rootViewController as! MainTabBarController
             tabbarController.refreshableDelegate?.refreshView()
 
-//            print(self?.tabBarController?.selectedViewController)
-//            (self?.tabBarController as! MainTabBarController).refreshableDelegate?.refreshView()
             self?.dismiss(animated: true, completion: nil)
             
         }

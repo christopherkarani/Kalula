@@ -32,6 +32,7 @@ final class ContainerView: UIView {
     }()
     
     fileprivate func setupUI() {
+        backgroundColor = .white
         addSubview(textField)
         addSubview(sendButton)
         addSubview(seperatorView)

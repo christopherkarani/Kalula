@@ -9,11 +9,13 @@
 import Foundation
 
 struct Comment {
+    var user : LocalUser
     var dateCreated: String
     var text : String
     var uid: String
     
-    init(dictionary: [String : Any]) {
+    init(_ user: LocalUser, andDict dictionary: [String : Any]) {
+        self.user = user
         dateCreated = dictionary["dateCreated"] as? String ?? ""
         text = dictionary["text"] as? String ?? ""
         uid = dictionary["uid"] as? String ?? ""
