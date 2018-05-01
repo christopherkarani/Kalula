@@ -44,6 +44,7 @@
 		3CF18D3B2072740900FB7995 /* UserSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF18D3A2072740900FB7995 /* UserSearchController.swift */; };
 		3CFEB64B2067E4B7006804FF /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFEB64A2067E4B7006804FF /* PhotoSelectorCell.swift */; };
 		3CFEB64D2068A0CE006804FF /* PhotoSelectorHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFEB64C2068A0CE006804FF /* PhotoSelectorHeaderCell.swift */; };
+		3CFEC08D209916F8001C534F /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFEC08C209916F8001C534F /* Network.swift */; };
 		7F5B50C9814E3ECB4E1F2147 /* Pods_Kalula.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DB6EFFABA70D7C14330FC45 /* Pods_Kalula.framework */; };
 		EE895F771860335A3D1218AC /* Pods_KalulaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22F0ECAF14AD54EA2D3A52ED /* Pods_KalulaTests.framework */; };
 /* End PBXBuildFile section */
@@ -111,6 +112,7 @@
 		3CF18D3A2072740900FB7995 /* UserSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchController.swift; sourceTree = "<group>"; };
 		3CFEB64A2067E4B7006804FF /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 		3CFEB64C2068A0CE006804FF /* PhotoSelectorHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHeaderCell.swift; sourceTree = "<group>"; };
+		3CFEC08C209916F8001C534F /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		3E29295ED7AA9E01C0DC90EF /* Pods-KalulaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KalulaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KalulaUITests/Pods-KalulaUITests.release.xcconfig"; sourceTree = "<group>"; };
 		4849C32A74E2EF5271E3C194 /* Pods-Kalula.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kalula.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kalula/Pods-Kalula.debug.xcconfig"; sourceTree = "<group>"; };
 		5971D433310331350675CD09 /* Pods_KalulaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KalulaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				18D9A7542004E6920066C249 /* LoginNetworkService.swift */,
+				3CFEC08C209916F8001C534F /* Network.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 		18F817A71FE99FFB009CE89D /* Kalula */ = {
 			isa = PBXGroup;
 			children = (
+				3CFEC08B209916D3001C534F /* New Group */,
 				3C523FD920742585007BC164 /* Extensions */,
 				182C70012014A99C00D734B5 /* Fonts */,
 				18B461B920054385002D2268 /* Controller */,
@@ -352,6 +356,13 @@
 				3C6200132072764100AA7ED8 /* UserSearchCell.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		3CFEC08B209916D3001C534F /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		874E83D89D998F8DAFFF3290 /* Frameworks */ = {
@@ -685,6 +696,7 @@
 				3C6200142072764100AA7ED8 /* UserSearchCell.swift in Sources */,
 				3CFEB64B2067E4B7006804FF /* PhotoSelectorCell.swift in Sources */,
 				1892BAFA2008CB6700521362 /* FDUser.swift in Sources */,
+				3CFEC08D209916F8001C534F /* Network.swift in Sources */,
 				3C349B8C206E6B8900334747 /* UIFont_Ext.swift in Sources */,
 				3C523FDB20742597007BC164 /* Database_Ext.swift in Sources */,
 				18D9A7552004E6920066C249 /* LoginNetworkService.swift in Sources */,

@@ -26,6 +26,8 @@ class LoginController: UIViewController {
         setupBanner(inside: view)
         return view
     }()
+    
+    // setupbanner
     private func setupBanner(inside view: UIView) {
         view.addSubview(bannerLabel)
         bannerLabel.snp.makeConstraints { (make) in
@@ -36,12 +38,14 @@ class LoginController: UIViewController {
         }
     }
     
-    private let bannerLabel = UILabel().this {
-        $0.text = "Kalula"
-        $0.font = UIFont(name: "Candy Shop Personal Use", size: 50)
-        $0.textColor = .white
-        $0.textAlignment = .center
-    }
+    private let bannerLabel : UILabel = {
+        let label = UILabel()
+        label.text = "Kalula"
+        label.font = UIFont(name: "Candy Shop Personal Use", size: 50)
+        label.textColor = .white
+        label.textAlignment = .center
+        return label
+    }()
     
     
     lazy  var signUpDirectButton : UIButton = { [weak self] in
@@ -57,38 +61,45 @@ class LoginController: UIViewController {
         return button
         }()
     
-    let emailTextField = UITextField().this {
-        $0.placeholder = "Email"
-        $0.borderStyle = .roundedRect
-        $0.font = UIFont.systemFont(ofSize: 14)
-        $0.backgroundColor = UIColor(white: 0, alpha: 0.03)
-        $0.autocapitalizationType = .none
-        $0.autocorrectionType = .no
-        $0.addTarget(self, action: #selector(handleTextFieldEditingChanged), for: .editingChanged)
-    }
+    let emailTextField : UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Email"
+        textField.borderStyle = .roundedRect
+        textField.font = UIFont.systemFont(ofSize: 14)
+        textField.backgroundColor = UIColor(white: 0, alpha: 0.03)
+        textField.autocapitalizationType = .none
+        textField.autocorrectionType = .no
+        textField.addTarget(self, action: #selector(handleTextFieldEditingChanged), for: .editingChanged)
+        return textField
+    }()
     
-    let passwordTextField = UITextField().this {
-        $0.placeholder = "Password"
-        $0.borderStyle = .roundedRect
-        $0.font = UIFont.systemFont(ofSize: 14)
-        $0.backgroundColor = UIColor(white: 0, alpha: 0.03)
-        $0.autocapitalizationType = .none
-        $0.autocorrectionType = .no
-        $0.isSecureTextEntry = true
-        $0.addTarget(self, action: #selector(handleTextFieldEditingChanged), for: .editingChanged)
-    }
+    let passwordTextField : UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Password"
+        textField.borderStyle = .roundedRect
+        textField.font = UIFont.systemFont(ofSize: 14)
+        textField.backgroundColor = UIColor(white: 0, alpha: 0.03)
+        textField.autocapitalizationType = .none
+        textField.autocorrectionType = .no
+        textField.isSecureTextEntry = true
+        textField.addTarget(self, action: #selector(handleTextFieldEditingChanged), for: .editingChanged)
+        return textField
+    }()
     
-    lazy var signInButton = UIButton(type: .system).this {
-        $0.setTitle("Login", for: .normal)
-        
-        $0.backgroundColor = theme
-        $0.alpha = 0.5
-        $0.setTitleColor(.white, for: .normal)
-        $0.layer.cornerRadius = 5
-        $0.layer.masksToBounds = true
-        $0.isUserInteractionEnabled = false
-        $0.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
-    }
+    
+    
+    lazy var signInButton : UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Login", for: .normal)
+        button.backgroundColor = theme
+        button.alpha = 0.5
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 5
+        button.layer.masksToBounds = true
+        button.isUserInteractionEnabled = false
+        button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
+        return button
+    }()
     
     @objc private func handleLogin() {
         view.endEditing(true)
@@ -120,7 +131,6 @@ class LoginController: UIViewController {
                 signInButton.isUserInteractionEnabled = false
             }
         }
-        
     }
     @objc private func handleTextFieldEditingChanged() {
         guard let emailCount = emailTextField.text?.count, let passwordCount = passwordTextField.text?.count else {
@@ -203,5 +213,4 @@ class LoginController: UIViewController {
         navigationController?.isNavigationBarHidden = true
         setup()
     }
-
 }
