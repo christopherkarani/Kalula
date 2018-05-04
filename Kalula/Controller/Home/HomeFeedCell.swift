@@ -12,19 +12,34 @@ import Kingfisher
 
 protocol HomeFeedCellDelegate: class {
     func didTapCommentButton(onPost post: Post)
+    func didLikePost(forCell cell: HomeFeedCell)
 }
 
 class HomeFeedCell: UICollectionViewCell {
     
+
+    
     weak var delegate: HomeFeedCellDelegate?
+    
+    func manageLikeButtonStateRendering() {
+        let likeImages = (selected: #imageLiteral(resourceName: "like_selected"), unselected: #imageLiteral(resourceName: "like_unselected"))
+        switch post?.isLiked {
+        case true:
+            likeButton.setImage(likeImages.selected, for: .normal)
+            likeButton.tintColor = UIColor.rgb(red: 239, green: 55, blue: 73)
+        case false:
+            likeButton.setImage(likeImages.unselected.withRenderingMode(.alwaysOriginal), for: .normal)
+        default: break
+        }
+    }
     
     public var post : Post? {
         didSet {
             if let post = post {
+                
+                manageLikeButtonStateRendering()
                 let imageUrl = URL(string: post.imageUrl)
                 let userProfileImageUrl = URL(string: post.user.profileImageUrl)
-                
-                
                 self.imageView.kf.setImage(with: imageUrl, options: [.transition(.fade(0.2))])
                 profileImageView.kf.setImage(with: userProfileImageUrl, options: [.transition(.fade(0.2))])
                 userNameLabel.text = post.user.userName
@@ -76,11 +91,16 @@ class HomeFeedCell: UICollectionViewCell {
         return imageView
     }()
     
-    private let likeButton: UIButton = {
+    private lazy var likeButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "like_unselected").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleLikeButtonInteraction(_:)), for: .touchUpInside)
         return button
     }()
+    
+    @objc private func handleLikeButtonInteraction(_ sender: UIButton) {
+        delegate?.didLikePost(forCell: self)
+    }
     
     private lazy var commentButton: UIButton = {
         let button = UIButton(type: .system)

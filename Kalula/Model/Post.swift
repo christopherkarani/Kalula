@@ -9,11 +9,15 @@
 import Foundation
 
 struct Post {
+    
+    
+    
     var id: String?
     var user: LocalUser
     var imageUrl: String
     var caption: String
     var creationDate: Date
+    var isLiked: Bool = false
     
     init(withUser user: LocalUser, andDictionary dictionary: [String: Any]) {
         self.user = user

@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Toaster
 
 class HomeController: UICollectionViewController {
     
@@ -29,10 +30,7 @@ class HomeController: UICollectionViewController {
         setupNotificationObservers()
         setupRefreshDelegateConform()
     }
-    
-    
-    
-    
+
     func setupRefreshDelegateConform() {
         let tabBarController = UIApplication.shared.keyWindow?.rootViewController as! MainTabBarController
         tabBarController.refreshableDelegate = self
@@ -49,9 +47,8 @@ class HomeController: UICollectionViewController {
     }
     
     fileprivate func refreshCollectionView(withFreshPosts posts: [Post]) {
-//        posts.forEach { (post) in
-//            <#code#>
-//        }
+        
+
         DispatchQueue.main.async {
             self.collectionView?.refreshControl?.endRefreshing()
             self.collectionView?.reloadData()
@@ -81,22 +78,31 @@ class HomeController: UICollectionViewController {
     
     private func fetchPhotos(_ user: LocalUser, _ uid: String) {
         
-        var  freshPosts = [Post]()
         let ref = Database.database().reference().child("posts").child(uid)
         ref.queryOrdered(byChild:"creationDate").observeSingleEvent(of: .value) { [unowned self] (snapshot) in
-            
+            var count = 0
             guard let dictionaries = snapshot.value as? [String: Any] else { return }
             dictionaries.forEach({ (key, dictionary) in
+                count += 1
                 guard let dict = dictionary as?  [String: Any] else { return }
+                guard let uid = Auth.auth().currentUser?.uid else { return }
+                
                 var post = Post(withUser: user, andDictionary: dict)
+                print(post.caption)
                 post.id = key
-                freshPosts.append(post)
-                freshPosts.sort(by: { (p1, p2) -> Bool in
-                    return p1.creationDate.compare(p2.creationDate) == .orderedDescending
+                Database.database().reference(withPath: "likes").child(key).child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    if let value = snapshot.value as? Int, value == 1 {
+                        post.isLiked = true
+                    } else {
+                        post.isLiked = false
+                    }
+                    self.posts.append(post)
+                    self.posts.sort(by: { (p1, p2) -> Bool in
+                        return p1.creationDate.compare(p2.creationDate) == .orderedDescending
+                    })
+                    self.collectionView?.reloadData()
                 })
             })
-            
-            self.refreshCollectionView(withFreshPosts: freshPosts)
         }
     }
     
@@ -140,9 +146,7 @@ extension HomeController {
         if indexPath.item < posts.count {
             cell.post = posts[indexPath.item]
         }
-        
         cell.delegate = self
-        
         return cell
     }
 }
@@ -172,6 +176,26 @@ extension HomeController: HomeFeedCellDelegate {
         let commentsViewController = CommentsViewController(collectionViewLayout: UICollectionViewFlowLayout())
         commentsViewController.post = post
         navigationController?.pushViewController(commentsViewController, animated: true)
+    }
+    func didLikePost(forCell cell: HomeFeedCell) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let indexPath = collectionView?.indexPath(for: cell) else { return }
+        var post = self.posts[indexPath.item]
+        guard let posID = post.id else { return }
+        let ref = Database.database().reference().child("likes").child(posID)
+        
+        print(post.caption)
+
+        let values = [uid: post.isLiked ? 0 : 1]
+        ref.updateChildValues(values) { (error, _) in
+            if let error = error {
+                Toast(text: error.localizedDescription).show()
+                return
+            }
+            post.isLiked = !post.isLiked;
+            self.posts[indexPath.item] = post
+            self.collectionView?.reloadItems(at: [indexPath])
+        }
     }
 }
 
