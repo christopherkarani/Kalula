@@ -27,6 +27,8 @@ extension LoginNetworkService {
             let fileName = UUID().uuidString
             let storageRef = Storage.storage().reference().child("profile_Images").child("\(fileName).jpg")
             storageRef.putData(data, metadata: nil, completion: { (metaData, error) in
+                
+                // handle error
                 if let error = error {
                     Toast(text: error.localizedDescription).show()
                     return

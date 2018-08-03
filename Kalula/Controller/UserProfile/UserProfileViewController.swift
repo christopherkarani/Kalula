@@ -21,14 +21,8 @@ class UserProfileViewController: UICollectionViewController {
     var isUserAvailable: Bool?
     var posts = [Post]()
     
-    var user : LocalUser?  {
-        didSet {
-            
-        }
-    }
-    
+    var user : LocalUser?  
 
-    
     var userId : String?
 
     override func viewDidLoad() {
