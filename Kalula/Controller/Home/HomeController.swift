@@ -183,9 +183,6 @@ extension HomeController: HomeFeedCellDelegate {
         var post = self.posts[indexPath.item]
         guard let posID = post.id else { return }
         let ref = Database.database().reference().child("likes").child(posID)
-        
-        print(post.caption)
-
         let values = [uid: post.isLiked ? 0 : 1]
         ref.updateChildValues(values) { (error, _) in
             if let error = error {

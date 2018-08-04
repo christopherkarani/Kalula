@@ -26,6 +26,7 @@ class UserSearchCell: UICollectionViewCell {
         imView.clipsToBounds = true
         imView.contentMode = .scaleAspectFill
         imView.layer.cornerRadius = 50 / 2 //width / 2
+        imView.image = #imageLiteral(resourceName: "placeHolder")
         return imView
     }()
     

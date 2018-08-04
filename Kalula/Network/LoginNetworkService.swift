@@ -10,15 +10,26 @@ import Foundation
 import Firebase
 import Toaster
 
+
+enum NetworkingError: Error {
+    case loginFailed(String)
+}
+
 protocol LoginNetworkService {
     func authorizeUser(withEmail email: String, password: String, userName: String, profileImage: UIImage, completion: @escaping(() -> Void))
 }
 
 extension LoginNetworkService {
     internal func authorizeUser(withEmail email: String, password: String, userName: String, profileImage: UIImage, completion: @escaping(() -> Void) ) {
+        
+        
+        
         Auth.auth().createUser(withEmail: email, password: password) { (user: User?, error: Error?) in
+            
+            
             if let error = error {
-                Toast(text: error.localizedDescription).show()
+                let desc =  error.localizedDescription
+                Toast(text: desc).show()
                 return
             }
             
@@ -53,7 +64,7 @@ extension LoginNetworkService {
                 }
                 
             })
-        }
+            } 
     }
 }
 
