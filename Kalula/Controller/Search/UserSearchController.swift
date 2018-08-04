@@ -99,14 +99,10 @@ extension UserSearchController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        var user: LocalUser
         
-        if searchController.isActive {
-            user = filteredUsers[indexPath.item]
-        } else {
-            user = users[indexPath.item]
-        }
         
+        let user = searchController.isActive ? filteredUsers[indexPath.item] : users[indexPath.item]
+
         presentUserProfileController(withUser: user)
     }
     
@@ -121,12 +117,7 @@ extension UserSearchController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier(), for: indexPath) as! UserSearchCell
-        
-        if searchController.isActive {
-            cell.user = filteredUsers[indexPath.item]
-        } else {
-            cell.user = users[indexPath.item]
-        }
+        cell.user = searchController.isActive ? filteredUsers[indexPath.item] : users[indexPath.item]
         return cell
     }
 }
@@ -148,6 +139,8 @@ extension UserSearchController: UISearchBarDelegate {
         filteredUsers = users.filter({ (user) -> Bool in
             return user.userName.localizedLowercase.contains(searchText.localizedLowercase)
         })
+        
+        
         if searchText.isEmpty {
             filteredUsers = users
         }
