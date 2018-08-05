@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import IGListKit
+
 
 class UserSearchController: UICollectionViewController {
     
@@ -91,11 +93,7 @@ class UserSearchController: UICollectionViewController {
 extension UserSearchController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if searchController.isActive {
-            return filteredUsers.count
-        } else {
-            return users.count
-        }
+        return searchController.isActive ? filteredUsers.count : users.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
