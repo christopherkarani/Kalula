@@ -1,4 +1,4 @@
-# ubiquitous-octo-giggle
+# Kalula
 An Instagram Clone built with a Firebase Backend
 
 # TO DO
