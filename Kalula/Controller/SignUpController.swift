@@ -97,17 +97,20 @@ class SignUpController : UIViewController {
         
         let tabbarController = UIApplication.shared.keyWindow?.rootViewController as! MainTabBarController
         tabbarController.refreshableDelegate?.refreshView()
-
         
-        loginService.authorizeUser(withEmail: email, password: password, userName: userName, profileImage: profileImage) { [weak self] in
-            self?.dismiss(animated: true, completion: nil)
+        // create User
+        session.user(authentication: .createUser(email: email, password: password)) { (error) in
+            if let error = error {
+                throw AuthError.signUpError(error.localizedDescription)
+            }
+            self.dismiss(animated: true, completion: nil)
         }
     }
 
-    var loginService : LoginNetworkService
+    let session: AuthSession
     
-    init(loginService: LoginNetworkService) {
-        self.loginService = loginService
+    init(authSession: AuthSession) {
+        self.session = authSession
         super.init(nibName: nil, bundle: nil)
     }
     

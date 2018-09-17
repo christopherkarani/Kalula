@@ -15,6 +15,7 @@ import Firebase
 
 class LoginController: UIViewController {
     
+    var session: AuthSession
     private var stackView: UIStackView!
     private var theme: UIColor = UIColor.greenTheme
     
@@ -103,19 +104,17 @@ class LoginController: UIViewController {
     @objc private func handleLogin() {
         view.endEditing(true)
         guard let email = emailTextField.text, let password = passwordTextField.text else { return }
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] (user, error) in
+        
+        // login the user
+        session.user(authentication: .login(email: email, password: password)) { (error) in
             if let error = error {
-                let toast = Toast(text: error.localizedDescription, delay: 1, duration: 3.5)
-                toast.show()
-                print(error.localizedDescription)
-                return
+                throw AuthError.loginError(error.localizedDescription)
             }
-            print("Succesfully logged user in")
+            
             let tabbarController = UIApplication.shared.keyWindow?.rootViewController as! MainTabBarController
             tabbarController.refreshableDelegate?.refreshView()
-
-            self?.dismiss(animated: true, completion: nil)
             
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
@@ -150,7 +149,7 @@ class LoginController: UIViewController {
     
     
     @objc private func handleShowSignUpVC() {
-        let signUpVC = SignUpController(loginService: LoginManager())
+        let signUpVC = SignUpController(authSession: AuthSession())
         navigationController?.pushViewController(signUpVC, animated: true)
     }
     
@@ -205,7 +204,16 @@ class LoginController: UIViewController {
         setupViews()
         setupInputViews() // always called after setupViews()
     }
-
+    
+    init(authSession: AuthSession) {
+        self.session = authSession
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
