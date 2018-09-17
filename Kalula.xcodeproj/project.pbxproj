@@ -259,7 +259,6 @@
 		18F817A71FE99FFB009CE89D /* Kalula */ = {
 			isa = PBXGroup;
 			children = (
-				3CFEC08B209916D3001C534F /* New Group */,
 				3C523FD920742585007BC164 /* Extensions */,
 				182C70012014A99C00D734B5 /* Fonts */,
 				18B461B920054385002D2268 /* Controller */,
@@ -359,13 +358,6 @@
 				3C6200132072764100AA7ED8 /* UserSearchCell.swift */,
 			);
 			path = Search;
-			sourceTree = "<group>";
-		};
-		3CFEC08B209916D3001C534F /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		874E83D89D998F8DAFFF3290 /* Frameworks */ = {

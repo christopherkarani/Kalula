@@ -29,7 +29,7 @@ class MainTabBarController : UITabBarController {
             //show if not logged in
             
             DispatchQueue.main.async {
-                let loginController = LoginController()
+                let loginController = LoginController(authSession: AuthSession())
                 
                 let navController = UINavigationController(rootViewController: loginController)
                 self.present(navController, animated: true, completion: nil)
