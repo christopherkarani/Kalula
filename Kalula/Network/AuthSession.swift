@@ -26,7 +26,8 @@ enum Authentication {
 
 /// An Object to handle Authentication Sessions
 final class AuthSession  {
-    var service = Auth.auth()
+    /// Manages Authentication
+    var service: Auth = Auth.auth()
     
     static var user: User? {
         return Auth.auth().currentUser
