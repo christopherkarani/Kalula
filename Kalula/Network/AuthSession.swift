@@ -39,11 +39,11 @@ extension AuthSession {
         switch authentication {
         case let .createUser(email, password):
             service.createUser(withEmail: email, password: password) { (_ , error) in
-                try? completion(error)
+                try! completion(error)
             }
         case let .login(email, password):
             service.signIn(withEmail: email, password: password) { (_ , error) in
-                try? completion(error)
+                try! completion(error)
             }
         }
     }

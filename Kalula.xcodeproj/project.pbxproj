@@ -47,6 +47,7 @@
 		3CFEC08D209916F8001C534F /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFEC08C209916F8001C534F /* Network.swift */; };
 		7F5B50C9814E3ECB4E1F2147 /* Pods_Kalula.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DB6EFFABA70D7C14330FC45 /* Pods_Kalula.framework */; };
 		9E15771C2150428500555D04 /* AuthSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E15771B2150428500555D04 /* AuthSession.swift */; };
+		9E1577222150470400555D04 /* StorageSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1577212150470400555D04 /* StorageSession.swift */; };
 		EE895F771860335A3D1218AC /* Pods_KalulaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22F0ECAF14AD54EA2D3A52ED /* Pods_KalulaTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -119,6 +120,7 @@
 		5971D433310331350675CD09 /* Pods_KalulaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KalulaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		599B5CC4CD1BB7D5F7F5CC85 /* Pods-KalulaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KalulaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KalulaTests/Pods-KalulaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9E15771B2150428500555D04 /* AuthSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSession.swift; sourceTree = "<group>"; };
+		9E1577212150470400555D04 /* StorageSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageSession.swift; sourceTree = "<group>"; };
 		C223E906FD7C2ADDEDA8FEC9 /* Pods-Kalula.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kalula.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kalula/Pods-Kalula.release.xcconfig"; sourceTree = "<group>"; };
 		F00B5F967A9CCFA7A79DB15F /* Pods-KalulaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KalulaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KalulaTests/Pods-KalulaTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -180,6 +182,7 @@
 				18D9A7542004E6920066C249 /* LoginNetworkService.swift */,
 				3CFEC08C209916F8001C534F /* Network.swift */,
 				9E15771B2150428500555D04 /* AuthSession.swift */,
+				9E1577212150470400555D04 /* StorageSession.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -691,6 +694,7 @@
 				3C6200142072764100AA7ED8 /* UserSearchCell.swift in Sources */,
 				3CFEB64B2067E4B7006804FF /* PhotoSelectorCell.swift in Sources */,
 				1892BAFA2008CB6700521362 /* FDUser.swift in Sources */,
+				9E1577222150470400555D04 /* StorageSession.swift in Sources */,
 				3CFEC08D209916F8001C534F /* Network.swift in Sources */,
 				3C349B8C206E6B8900334747 /* UIFont_Ext.swift in Sources */,
 				3C523FDB20742597007BC164 /* Database_Ext.swift in Sources */,
