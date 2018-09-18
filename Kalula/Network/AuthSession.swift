@@ -6,7 +6,7 @@
 //  Copyright © 2018 Christopher Brandon Karani. All rights reserved.
 //
 
-import Firebase
+import FirebaseAuth
 
 enum AuthError : Error {
     /// Throws Login Error With Firebase description

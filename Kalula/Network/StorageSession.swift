@@ -6,7 +6,25 @@
 //  Copyright © 2018 Christopher Brandon Karani. All rights reserved.
 //
 
-import Firebase
+import UIKit.UIImage
+import FirebaseStorage
+
+
+
+
+// MARK: - StorageTask
+/// Represents the read/write methods of FirebaseStorage
+public enum StorageTask {
+    case upload(Data, StorageMetadata?) // put
+    case uploadFile(to: URL, StorageMetadata?) // putFile
+    case downloadData(maxSize: Int64) // data
+    case downloadToURL(URL) // write
+    case downloadURL // downloadURL
+    case downloadMetadata // metadata
+    case update(StorageMetadata) // update
+    case delete // delete
+    
+}
 
 /// Handle Storage of Objects into FIrabse Storage
 final class StorageSession {
@@ -19,6 +37,7 @@ final class StorageSession {
 extension StorageSession {
     /// Storage Referances
     struct Ref {
+        /// A location to store our profile Images
         static let profileImages = Storage.storage().reference().child("profile_Images").child(randomFileName())
     }
     
@@ -26,7 +45,6 @@ extension StorageSession {
     static func randomFileName() -> String {
         return "\(UUID().uuidString).jpg"
     }
-    
     
     /// Store Image and give back a storage Reference Url
     func store(image: UIImage, completion: @escaping (StorageReferance) -> ()) {

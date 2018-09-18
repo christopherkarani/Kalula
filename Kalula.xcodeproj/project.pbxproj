@@ -48,6 +48,7 @@
 		7F5B50C9814E3ECB4E1F2147 /* Pods_Kalula.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DB6EFFABA70D7C14330FC45 /* Pods_Kalula.framework */; };
 		9E15771C2150428500555D04 /* AuthSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E15771B2150428500555D04 /* AuthSession.swift */; };
 		9E1577222150470400555D04 /* StorageSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1577212150470400555D04 /* StorageSession.swift */; };
+		9EF246782151A290004C0FE8 /* DatabaseSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF246772151A290004C0FE8 /* DatabaseSession.swift */; };
 		EE895F771860335A3D1218AC /* Pods_KalulaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22F0ECAF14AD54EA2D3A52ED /* Pods_KalulaTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -121,6 +122,7 @@
 		599B5CC4CD1BB7D5F7F5CC85 /* Pods-KalulaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KalulaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KalulaTests/Pods-KalulaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9E15771B2150428500555D04 /* AuthSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSession.swift; sourceTree = "<group>"; };
 		9E1577212150470400555D04 /* StorageSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageSession.swift; sourceTree = "<group>"; };
+		9EF246772151A290004C0FE8 /* DatabaseSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseSession.swift; sourceTree = "<group>"; };
 		C223E906FD7C2ADDEDA8FEC9 /* Pods-Kalula.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kalula.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kalula/Pods-Kalula.release.xcconfig"; sourceTree = "<group>"; };
 		F00B5F967A9CCFA7A79DB15F /* Pods-KalulaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KalulaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KalulaTests/Pods-KalulaTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -183,6 +185,7 @@
 				3CFEC08C209916F8001C534F /* Network.swift */,
 				9E15771B2150428500555D04 /* AuthSession.swift */,
 				9E1577212150470400555D04 /* StorageSession.swift */,
+				9EF246772151A290004C0FE8 /* DatabaseSession.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -386,7 +389,6 @@
 				18F817A21FE99FFB009CE89D /* Frameworks */,
 				18F817A31FE99FFB009CE89D /* Resources */,
 				993177E9D080CC8F62B50495 /* [CP] Embed Pods Frameworks */,
-				1298E8C815C2D45407EA340E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -405,8 +407,6 @@
 				18F817B51FE99FFC009CE89D /* Sources */,
 				18F817B61FE99FFC009CE89D /* Frameworks */,
 				18F817B71FE99FFC009CE89D /* Resources */,
-				1F1D214E6DDEE420D31A331C /* [CP] Embed Pods Frameworks */,
-				619B166E9FDCB6154ECE030E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -426,8 +426,6 @@
 				18F817C01FE99FFC009CE89D /* Sources */,
 				18F817C11FE99FFC009CE89D /* Frameworks */,
 				18F817C21FE99FFC009CE89D /* Resources */,
-				1C56576068D887515435A9B2 /* [CP] Embed Pods Frameworks */,
-				79D89E2077F54F58BF863CBF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -515,51 +513,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1298E8C815C2D45407EA340E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kalula/Pods-Kalula-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1C56576068D887515435A9B2 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KalulaUITests/Pods-KalulaUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1F1D214E6DDEE420D31A331C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KalulaTests/Pods-KalulaTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		2D00E1808942C86CEB6FD141 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -578,21 +531,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		619B166E9FDCB6154ECE030E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KalulaTests/Pods-KalulaTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		68B452902F86F4C87E9F91A6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -609,21 +547,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		79D89E2077F54F58BF863CBF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KalulaUITests/Pods-KalulaUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		82644848B463D53A428CF744 /* [CP] Check Pods Manifest.lock */ = {
@@ -655,6 +578,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -670,6 +594,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -700,6 +625,7 @@
 				3C523FDB20742597007BC164 /* Database_Ext.swift in Sources */,
 				18D9A7552004E6920066C249 /* LoginNetworkService.swift in Sources */,
 				188B4969200642EA00AB2A1A /* UserProfileHeader.swift in Sources */,
+				9EF246782151A290004C0FE8 /* DatabaseSession.swift in Sources */,
 				18B461BB20054482002D2268 /* UserProfileViewController.swift in Sources */,
 				3CF18D3B2072740900FB7995 /* UserSearchController.swift in Sources */,
 				3C349B91206EBA1200334747 /* UserPostsCell.swift in Sources */,
