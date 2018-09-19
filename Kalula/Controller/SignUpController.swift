@@ -99,17 +99,14 @@ class SignUpController : UIViewController {
         tabbarController.refreshableDelegate?.refreshView()
         
         // create User
-        authSession.user(authentication: .createUser(email: email, password: password)) { (error) in
-            if let error = error {
-                throw AuthError.signUpError(error.localizedDescription)
+        authSession.user(authentication: .createUser(email: email, password: password)) { (result) in
+            switch result {
+            case .success:
+                // storage of profileImage Url here
+                self.dismiss(animated: true, completion:  nil)
+            case .failure:
+                print("Failure")
             }
-            
-            self.storageSession.store(image: profileImage, completion: { (ref) in
-                
-                
-                self.dismiss(animated: true, completion: nil)
-            })
-            
         }
     }
 

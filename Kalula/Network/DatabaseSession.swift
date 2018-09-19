@@ -7,6 +7,9 @@
 //
 
 import FirebaseDatabase
+import Result
+
+
 
 
 // MARK: - DatabaseTask
@@ -18,42 +21,61 @@ public enum DatabaseTask {
     case updateChildValues([AnyHashable: Any])
     case removeValue
     case transaction
+    case noob(DataSnapshot)
 }
 
 
+/// A Request Object That holds all the information We need to make a database Request
 
-enum DatabaseQuery {
-    typealias UserCredentials = [AnyHashable: Any]
-    
-    case createUser(credentials: UserCredentials)
+struct DatabaseRequest {
+    var task: DatabaseTask
+    var ref: DatabaseReference
 }
 
-extension DatabaseQuery {
-    struct Referance {
-    
-        static let users: DatabaseReference = Database.database().reference().child("users")
+
+final class DatabseSession {
+    let service = Database.database()
+}
+
+extension DatabseSession {
+    func query(request: DatabaseRequest, completion: @escaping (Result<DataSnapshot, SessionError>) -> () ) {
+        
     }
 }
 
-final class DatabaseSession {    
 
-}
-
-enum Referance {
-    case users
-    
-    var service : DatabaseReference {
-        return Database.database().reference()
-    }
-}
-
-extension Referance {
-    var ref: DatabaseReference {
-        switch self {
-        case .users:
-            return service.child("users")
-    }
-}
+//enum DatabaseQuery {
+//    typealias UserCredentials = [AnyHashable: Any]
+//    
+//    case createUser(credentials: UserCredentials)
+//}
+//
+//extension DatabaseQuery {
+//    struct Referance {
+//    
+//        static let users: DatabaseReference = Database.database().reference().child("users")
+//    }
+//}
+//
+//final class DatabaseSession {    
+//
+//}
+//
+//enum Referance {
+//    case users
+//    
+//    var service : DatabaseReference {
+//        return Database.database().reference()
+//    }
+//}
+//
+//extension Referance {
+//    var ref: DatabaseReference {
+//        switch self {
+//        case .users:
+//            return service.child("users")
+//    }
+//}
 
 
 //extension DatabaseSession {

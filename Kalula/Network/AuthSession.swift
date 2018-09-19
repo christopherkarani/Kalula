@@ -7,13 +7,8 @@
 //
 
 import FirebaseAuth
+import Result
 
-enum AuthError : Error {
-    /// Throws Login Error With Firebase description
-    case loginError(String)
-    /// Throws Sign Up Error With Firebase description
-    case signUpError(String)
-}
 
 enum Authentication {
     /// Create a User In Firbebase
@@ -26,7 +21,8 @@ enum Authentication {
 
 /// An Object to handle Authentication Sessions
 final class AuthSession  {
-    var service = Auth.auth()
+    private var service = Auth.auth()
+
     
     static var user: User? {
         return Auth.auth().currentUser
@@ -34,16 +30,30 @@ final class AuthSession  {
 }
 
 extension AuthSession {
+
+    
     /// Action Function that authenticates user and throws an error closure
-    func user(authentication: Authentication, completion: @escaping (Error?) throws -> () ) {
+    func user(authentication: Authentication, completion: @escaping (Result<User, SessionError>) -> () ) {
         switch authentication {
         case let .createUser(email, password):
-            service.createUser(withEmail: email, password: password) { (_ , error) in
-                try! completion(error)
+            service.createUser(withEmail: email, password: password) { (user , error) in
+                guard error == nil, let currentUser = user else {
+                    let authError = SessionError.signUpError(error!.localizedDescription)
+                    completion(Result(error: authError))
+                    return
+                }
+                
+                completion(Result(value: currentUser))
             }
         case let .login(email, password):
-            service.signIn(withEmail: email, password: password) { (_ , error) in
-                try! completion(error)
+            service.signIn(withEmail: email, password: password) { (user , error) in
+                guard error == nil, let currentUser = user else {
+                    let authError = SessionError.loginError(error!.localizedDescription)
+                    completion(Result(error: authError))
+                    return
+                }
+                
+                completion(Result(value: currentUser))
             }
         }
     }
