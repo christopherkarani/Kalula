@@ -25,43 +25,35 @@ public enum StorageTask {
     
 }
 
+/// A struct containing all the information we need for a storage Request
 struct StorageRequest {
     let task : StorageTask
     let ref  : StorageReference
 }
 
-
-/// Handle Storage of Objects into FIrabse Storage
-final class StorageSession {
+/// Storage Referances
+struct StoreRef {
+    /// A location to store our profile Images
+    static let profileImages = Storage.storage().reference().child("profile_Images").child(randomFileName())
     
-    /// Firebase Storage Service
-    let service = Storage.storage()
-}
-
-extension StorageSession {
-    /// Storage Referances
-    struct Ref {
-        /// A location to store our profile Images
-        static let profileImages = Storage.storage().reference().child("profile_Images").child(randomFileName())
-    }
     
     /// Generate Random File Name For Storage In FIrebase
     static func randomFileName() -> String {
         return "\(UUID().uuidString).jpg"
     }
-    
-    /// Store Image and give back a storage Reference Url
-    func store(image: UIImage, completion: @escaping (URL) -> ()) {
-         let data = UIImageJPEGRepresentation(image, 0.3).unwrap(debug: "Data Error")
-        Ref.profileImages.putData(data, metadata: nil) { (metadata, error) in
-            if let storageRef = metadata?.downloadURL() {
-                completion(storageRef)
-            }
-        }
-    }
-    
+}
+
+
+/// Handle Storage of Objects into FIrabse Storage
+protocol StorageSession {
+    func store(request : StorageRequest, completion: @escaping (Result<URL,SessionError>) -> () ) -> StorageUploadTask?
+}
+
+extension StorageSession {
+
     
     /// Run a storage Tast
+    @discardableResult
     func store(request : StorageRequest, completion: @escaping (Result<URL,SessionError>) -> () ) -> StorageUploadTask? {
         switch request.task {
         case let .upload(data):

@@ -93,29 +93,56 @@ class SignUpController : UIViewController {
         let password = passwordTextField.text.unwrap()
         let userName = usernameTextField.text.unwrap()
         let profileImage = imagePickerButton.currentImage.unwrap()
+        let imageData = UIImageJPEGRepresentation(profileImage, 0.4)!
         
         
         let tabbarController = UIApplication.shared.keyWindow?.rootViewController as! MainTabBarController
         tabbarController.refreshableDelegate?.refreshView()
         
+        let authRequest = AuthRequest(task: .createUser(email: email, password: password), authService: Session.authService)
+        let storageRequest = StorageRequest(task: .upload(imageData), ref: StoreRef.profileImages)
+        
+        
+        
         // create User
-        authSession.user(authentication: .createUser(email: email, password: password)) { (result) in
+        session.user(authRequest: authRequest) { (result) in
             switch result {
-            case .success:
-                // storage of profileImage Url here
-                self.dismiss(animated: true, completion:  nil)
+            case let .success(user):
+                // storage of profileImage here
+                self.session.store(request: storageRequest, completion: { (result) in
+                    switch result {
+                    case let .success(url):
+                        // add user to database
+                        let userCredentials = ["username": userName,
+                                               "profileImageUrl": url.absoluteString]
+                        let values = [user.uid: userCredentials]
+                        let databaseRequest = DatabaseRequest(task: .updateChildValues(values), ref: DBRef.users)
+                        self.session.query(request: databaseRequest, completion: { (result) in
+                            switch result {
+                            case .success:
+                                self.dismiss(animated: true, completion:  nil)
+                            case .failure(let error):
+                                print(error.localizedDescription)
+                                return
+                            }
+                        })
+                    case let .failure(error):
+                        print(error.localizedDescription)
+                        return
+                    }
+                })
+                
             case .failure:
                 print("Failure")
+                return
             }
         }
     }
 
-    let authSession: AuthSession
-    let storageSession: StorageSession
+    let session: Session
     
-    init(authSession: AuthSession, storageSession: StorageSession) {
-        self.authSession = authSession
-        self.storageSession = storageSession
+    init(session: Session) {
+        self.session = session
         super.init(nibName: nil, bundle: nil)
     }
     

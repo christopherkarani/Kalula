@@ -49,6 +49,7 @@
 		9E15771C2150428500555D04 /* AuthSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E15771B2150428500555D04 /* AuthSession.swift */; };
 		9E1577222150470400555D04 /* StorageSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1577212150470400555D04 /* StorageSession.swift */; };
 		9E75DA022151CAB700E9A128 /* SessionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E75DA012151CAB700E9A128 /* SessionError.swift */; };
+		9ED0F3412151D6BD00798131 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED0F3402151D6BD00798131 /* Session.swift */; };
 		9EF246782151A290004C0FE8 /* DatabaseSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF246772151A290004C0FE8 /* DatabaseSession.swift */; };
 		EE895F771860335A3D1218AC /* Pods_KalulaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22F0ECAF14AD54EA2D3A52ED /* Pods_KalulaTests.framework */; };
 /* End PBXBuildFile section */
@@ -124,6 +125,7 @@
 		9E15771B2150428500555D04 /* AuthSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSession.swift; sourceTree = "<group>"; };
 		9E1577212150470400555D04 /* StorageSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageSession.swift; sourceTree = "<group>"; };
 		9E75DA012151CAB700E9A128 /* SessionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionError.swift; sourceTree = "<group>"; };
+		9ED0F3402151D6BD00798131 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		9EF246772151A290004C0FE8 /* DatabaseSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseSession.swift; sourceTree = "<group>"; };
 		C223E906FD7C2ADDEDA8FEC9 /* Pods-Kalula.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kalula.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kalula/Pods-Kalula.release.xcconfig"; sourceTree = "<group>"; };
 		F00B5F967A9CCFA7A79DB15F /* Pods-KalulaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KalulaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KalulaTests/Pods-KalulaTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				9E1577212150470400555D04 /* StorageSession.swift */,
 				9EF246772151A290004C0FE8 /* DatabaseSession.swift */,
 				9E75DA012151CAB700E9A128 /* SessionError.swift */,
+				9ED0F3402151D6BD00798131 /* Session.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -637,6 +640,7 @@
 				3C349B94206FFC9200334747 /* HomeController.swift in Sources */,
 				181957351FEA82FF00C1F508 /* UIColor+Extension.swift in Sources */,
 				3CACFF12208933130092CE2B /* SendComment.swift in Sources */,
+				9ED0F3412151D6BD00798131 /* Session.swift in Sources */,
 				3C349B96206FFEDC00334747 /* HomeFeedCell.swift in Sources */,
 				3CBC92F9205D9E5700F312CB /* PhotoSelectorViewController.swift in Sources */,
 				3CACFF142089331C0092CE2B /* Comment.swift in Sources */,
