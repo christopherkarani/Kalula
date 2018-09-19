@@ -15,7 +15,7 @@ import Firebase
 
 class LoginController: UIViewController {
     
-    var session: AuthSession
+    var session: Session
     private var stackView: UIStackView!
     private var theme: UIColor = UIColor.greenTheme
     
@@ -105,16 +105,18 @@ class LoginController: UIViewController {
         view.endEditing(true)
         guard let email = emailTextField.text, let password = passwordTextField.text else { return }
         
-        // login the user
-        session.user(authentication: .login(email: email, password: password)) { (error) in
-            if let error = error {
-                throw AuthError.loginError(error.localizedDescription)
+        // log user in using email and password
+        let authRequest = AuthRequest(task: .login(email: email, password: password))
+        
+        session.user(authRequest: authRequest) { (result ) in
+            switch result {
+            case .success:
+                let tabbarController = UIApplication.shared.keyWindow?.rootViewController as! MainTabBarController
+                tabbarController.refreshableDelegate?.refreshView()
+                self.dismiss(animated: true, completion: nil)
+            case .failure(let error):
+                 print(error)
             }
-            
-            let tabbarController = UIApplication.shared.keyWindow?.rootViewController as! MainTabBarController
-            tabbarController.refreshableDelegate?.refreshView()
-            
-            self.dismiss(animated: true, completion: nil)
         }
     }
     
@@ -149,7 +151,7 @@ class LoginController: UIViewController {
     
     
     @objc private func handleShowSignUpVC() {
-        let signUpVC = SignUpController(authSession: AuthSession())
+        let signUpVC = SignUpController(session: Session())
         navigationController?.pushViewController(signUpVC, animated: true)
     }
     
@@ -205,8 +207,8 @@ class LoginController: UIViewController {
         setupInputViews() // always called after setupViews()
     }
     
-    init(authSession: AuthSession) {
-        self.session = authSession
+    init(session: Session) {
+        self.session = session
         super.init(nibName: nil, bundle: nil)
     }
     

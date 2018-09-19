@@ -6,14 +6,9 @@
 //  Copyright © 2018 Christopher Brandon Karani. All rights reserved.
 //
 
-import Firebase
+import FirebaseAuth
+import Result
 
-enum AuthError : Error {
-    /// Throws Login Error With Firebase description
-    case loginError(String)
-    /// Throws Sign Up Error With Firebase description
-    case signUpError(String)
-}
 
 enum Authentication {
     /// Create a User In Firbebase
@@ -23,28 +18,53 @@ enum Authentication {
     case login(email: String, password: String)
 }
 
+/// A structure holding all the information we need for an Auth Request
+struct AuthRequest {
+    let task: Authentication
+    let authService: Auth
+}
 
-/// An Object to handle Authentication Sessions
-final class AuthSession  {
-    var service = Auth.auth()
-    
-    static var user: User? {
-        return Auth.auth().currentUser
+extension AuthRequest {
+    init(task: Authentication) {
+        self.task = task
+        self.authService = Session.authService
     }
 }
 
+/// An Object to handle Authentication Sessions
+
+protocol  AuthSession {
+    func user(authRequest: AuthRequest, completion: @escaping (Result<User, SessionError>) -> () )
+}
+
+
 extension AuthSession {
     /// Action Function that authenticates user and throws an error closure
-    func user(authentication: Authentication, completion: @escaping (Error?) throws -> () ) {
-        switch authentication {
+    func user(authRequest: AuthRequest, completion: @escaping (Result<User, SessionError>) -> () ) {
+        switch authRequest.task {
         case let .createUser(email, password):
-            service.createUser(withEmail: email, password: password) { (_ , error) in
-                try? completion(error)
+            authRequest.authService.createUser(withEmail: email, password: password) { (user , error) in
+                guard error == nil, let currentUser = user else {
+                    let authError = SessionError.signUpError(error!.localizedDescription)
+                    completion(Result(error: authError))
+                    return
+                }
+                
+                completion(Result(value: currentUser))
             }
         case let .login(email, password):
-            service.signIn(withEmail: email, password: password) { (_ , error) in
-                try? completion(error)
+            authRequest.authService.signIn(withEmail: email, password: password) { (user , error) in
+                guard error == nil, let currentUser = user else {
+                    let authError = SessionError.loginError(error!.localizedDescription)
+                    completion(Result(error: authError))
+                    return
+                }
+                
+                completion(Result(value: currentUser))
             }
         }
     }
 }
+
+
+
