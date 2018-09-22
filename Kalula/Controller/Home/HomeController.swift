@@ -126,9 +126,9 @@ extension HomeController {
         }
     }
     /// Fetch photos from the firebase databae. Once data is recieved, append elements to the array then sort it
-    private func fetchPhotos(_ user: LocalUser, _ uid: String) {
+    private func fetchPhotos(_ user: LocalUser, _ uidValue: String) {
         
-        let ref = Database.database().reference().child("posts").child(uid)
+        let ref = Database.database().reference().child("posts").child(uidValue)
         ref.queryOrdered(byChild:"creationDate").observeSingleEvent(of: .value) { [unowned self] (snapshot) in
             guard let dictionaries = snapshot.value as? [String: Any] else { return }
             
@@ -137,7 +137,7 @@ extension HomeController {
                 
                 var post = Post(withUser: user, andDictionary: dict)
                 post.id = key
-                Database.database().reference(withPath: "likes").child(key).child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                Database.database().reference(withPath: "likes").child(key).child(self.uid).observeSingleEvent(of: .value, with: { (snapshot) in
                     
                     // culculate the isLike value based of of 1 or 0 provided by the payload
                     guard let value = snapshot.value as? Int else { return }
