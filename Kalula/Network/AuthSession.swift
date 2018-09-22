@@ -54,7 +54,7 @@ extension AuthSession {
             }
         case let .login(email, password):
             authRequest.authService.signIn(withEmail: email, password: password) { (user , error) in
-                guard error == nil, let currentUser = user else {
+                guard error == nil , let currentUser = user else {
                     let authError = SessionError.loginError(error!.localizedDescription)
                     completion(Result(error: authError))
                     return

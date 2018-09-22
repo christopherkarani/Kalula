@@ -15,6 +15,9 @@ final class Session {
     static let authService = Auth.auth()
     static let databaseService = Database.database()
     static let storageService = Storage.storage()
+    
+    var user: User?
+    var storageMetaData = [StorageMetadata]()
 }
 
 /// Add Functionality

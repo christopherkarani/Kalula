@@ -101,9 +101,16 @@ class SignUpController : UIViewController {
         
         let authRequest = AuthRequest(task: .createUser(email: email, password: password), authService: Session.authService)
         let storageRequest = StorageRequest(task: .upload(imageData), ref: StoreRef.profileImages)
+
         
         
-        
+        sessionActivity(authRequest: authRequest, storageRequest: storageRequest, userName: userName)
+
+    }
+    
+    fileprivate func sessionActivity(authRequest: AuthRequest,
+                                     storageRequest: StorageRequest,
+                                     userName: String) {
         // create User
         session.user(authRequest: authRequest) { (result) in
             switch result {
@@ -131,7 +138,6 @@ class SignUpController : UIViewController {
                         return
                     }
                 })
-                
             case .failure:
                 print("Failure")
                 return

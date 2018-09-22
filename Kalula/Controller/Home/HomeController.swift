@@ -11,15 +11,15 @@ import Firebase
 import Toaster
 
 class HomeController: UICollectionViewController {
-    
-    
     var posts = [Post]()
     
     private func cellIdentifier() -> String {
         return "HomeCell"
     }
     
-
+    private var uid: String {
+        return Auth.auth().currentUser?.uid ?? ""
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,89 +30,15 @@ class HomeController: UICollectionViewController {
         setupNotificationObservers()
         setupRefreshDelegateConform()
     }
+}
 
-    func setupRefreshDelegateConform() {
-        let tabBarController = UIApplication.shared.keyWindow?.rootViewController as! MainTabBarController
-        tabBarController.refreshableDelegate = self
-    }
-    
-    @objc fileprivate func handleRefresh() {
-        posts.removeAll()
-        fetchAllPosts()
-    }
-    
-    fileprivate func fetchAllPosts() {
-        fetchPosts()
-        fetchFollowingPosts()
-    }
-    
-    fileprivate func refreshCollectionView(withFreshPosts posts: [Post]) {
-        
-
-        DispatchQueue.main.async {
-            self.collectionView?.refreshControl?.endRefreshing()
-            self.collectionView?.reloadData()
-        }
-
-    }
-    
-    fileprivate func fetchFollowingPosts() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        let ref = Database.database().reference().child("following").child(uid)
-        ref.observeSingleEvent(of: .value) { (snapshot) in
-            guard let dictionary = snapshot.value as? [String: Any] else { return }
-            dictionary.forEach({ (uid, value) in
-                Database.fetchUserWithUID(uid: uid, completion: { (user) in
-                    self.fetchPhotos(user, uid)
-                })
-            })
-        }
-    }
-    
-    func fetchPosts() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        Database.fetchUserWithUID(uid: uid) { (user) in
-            self.fetchPhotos(user, user.uid)
-        }
-    }
-    
-    private func fetchPhotos(_ user: LocalUser, _ uid: String) {
-        
-        let ref = Database.database().reference().child("posts").child(uid)
-        ref.queryOrdered(byChild:"creationDate").observeSingleEvent(of: .value) { [unowned self] (snapshot) in
-            var count = 0
-            guard let dictionaries = snapshot.value as? [String: Any] else { return }
-            dictionaries.forEach({ (key, dictionary) in
-                count += 1
-                guard let dict = dictionary as?  [String: Any] else { return }
-                guard let uid = Auth.auth().currentUser?.uid else { return }
-                
-                var post = Post(withUser: user, andDictionary: dict)
-                print(post.caption)
-                post.id = key
-                Database.database().reference(withPath: "likes").child(key).child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-                    if let value = snapshot.value as? Int, value == 1 {
-                        post.isLiked = true
-                    } else {
-                        post.isLiked = false
-                    }
-                    self.posts.append(post)
-                    self.posts.sort(by: { (p1, p2) -> Bool in
-                        return p1.creationDate.compare(p2.creationDate) == .orderedDescending
-                    })
-                    self.collectionView?.reloadData()
-                })
-            })
-        }
-    }
-    
-
-    
+/// Setup Code Goes here
+extension HomeController {
     fileprivate func setupCollectionView() {
         collectionView?.backgroundColor = .white
         setupRefreshControl()
     }
-    
+    /// setup what is neccesary for the refresh control
     fileprivate func setupRefreshControl() {
         let refreshControl = UIRefreshControl()
         collectionView?.refreshControl = refreshControl
@@ -133,6 +59,12 @@ class HomeController: UICollectionViewController {
     
     @objc fileprivate func handlePostImageNotification() {
         handleRefresh()
+    }
+    
+    
+    func setupRefreshDelegateConform() {
+        let tabBarController = UIApplication.shared.keyWindow?.rootViewController as! MainTabBarController
+        tabBarController.refreshableDelegate = self
     }
 }
 
@@ -171,6 +103,70 @@ extension HomeController: ControllerRefreshDelegate {
         handleRefresh()
     }
 }
+
+/// Fetching Code Goes here
+extension HomeController {
+    fileprivate func fetchFollowingPosts(completion: @escaping () -> ()) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let ref = Database.database().reference().child("following").child(uid)
+        ref.observeSingleEvent(of: .value) { (snapshot) in
+            guard let dictionary = snapshot.value as? [String: Any] else { return }
+            for uid in dictionary.keys {
+                Database.fetchUserWithUID(uid: uid, completion: { (user) in
+                    self.fetchPhotos(user, uid)
+                    completion()
+                })
+            }
+        }
+    }
+    
+    func fetchPosts() {
+        Database.fetchUserWithUID(uid: uid) { (user) in
+            self.fetchPhotos(user, user.uid)
+        }
+    }
+    /// Fetch photos from the firebase databae. Once data is recieved, append elements to the array then sort it
+    private func fetchPhotos(_ user: LocalUser, _ uid: String) {
+        
+        let ref = Database.database().reference().child("posts").child(uid)
+        ref.queryOrdered(byChild:"creationDate").observeSingleEvent(of: .value) { [unowned self] (snapshot) in
+            guard let dictionaries = snapshot.value as? [String: Any] else { return }
+            
+            for (key,dictionary) in dictionaries {
+                guard let dict = dictionary as?  [String: Any] else { return }
+                
+                var post = Post(withUser: user, andDictionary: dict)
+                post.id = key
+                Database.database().reference(withPath: "likes").child(key).child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    
+                    // culculate the isLike value based of of 1 or 0 provided by the payload
+                    guard let value = snapshot.value as? Int else { return }
+                    post.isLiked = value == 1 ? true : false
+                    
+                    // append and sort the array
+                    self.posts.append(post)
+                    self.posts.sort(by: { (p1, p2) -> Bool in
+                        return p1.creationDate.compare(p2.creationDate) == .orderedDescending
+                    })
+                    self.collectionView?.reloadData()
+                })
+            }
+        }
+    }
+    
+    @objc fileprivate func handleRefresh() {
+        posts.removeAll()
+        fetchAllPosts()
+    }
+    
+    fileprivate func fetchAllPosts() {
+        fetchPosts()
+        fetchFollowingPosts {
+            self.collectionView?.refreshControl?.endRefreshing()
+        }
+    }
+    
+}
 extension HomeController: HomeFeedCellDelegate {
     func didTapCommentButton(onPost post: Post) {
         let commentsViewController = CommentsViewController(collectionViewLayout: UICollectionViewFlowLayout())
@@ -178,7 +174,6 @@ extension HomeController: HomeFeedCellDelegate {
         navigationController?.pushViewController(commentsViewController, animated: true)
     }
     func didLikePost(forCell cell: HomeFeedCell) {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
         guard let indexPath = collectionView?.indexPath(for: cell) else { return }
         var post = self.posts[indexPath.item]
         guard let posID = post.id else { return }

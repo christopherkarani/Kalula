@@ -113,7 +113,8 @@ class LoginController: UIViewController {
             case .success:
                 let tabbarController = UIApplication.shared.keyWindow?.rootViewController as! MainTabBarController
                 tabbarController.refreshableDelegate?.refreshView()
-                self.dismiss(animated: true, completion: nil)
+                tabbarController.present(tabbarController.homeController, animated: true, completion: nil)
+//                self.dismiss(animated: true, completion: nil)
             case .failure(let error):
                  print(error)
             }
