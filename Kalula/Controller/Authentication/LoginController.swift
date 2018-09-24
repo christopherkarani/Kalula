@@ -114,11 +114,20 @@ class LoginController: UIViewController {
                 let tabbarController = UIApplication.shared.keyWindow?.rootViewController as! MainTabBarController
                 tabbarController.refreshableDelegate?.refreshView()
                 tabbarController.present(tabbarController.homeController, animated: true, completion: nil)
-//                self.dismiss(animated: true, completion: nil)
+            //  self.dismiss(animated: true, completion: nil)
             case .failure(let err):
-                 self.show(alert: err)
+                self.clearTextFields()
+                self.show(alert: err)
             }
         }
+    }
+    
+    /**
+     A small function for clearing the email and password text field
+ */
+    fileprivate func clearTextFields() {
+        emailTextField.text = nil
+        passwordTextField.text = nil
     }
     
     var isValidTextForm: Bool = false  {
