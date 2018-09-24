@@ -106,15 +106,13 @@ class LoginController: UIViewController {
         guard let email = emailTextField.text, let password = passwordTextField.text else { return }
         
         // log user in using email and password
-        let authRequest = AuthRequest(task: .login(email: email, password: password))
-        
-        session.user(authRequest: authRequest) { (result ) in
+        session.user(auth: .login(email: email, password: password)) { (result ) in
             switch result {
             case .success:
-                let tabbarController = UIApplication.shared.keyWindow?.rootViewController as! MainTabBarController
-                tabbarController.refreshableDelegate?.refreshView()
-                tabbarController.present(tabbarController.homeController, animated: true, completion: nil)
-            //  self.dismiss(animated: true, completion: nil)
+//                let tabbarController = UIApplication.shared.keyWindow?.rootViewController as! MainTabBarController
+//                tabbarController.refreshableDelegate?.refreshView()
+//                tabbarController.present(tabbarController.homeController, animated: true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
             case .failure(let err):
                 self.clearTextFields()
                 self.show(alert: err)

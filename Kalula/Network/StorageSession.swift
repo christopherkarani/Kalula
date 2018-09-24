@@ -25,16 +25,11 @@ public enum StorageTask {
     
 }
 
-/// A struct containing all the information we need for a storage Request
-struct StorageRequest {
-    let task : StorageTask
-    let ref  : StorageReference
-}
 
 /// Storage Referances
 struct StoreRef {
     /// A location to store our profile Images
-    static let profileImages = Storage.storage().reference().child("profile_Images").child(randomFileName())
+    static let profileImages = Session.storageService.child("profile_Images").child(randomFileName())
     
     
     /// Generate Random File Name For Storage In FIrebase
@@ -46,7 +41,7 @@ struct StoreRef {
 
 /// Handle Storage of Objects into FIrabse Storage
 protocol StorageSession {
-    func store(request : StorageRequest, completion: @escaping (Result<URL,SessionError>) -> () ) -> StorageUploadTask?
+    func store(task : StorageTask, completion: @escaping (Result<URL,SessionError>) -> () ) -> StorageUploadTask?
 }
 
 extension StorageSession {
@@ -54,10 +49,10 @@ extension StorageSession {
     
     /// Run a storage Tast
     @discardableResult
-    func store(request : StorageRequest, completion: @escaping (Result<URL,SessionError>) -> () ) -> StorageUploadTask? {
-        switch request.task {
+    func store(task : StorageTask, completion: @escaping (Result<URL,SessionError>) -> () ) -> StorageUploadTask? {
+        switch task {
         case let .upload(data):
-            return request.ref.putData(data, metadata: nil) { (metadata, error) in
+            return StoreRef.profileImages.putData(data, metadata: nil) { (metadata, error) in
                 guard error == nil, let url = metadata?.downloadURL() else {
                     let error = SessionError.uploadError(desc: error!.localizedDescription)
                     completion(Result.init(error: error))

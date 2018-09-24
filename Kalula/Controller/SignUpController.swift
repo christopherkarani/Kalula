@@ -95,28 +95,18 @@ class SignUpController : UIViewController {
         let profileImage = imagePickerButton.currentImage.unwrap()
         let imageData = UIImageJPEGRepresentation(profileImage, 0.4)!
         
+//        
+//        let tabbarController = UIApplication.shared.keyWindow?.rootViewController as! MainTabBarController
+//        tabbarController.refreshableDelegate?.refreshView()
         
-        let tabbarController = UIApplication.shared.keyWindow?.rootViewController as! MainTabBarController
-        tabbarController.refreshableDelegate?.refreshView()
-        
-        let authRequest = AuthRequest(task: .createUser(email: email, password: password), authService: Session.authService)
-        let storageRequest = StorageRequest(task: .upload(imageData), ref: StoreRef.profileImages)
 
         
-        
-        sessionActivity(authRequest: authRequest, storageRequest: storageRequest, userName: userName)
-
-    }
-    
-    fileprivate func sessionActivity(authRequest: AuthRequest,
-                                     storageRequest: StorageRequest,
-                                     userName: String) {
         // create User
-        session.user(authRequest: authRequest) { (result) in
+        session.user(auth: .createUser(email: email, password: password)) { (result) in
             switch result {
             case let .success(user):
                 // storage of profileImage here
-                self.session.store(request: storageRequest, completion: { (result) in
+                self.session.store(task: .upload(imageData), completion: { (result) in
                     switch result {
                     case let .success(url):
                         // add user to database
@@ -143,7 +133,10 @@ class SignUpController : UIViewController {
                 return
             }
         }
+
+
     }
+    
 
     let session: Session
     

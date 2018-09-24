@@ -14,7 +14,7 @@ import Result
 final class Session {
     static let authService = Auth.auth()
     static let databaseService = Database.database()
-    static let storageService = Storage.storage()
+    static let storageService = Storage.storage().reference()
     
     var user: User?
     var storageMetaData = [StorageMetadata]()

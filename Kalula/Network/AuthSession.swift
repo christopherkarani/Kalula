@@ -18,32 +18,20 @@ enum Authentication {
     case login(email: String, password: String)
 }
 
-/// A structure holding all the information we need for an Auth Request
-struct AuthRequest {
-    let task: Authentication
-    let authService: Auth
-}
-
-extension AuthRequest {
-    init(task: Authentication) {
-        self.task = task
-        self.authService = Session.authService
-    }
-}
-
 /// An Object to handle Authentication Sessions
 
 protocol  AuthSession {
-    func user(authRequest: AuthRequest, completion: @escaping (Result<User, SessionError>) -> () )
+    func user(auth: Authentication, completion: @escaping (Result<User, SessionError>) -> () )
 }
 
 
 extension AuthSession {
     /// Action Function that authenticates user and throws an error closure
-    func user(authRequest: AuthRequest, completion: @escaping (Result<User, SessionError>) -> () ) {
-        switch authRequest.task {
+    /// Uses the session object to make the request
+    func user(auth: Authentication, completion: @escaping (Result<User, SessionError>) -> () ) {
+        switch auth {
         case let .createUser(email, password):
-            authRequest.authService.createUser(withEmail: email, password: password) { (user , error) in
+            Session.authService.createUser(withEmail: email, password: password) { (user , error) in
                 guard error == nil, let currentUser = user else {
                     let authError = SessionError.AuthError(desc: .createUser(desc: error!.localizedDescription))
                     completion(Result(error: authError))
@@ -53,7 +41,7 @@ extension AuthSession {
                 completion(Result(value: currentUser))
             }
         case let .login(email, password):
-            authRequest.authService.signIn(withEmail: email, password: password) { (user , error) in
+            Session.authService.signIn(withEmail: email, password: password) { (user , error) in
                 guard error == nil , let currentUser = user else {
                     let authError = SessionError.AuthError(desc: .signIn(desc: error!.localizedDescription))
                     completion(Result(error: authError))
