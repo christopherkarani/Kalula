@@ -115,8 +115,8 @@ class LoginController: UIViewController {
                 tabbarController.refreshableDelegate?.refreshView()
                 tabbarController.present(tabbarController.homeController, animated: true, completion: nil)
 //                self.dismiss(animated: true, completion: nil)
-            case .failure(let error):
-                 print(error)
+            case .failure(let err):
+                 self.show(alert: err)
             }
         }
     }
@@ -202,6 +202,8 @@ class LoginController: UIViewController {
         navigationController?.heroNavigationAnimationType = .selectBy(presenting: .zoomSlide(direction: .left), dismissing: .zoomSlide(direction: .right))
     }
     
+    
+    /// 
     private func setup() {
         setupHeroToNavigationBar()
         setupViews()

@@ -63,12 +63,13 @@ class UserProfileViewController: UICollectionViewController {
     
     @objc private func handleLogoutButton() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let logoutAction = UIAlertAction(title: "Log Out", style: .destructive) { [weak self] (_) in
+        let logoutAction = UIAlertAction(title: "Log Out", style: .destructive) { [unowned self] (_) in
             let loginController = LoginController(session: Session())
-            self?.heroModalAnimationType = .zoomOut
+            self.heroModalAnimationType = .zoomOut
             let navcontroller = UINavigationController(rootViewController: loginController)
             navcontroller.isHeroEnabled = true
-            self?.present(navcontroller, animated: true, completion: nil)
+            self.signOut()
+            self.present(navcontroller, animated: true, completion: nil)
         }
         let cancleAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(logoutAction)
@@ -81,6 +82,17 @@ class UserProfileViewController: UICollectionViewController {
         super.viewWillAppear(animated)
         //fetchUser()
     }
+    
+    
+    private func signOut() {
+        do {
+            try Auth.auth().signOut()
+        } catch let error {
+            let error = SessionError.AuthError(desc: .signOut(desc: error.localizedDescription))
+            show(alert: error)
+        }
+    }
+    
     
 
     

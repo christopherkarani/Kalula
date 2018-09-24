@@ -6,12 +6,16 @@
 //  Copyright © 2018 Christopher Brandon Karani. All rights reserved.
 //
 
-import UIKit.UIAlertController
-import UIKit.UIViewController
 
+
+
+/**
+ A protocol Used to show that a type can be presented as an alert
+ */
 protocol Alert {
+    /// The title of the alert
     var title: String { get }
-    var error: Error { get }
+    var description: String { get }
 }
 
 

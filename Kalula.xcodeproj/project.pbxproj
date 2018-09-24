@@ -46,9 +46,11 @@
 		3CFEB64D2068A0CE006804FF /* PhotoSelectorHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFEB64C2068A0CE006804FF /* PhotoSelectorHeaderCell.swift */; };
 		3CFEC08D209916F8001C534F /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFEC08C209916F8001C534F /* Network.swift */; };
 		7F5B50C9814E3ECB4E1F2147 /* Pods_Kalula.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DB6EFFABA70D7C14330FC45 /* Pods_Kalula.framework */; };
+		9E0BAA9721597469008FD42E /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0BAA9621597469008FD42E /* Alert.swift */; };
 		9E15771C2150428500555D04 /* AuthSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E15771B2150428500555D04 /* AuthSession.swift */; };
 		9E1577222150470400555D04 /* StorageSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1577212150470400555D04 /* StorageSession.swift */; };
 		9E75DA022151CAB700E9A128 /* SessionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E75DA012151CAB700E9A128 /* SessionError.swift */; };
+		9E9AB119215979AE00B3B1B0 /* UIViewController_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9AB118215979AE00B3B1B0 /* UIViewController_Ext.swift */; };
 		9ED0F3412151D6BD00798131 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED0F3402151D6BD00798131 /* Session.swift */; };
 		9EF246782151A290004C0FE8 /* DatabaseSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF246772151A290004C0FE8 /* DatabaseSession.swift */; };
 		EE895F771860335A3D1218AC /* Pods_KalulaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22F0ECAF14AD54EA2D3A52ED /* Pods_KalulaTests.framework */; };
@@ -122,9 +124,11 @@
 		4849C32A74E2EF5271E3C194 /* Pods-Kalula.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kalula.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kalula/Pods-Kalula.debug.xcconfig"; sourceTree = "<group>"; };
 		5971D433310331350675CD09 /* Pods_KalulaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KalulaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		599B5CC4CD1BB7D5F7F5CC85 /* Pods-KalulaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KalulaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KalulaTests/Pods-KalulaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9E0BAA9621597469008FD42E /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		9E15771B2150428500555D04 /* AuthSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSession.swift; sourceTree = "<group>"; };
 		9E1577212150470400555D04 /* StorageSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageSession.swift; sourceTree = "<group>"; };
 		9E75DA012151CAB700E9A128 /* SessionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionError.swift; sourceTree = "<group>"; };
+		9E9AB118215979AE00B3B1B0 /* UIViewController_Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController_Ext.swift; sourceTree = "<group>"; };
 		9ED0F3402151D6BD00798131 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		9EF246772151A290004C0FE8 /* DatabaseSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseSession.swift; sourceTree = "<group>"; };
 		C223E906FD7C2ADDEDA8FEC9 /* Pods-Kalula.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kalula.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kalula/Pods-Kalula.release.xcconfig"; sourceTree = "<group>"; };
@@ -199,6 +203,8 @@
 		181957331FEA82E300C1F508 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				9E9AB1172159799A00B3B1B0 /* UIViewController */,
+				9E0BAA9521597456008FD42E /* Alert */,
 				181957341FEA82FF00C1F508 /* UIColor+Extension.swift */,
 				3C349B8B206E6B8900334747 /* UIFont_Ext.swift */,
 			);
@@ -381,6 +387,22 @@
 				5971D433310331350675CD09 /* Pods_KalulaUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9E0BAA9521597456008FD42E /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				9E0BAA9621597469008FD42E /* Alert.swift */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
+		9E9AB1172159799A00B3B1B0 /* UIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9E9AB118215979AE00B3B1B0 /* UIViewController_Ext.swift */,
+			);
+			path = UIViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -626,6 +648,7 @@
 				3CFEB64B2067E4B7006804FF /* PhotoSelectorCell.swift in Sources */,
 				9E75DA022151CAB700E9A128 /* SessionError.swift in Sources */,
 				1892BAFA2008CB6700521362 /* FDUser.swift in Sources */,
+				9E0BAA9721597469008FD42E /* Alert.swift in Sources */,
 				9E1577222150470400555D04 /* StorageSession.swift in Sources */,
 				3CFEC08D209916F8001C534F /* Network.swift in Sources */,
 				3C349B8C206E6B8900334747 /* UIFont_Ext.swift in Sources */,
@@ -647,6 +670,7 @@
 				3C349B8F206EB92B00334747 /* Post.swift in Sources */,
 				3C349B8A206E5D8600334747 /* SelectPhotoViewController.swift in Sources */,
 				3CD1BA0A207F5B110044689F /* Notification_Ext.swift in Sources */,
+				9E9AB119215979AE00B3B1B0 /* UIViewController_Ext.swift in Sources */,
 				3CFEB64D2068A0CE006804FF /* PhotoSelectorHeaderCell.swift in Sources */,
 				9E15771C2150428500555D04 /* AuthSession.swift in Sources */,
 				18B461B6200542FF002D2268 /* MainTabBarController.swift in Sources */,

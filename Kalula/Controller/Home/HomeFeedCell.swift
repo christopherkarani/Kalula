@@ -11,7 +11,14 @@ import SnapKit
 import Kingfisher
 
 protocol HomeFeedCellDelegate: class {
+    
+    /// Handles Interaction between Comment Button and HomeController
+    /// - parameter post: The post related with the tapped `cell`s comment button
     func didTapCommentButton(onPost post: Post)
+    
+    
+     /// Handles Liking of a post.
+     /// - parameter cell: The Cell At which the like took place
     func didLikePost(forCell cell: HomeFeedCell)
 }
 

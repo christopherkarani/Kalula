@@ -59,7 +59,7 @@ extension StorageSession {
         case let .upload(data):
             return request.ref.putData(data, metadata: nil) { (metadata, error) in
                 guard error == nil, let url = metadata?.downloadURL() else {
-                    let error = SessionError.uploadError(error!.localizedDescription)
+                    let error = SessionError.uploadError(desc: error!.localizedDescription)
                     completion(Result.init(error: error))
                     return
                 }

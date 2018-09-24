@@ -45,7 +45,7 @@ extension AuthSession {
         case let .createUser(email, password):
             authRequest.authService.createUser(withEmail: email, password: password) { (user , error) in
                 guard error == nil, let currentUser = user else {
-                    let authError = SessionError.signUpError(error!.localizedDescription)
+                    let authError = SessionError.AuthError(desc: .createUser(desc: error!.localizedDescription))
                     completion(Result(error: authError))
                     return
                 }
@@ -55,7 +55,7 @@ extension AuthSession {
         case let .login(email, password):
             authRequest.authService.signIn(withEmail: email, password: password) { (user , error) in
                 guard error == nil , let currentUser = user else {
-                    let authError = SessionError.loginError(error!.localizedDescription)
+                    let authError = SessionError.AuthError(desc: .signIn(desc: error!.localizedDescription))
                     completion(Result(error: authError))
                     return
                 }

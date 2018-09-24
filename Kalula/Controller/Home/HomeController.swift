@@ -127,7 +127,6 @@ extension HomeController {
     }
     /// Fetch photos from the firebase databae. Once data is recieved, append elements to the array then sort it
     private func fetchPhotos(_ user: LocalUser, _ uid: String) {
-        
         let ref = Database.database().reference().child("posts").child(uid)
         ref.queryOrdered(byChild:"creationDate").observeSingleEvent(of: .value) { [unowned self] (snapshot) in
             guard let dictionaries = snapshot.value as? [String: Any] else { return }
@@ -168,11 +167,13 @@ extension HomeController {
     
 }
 extension HomeController: HomeFeedCellDelegate {
+
     func didTapCommentButton(onPost post: Post) {
         let commentsViewController = CommentsViewController(collectionViewLayout: UICollectionViewFlowLayout())
         commentsViewController.post = post
         navigationController?.pushViewController(commentsViewController, animated: true)
     }
+    
     func didLikePost(forCell cell: HomeFeedCell) {
         guard let indexPath = collectionView?.indexPath(for: cell) else { return }
         var post = self.posts[indexPath.item]
@@ -189,6 +190,8 @@ extension HomeController: HomeFeedCellDelegate {
             self.collectionView?.reloadItems(at: [indexPath])
         }
     }
+    
+    
 }
 
 
