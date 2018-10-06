@@ -11,8 +11,8 @@ import Firebase
 
 class UserSearchController: UICollectionViewController {
     
-    var users = [LocalUser]()
-    var filteredUsers = [LocalUser]()
+    var users : Sorted<LocalUser>!
+    var filteredUsers : Sorted<LocalUser>!
     
     lazy var searchController : UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
@@ -42,22 +42,16 @@ class UserSearchController: UICollectionViewController {
         ref.observeSingleEvent(of: .value) { (snapshot) in
             guard let dictionaries = snapshot.value as? [String: Any] else { return }
             
-            dictionaries.forEach({ (key,value) in
-                
+            for (key,value) in dictionaries {
                 //omit current user from array
                 if key == Auth.auth().currentUser?.uid {
                     return
                 }
                 
                 guard let userDictionary = value as? [String: Any] else { return }
-                let user = FDUser(withUiD: key, dictionary: userDictionary)
+                let user = LocalUser(withUiD: key, dictionary: userDictionary)
                 self.users.append(user)
-            })
-            
-            self.users.sort(by: { (userOne, userTwo) -> Bool in
-                return userOne.userName.compare(userTwo.userName) == .orderedAscending
-            })
-            
+            }
             self.collectionView?.reloadData()
             UIView.animate(withDuration: 0.5) {
                 self.collectionView?.layoutIfNeeded()

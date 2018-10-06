@@ -14,12 +14,12 @@ class PhotoSelectorViewController: UICollectionViewController {
     let cellID = "CellID"
     let headerID = "HeaderID"
     
-    var header: PhotoSelectorHeaderCell?
+    var header: PhotoSelectorCell?
     var selectedImage : UIImage?
     
     fileprivate func handleCellRegistration() {
         collectionView?.register(PhotoSelectorCell.self, forCellWithReuseIdentifier: cellID)
-        collectionView?.register(PhotoSelectorHeaderCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerID)
+        collectionView?.register(PhotoSelectorCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerID)
     }
     
     
@@ -127,14 +127,14 @@ extension  PhotoSelectorViewController: UICollectionViewDelegateFlowLayout {
     
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerID, for: indexPath) as! PhotoSelectorHeaderCell
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerID, for: indexPath) as! PhotoSelectorCell
         self.header = header
         setupHeaderImage(withHeaderCell: header, andSelectedImage: selectedImage)
 
         return header
     }
     
-    fileprivate func setupHeaderImage(withHeaderCell cell:PhotoSelectorHeaderCell, andSelectedImage image: UIImage?) {
+    fileprivate func setupHeaderImage(withHeaderCell cell:PhotoSelectorCell, andSelectedImage image: UIImage?) {
         cell.imageView.image = image
         if let selectedImage = image {
             if let index = images.index(of: selectedImage) {

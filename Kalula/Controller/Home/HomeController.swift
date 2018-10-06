@@ -11,12 +11,18 @@ import Firebase
 import Toaster
 
 class HomeController: UICollectionViewController {
-    var posts = [Post]()
-    
-    private func cellIdentifier() -> String {
-        return "HomeCell"
+    private var posts = [Post]() {
+        didSet {
+            let newSorted = Sorted<Post>(posts, predicate: <)
+            sortedPosts = newSorted
+        }
     }
+    public var sortedPosts : Sorted<Post> = []
     
+    private var cellIdentifier : String = "HomeCell"
+    
+    
+    var source : CollectionDataSource<Post, HomeFeedCell>!
     private var uid: String {
         return Auth.auth().currentUser?.uid ?? ""
     }
@@ -26,9 +32,22 @@ class HomeController: UICollectionViewController {
         setupCollectionView()
         registerCollectionViewCells()
         setupNavigationItems()
-        fetchAllPosts()
+        fetchAllPosts {
+            self.setupCollectionViewDataSource()
+        }
+        
         setupNotificationObservers()
         setupRefreshDelegateConform()
+    }
+    
+    private func setupCollectionViewDataSource() {
+        
+        guard !posts.isEmpty else { return }
+        source = CollectionDataSource(items: sortedPosts, reuseIdentifier: cellIdentifier) { (post, cell) in
+            cell.post = post
+            cell.delegate = self
+        }
+        self.collectionView?.dataSource = source
     }
 }
 
@@ -46,7 +65,7 @@ extension HomeController {
     }
     
     fileprivate func registerCollectionViewCells() {
-        collectionView?.register(HomeFeedCell.self, forCellWithReuseIdentifier: cellIdentifier())
+        collectionView?.register(HomeFeedCell.self, forCellWithReuseIdentifier: cellIdentifier)
     }
     
     fileprivate func setupNavigationItems() {
@@ -68,20 +87,6 @@ extension HomeController {
     }
 }
 
-extension HomeController {
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return posts.count
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier(), for: indexPath) as! HomeFeedCell
-        if indexPath.item < posts.count {
-            cell.post = posts[indexPath.item]
-        }
-        cell.delegate = self
-        return cell
-    }
-}
 
 extension HomeController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -120,9 +125,10 @@ extension HomeController {
         }
     }
     
-    func fetchPosts() {
+    func fetchPosts(completion: @escaping () -> ()) {
         Database.fetchUserWithUID(uid: uid) { (user) in
             self.fetchPhotos(user, user.uid)
+            completion()
         }
     }
     /// Fetch photos from the firebase databae. Once data is recieved, append elements to the array then sort it
@@ -141,12 +147,8 @@ extension HomeController {
                     // culculate the isLike value based of of 1 or 0 provided by the payload
                     guard let value = snapshot.value as? Int else { return }
                     post.isLiked = value == 1 ? true : false
-                    
                     // append and sort the array
                     self.posts.append(post)
-                    self.posts.sort(by: { (p1, p2) -> Bool in
-                        return p1.creationDate.compare(p2.creationDate) == .orderedDescending
-                    })
                     self.collectionView?.reloadData()
                 })
             }
@@ -155,14 +157,17 @@ extension HomeController {
     
     @objc fileprivate func handleRefresh() {
         posts.removeAll()
-        fetchAllPosts()
+        fetchAllPosts {}
     }
     
-    fileprivate func fetchAllPosts() {
-        fetchPosts()
-        fetchFollowingPosts {
-            self.collectionView?.refreshControl?.endRefreshing()
+    fileprivate func fetchAllPosts(completion: @escaping () -> ()) {
+        fetchPosts{
+            self.fetchFollowingPosts {
+                self.collectionView?.refreshControl?.endRefreshing()
+                completion()
+            }
         }
+
     }
     
 }

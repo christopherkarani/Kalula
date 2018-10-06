@@ -32,6 +32,7 @@ class UserSearchCell: UICollectionViewCell {
     
     public var nameLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont.sanfransiscoBold(withSize: 14)
         return label
     }()
     

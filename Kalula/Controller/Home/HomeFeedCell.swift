@@ -43,7 +43,6 @@ class HomeFeedCell: UICollectionViewCell {
     public var post : Post? {
         didSet {
             if let post = post {
-                
                 manageLikeButtonStateRendering()
                 let imageUrl = URL(string: post.imageUrl)
                 let userProfileImageUrl = URL(string: post.user.profileImageUrl)
@@ -57,10 +56,10 @@ class HomeFeedCell: UICollectionViewCell {
     }
     
     func setupCaptionText(withPost post: Post) {
-        let attributedText = NSMutableAttributedString(string: post.user.userName, attributes: [.font : UIFont.helveticaMediumFont()])
-        attributedText.append(NSAttributedString(string: " \(post.caption).", attributes: [.font : UIFont.helveticaFont()]))
-        attributedText.append(NSAttributedString(string: "\n\n", attributes: [.font : UIFont.helveticaFont(withSize: 4)]))
-        attributedText.append(NSAttributedString(string: "\(Date().timeAgoSinceDate(date: post.creationDate as NSDate, numericDates: false))", attributes: [NSAttributedStringKey.font : UIFont.helveticaMediumFont(withSize: 14), .foregroundColor: UIColor.gray]))
+        let attributedText = NSMutableAttributedString(string: post.user.userName, attributes: [.font : UIFont.sanfransiscoHeavy(withSize: 14)])
+        attributedText.append(NSAttributedString(string: " \(post.caption).", attributes: [.font :  UIFont.sanfransiscoRegular(withSize: 14)]))
+        attributedText.append(NSAttributedString(string: "\n\n", attributes: [.font : UIFont.sanfransiscoRegular(withSize: 4)]))
+        attributedText.append(NSAttributedString(string: "\(Date().timeAgoSinceDate(date: post.creationDate as NSDate, numericDates: false))", attributes: [NSAttributedStringKey.font : UIFont.sanfransiscoLight(withSize: 14), .foregroundColor: UIColor.gray]))
         
         captionLabel.attributedText = attributedText
     }

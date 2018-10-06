@@ -8,6 +8,12 @@
 	<array>
 		<string>Candy Shop Personal Use.ttf</string>
 		<string>Rainbow Bridge Personal Use.ttf</string>
+		<string>SFProTextRegular.otf</string>
+		<string>SF-Pro-Text-Medium.otf</string>
+		<string>SF-Pro-Text-Heavy.otf</string>
+		<string>SF-Pro-Text-Semibold.otf</string>
+		<string>SF-Pro-Text-Light.otf</string>
+		<string>SF-Pro-Text-Bold.otf</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>

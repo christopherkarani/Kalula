@@ -9,9 +9,6 @@
 import Foundation
 
 struct Post {
-    
-    
-    
     var id: String?
     var user: LocalUser
     var imageUrl: String
@@ -32,4 +29,12 @@ extension Post: Equatable {
     static func ==(_ lhs: Post, _ rhs: Post) -> Bool {
         return lhs.imageUrl == rhs.imageUrl
     }
+}
+
+extension Post: Comparable {
+    static func < (lhs: Post, rhs: Post) -> Bool {
+        return lhs.creationDate < rhs.creationDate
+    }
+    
+    
 }
